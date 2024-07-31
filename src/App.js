@@ -25,7 +25,7 @@ function App() {
         <div className="sidebar pe-4 pb-3">
           <nav className="navbar bg-secondary navbar-dark">
             <Link to="/" className="navbar-brand mx-4 mb-3">
-              <h3 className="text-primary"><i className="fa fa-user-edit me-2"></i>CyberPort: Maritime Information and Management Portal</h3>
+              <h3 className="text-primary"><i className="fa fa-user-edit me-2"></i>CyberPort</h3>
             </Link>
             <div className="d-flex align-items-center ms-4 mb-4">
               <div className="ms-3"></div>
