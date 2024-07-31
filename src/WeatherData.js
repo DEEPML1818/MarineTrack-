@@ -11,7 +11,7 @@ const WeatherData = () => {
   const lat = 5.2831; // Labuan latitude
   const lon = 115.2309; // Labuan longitude
   const weatherApiKey = '4d5ea12f38be4e04b8c120842242507';
-  const airPollutionApiKey = 'a79d12a9cf9d78595d7fbbb7e27a7733';
+  const airPollutionApiKey = '94ff7daecfb2522167538d473a405862';
   const stormGlassApiKey = '2d3c71cc-4cf2-11ef-968a-0242ac130004-2d3c7230-4cf2-11ef-968a-0242ac130004';
 
   useEffect(() => {
