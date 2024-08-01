@@ -41,7 +41,7 @@ const MarineTrafficEmbed = () => {
               <h6 className="mb-0">VesselFinder</h6>
             </div>
             <div style={{ position: 'relative', width: '100%', height: 'calc(100% - 40px)', overflow: 'hidden' }}>
-              <div style={{ position: 'absolute', top: '-900px', width: '100%', height: 'calc(100% + 1000px)' }}>
+              <div style={{ position: 'absolute', top: '-1700px', width: '100%', height: 'calc(100% + 1800px)' }}>
                 <iframe
                   src={vesselFinderUrl}
                   style={{
