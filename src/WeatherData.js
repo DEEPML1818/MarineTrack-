@@ -252,7 +252,7 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-cloud fa-3x text-primary"></i> {/* SO2 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2" style={{fontSize: '18px'}}>SO2:</p>
+                    <p className="mb-2" style={{fontSize: '18px'}}>NH3:</p>
                     <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.nh3} NH3:</h6>
                   </div>
                 </div>
