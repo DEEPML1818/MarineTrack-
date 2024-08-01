@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './css/style.css';
+// import './css/weather.css';
 import './css/bootstrap.min.css';
 
 const WeatherData = () => {
@@ -74,8 +75,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-thermometer-half fa-3x text-primary"></i> {/* Temperature Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2" style={{fontSize: '35px'}}>Temperature:</p>
-                <h6 className="mb-0" style={{fontSize: '40px'}} >{weather.current.temp_c}°C / {weather.current.temp_f}°F</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Temperature:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}} >{weather.current.temp_c}°C / {weather.current.temp_f}°F</h6>
               </div>
             </div>
           </div>
@@ -83,8 +84,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-feather-alt fa-3x text-primary"></i> {/* Feels Like Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Feels Like:</p>
-                <h6 className="mb-0">{weather.current.feelslike_c}°C / {weather.current.feelslike_f}°F</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Feels Like:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.feelslike_c}°C / {weather.current.feelslike_f}°F</h6>
               </div>
             </div>
           </div>
@@ -92,9 +93,9 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-wind fa-3x text-primary"></i> {/* Wind Speed Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Wind:</p>
-                <h6 className="mb-0">{weather.current.wind_kph} kph / {weather.current.wind_mph} mph</h6>
-                <p className="mb-0">Direction: {weather.current.wind_dir} ({weather.current.wind_degree}°)</p>
+                <p className="mb-2" style={{fontSize: '18px'}}>Wind:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.wind_kph} kph / {weather.current.wind_mph} mph</h6>
+                <p className="mb-0" style={{fontSize: '18px'}}>Direction: {weather.current.wind_dir} ({weather.current.wind_degree}°)</p>
               </div>
             </div>
           </div>
@@ -102,8 +103,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-tint fa-3x text-primary"></i> {/* Humidity Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Humidity:</p>
-                <h6 className="mb-0">{weather.current.humidity}%</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Humidity:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.humidity}%</h6>
               </div>
             </div>
           </div>
@@ -111,8 +112,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-cloud fa-3x text-primary"></i> {/* Cloud Cover Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Cloud Cover:</p>
-                <h6 className="mb-0">{weather.current.cloud}%</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Cloud Cover:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.cloud}%</h6>
               </div>
             </div>
           </div>
@@ -120,8 +121,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-umbrella fa-3x text-primary"></i> {/* Precipitation Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Precipitation:</p>
-                <h6 className="mb-0">{weather.current.precip_mm} mm / {weather.current.precip_in} in</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Precipitation:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.precip_mm} mm / {weather.current.precip_in} in</h6>
               </div>
             </div>
           </div>
@@ -129,8 +130,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-thermometer-three-quarters fa-3x text-primary"></i> {/* Pressure Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Pressure:</p>
-                <h6 className="mb-0">{weather.current.pressure_mb} mb / {weather.current.pressure_in} in</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Pressure:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.pressure_mb} mb / {weather.current.pressure_in} in</h6>
               </div>
             </div>
           </div>
@@ -138,8 +139,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-sun fa-3x text-primary"></i> {/* UV Index Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">UV Index:</p>
-                <h6 className="mb-0">{weather.current.uv}</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>UV Index:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.uv}</h6>
               </div>
             </div>
           </div>
@@ -147,8 +148,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-exclamation-circle fa-3x text-primary"></i> {/* Gust Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Gust:</p>
-                <h6 className="mb-0">{weather.current.gust_kph} kph / {weather.current.gust_mph} mph</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Gust:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{weather.current.gust_kph} kph / {weather.current.gust_mph} mph</h6>
               </div>
             </div>
           </div>
@@ -156,8 +157,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-water fa-3x text-primary"></i> {/* Sea Wave Height Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Sea Wave Height:</p>
-                <h6 className="mb-0">{waveHeight} meters</h6>
+                <p className="mb-2" style={{fontSize: '18px'}}>Sea Wave Height:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}}>{waveHeight} meters</h6>
               </div>
             </div>
           </div>
@@ -165,8 +166,8 @@ const WeatherData = () => {
             <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
               <i className="fas fa-cloud-sun fa-3x text-primary"></i> {/* Weather Condition Icon */}
               <div className="ms-3" style={{height: '100px'}}>
-                <p className="mb-2">Condition:</p>
-                <h6 className="mb-0">{weather.current.condition.text}</h6>
+                <p className="mb-2" style={{fontSize: '18px'}} >Condition:</p>
+                <h6 className="mb-0" style={{fontSize: '30px'}} >{weather.current.condition.text}</h6>
                 <img src={weather.current.condition.icon} alt="Weather condition icon" />
               </div>
             </div>
@@ -179,8 +180,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-smog fa-3x text-primary"></i> {/* Air Quality Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">AQI:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].main.aqi}</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>AQI:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].main.aqi}</h6>
                   </div>
                 </div>
               </div>
@@ -188,8 +189,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-leaf fa-3x text-primary"></i> {/* PM2.5 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">PM2.5:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.pm2_5} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>PM2.5:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.pm2_5} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -197,8 +198,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-leaf fa-3x text-primary"></i> {/* PM10 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">PM10:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.pm10} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>PM10:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.pm10} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -206,8 +207,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-burn fa-3x text-primary"></i> {/* CO Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">CO:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.co} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>CO:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.co} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -215,8 +216,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-cloud fa-3x text-primary"></i> {/* NO Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">NO:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.no} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>NO:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.no} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -224,8 +225,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-cloud fa-3x text-primary"></i> {/* NO2 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">NO2:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.no2} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>NO2:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.no2} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -233,8 +234,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-cloud fa-3x text-primary"></i> {/* O3 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">O3:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.o3} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>O3:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.o3} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -242,8 +243,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-cloud fa-3x text-primary"></i> {/* SO2 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">SO2:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.so2} µg/m³</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>SO2:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.so2} µg/m³</h6>
                   </div>
                 </div>
               </div>
@@ -251,8 +252,8 @@ const WeatherData = () => {
                 <div className="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
                   <i className="fas fa-cloud fa-3x text-primary"></i> {/* SO2 Icon */}
                   <div className="ms-3" style={{height: '100px'}}>
-                    <p className="mb-2">SO2:</p>
-                    <h6 className="mb-0">{pollutionData.list[0].components.nh3} NH3:</h6>
+                    <p className="mb-2" style={{fontSize: '18px'}}>SO2:</p>
+                    <h6 className="mb-0" style={{fontSize: '30px'}}>{pollutionData.list[0].components.nh3} NH3:</h6>
                   </div>
                 </div>
               </div>
