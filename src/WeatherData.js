@@ -21,7 +21,7 @@ const WeatherData = () => {
       .catch(error => console.error('Error fetching weather data:', error));
 
     // Fetch air pollution data
-    axios.get(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${airPollutionApiKey}`)
+    axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${airPollutionApiKey}`)
       .then(response => setPollutionData(response.data))
       .catch(error => console.error('Error fetching air pollution data:', error));
 
