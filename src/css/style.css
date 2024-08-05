@@ -1,9 +1,100 @@
 /********** Template CSS **********/
 :root {
-    --primary: #EB1616;
-    --secondary: #191C24;
-    --light: #6C7293;
-    --dark: #000000;
+    --primary: #00bfff; /* Cyan Blue */
+    --secondary: #001f3f; /* Navy Blue */
+    --light: #6C7293; /* Light Gray */
+    --dark: #191C24; /* Dark Gray */
+    --highlight: #ff851b; /* Orange for highlights */
+    --error: #ff4136; /* Red for error messages */
+    --success: #2ecc40; /* Green for success messages */
+    --white: #ffffff; /* White */
+    --content-bg: #f2f2f2; /* Light Gray Main Background */
+}
+
+.weather-background {
+    background-image: url('/src/image/weathers.jfif'); /* adjust the path to your image */
+    background-size: cover;
+}
+
+.Temperature-background {
+    background-image: url('/src/weatherimageprompt/TEMP.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.CloudCover-background {
+    background-image: url('/src/weatherimageprompt/Cloud\ Cover.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.Precipitation-background {
+    background-image: url('/src/weatherimageprompt/Precipitation.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.Pressure-background {
+    background-image: url('/src/weatherimageprompt/Pressure.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.UVIndex-background {
+    background-image: url('/src/weatherimageprompt/UV\ Index.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.Gust-background {
+    background-image: url('/src/weatherimageprompt/Gust.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.SeaWaveHeight-background {
+    background-image: url('/src/weatherimageprompt/Sea\ Wave\ Height.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.Condition-background {
+    background-image: url('/src/weatherimageprompt/Condition.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.Wind-background {
+    background-image: url('/src/weatherimageprompt/wind.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.AIRp-background {
+    background-image: url('/src/image/smoke-258786_1920.jpg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+.AQI-background {
+    background-image: url('/src/weatherimageprompt/AQI.jpeg'); /* adjust the path to your image */
+    background-size: contain;
+    background-position: center;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--content-bg); /* Light Gray Main Background */
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
 }
 
 .back-to-top {
@@ -13,7 +104,6 @@
     bottom: 45px;
     z-index: 99;
 }
-
 
 /*** Spinner ***/
 #spinner {
@@ -29,10 +119,29 @@
     opacity: 1;
 }
 
-
 /*** Button ***/
 .btn {
     transition: .5s;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0099cc; /* Darker Cyan Blue */
+}
+
+.btn-secondary {
+    background: var(--light);
+    color: var(--dark);
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background: #e6e6e6; /* Slightly darker Light Gray */
 }
 
 .btn-square {
@@ -61,7 +170,6 @@
     border-radius: 50px;
 }
 
-
 /*** Layout ***/
 .sidebar {
     position: fixed;
@@ -79,7 +187,7 @@
 .content {
     margin-left: 250px;
     min-height: 100vh;
-    background: var(--dark);
+    background: var(--content-bg); /* Light Gray Main Background */
     transition: 0.5s;
 }
 
@@ -116,7 +224,6 @@
         margin-left: 0;
     }
 }
-
 
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
@@ -228,7 +335,6 @@
     }
 }
 
-
 /*** Date Picker ***/
 .bootstrap-datetimepicker-widget.bottom {
     top: auto !important;
@@ -256,13 +362,11 @@
     border-bottom-color: var(--primary);
 }
 
-
 /*** Testimonial ***/
 .progress .progress-bar {
     width: 0px;
     transition: 2s;
 }
-
 
 /*** Testimonial ***/
 .testimonial-carousel .owl-dots {
@@ -286,4 +390,38 @@
 .testimonial-carousel .owl-dot.active {
     background: var(--dark);
     border-color: var(--primary);
+}
+
+/*** Alerts ***/
+.alert {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    color: var(--white);
+}
+
+.alert.error {
+    background: var(--error); /* Red for error messages */
+}
+
+.alert.success {
+    background: var(--success); /* Green for success messages */
+}
+
+/*** Highlights and Call-to-Action ***/
+.highlight {
+    color: var(--highlight); /* Orange for highlights */
+}
+
+.call-to-action {
+    background: var(--highlight); /* Orange for call-to-action buttons */
+    color: var(--white);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.call-to-action:hover {
+    background: #e67e22; /* Darker Orange */
 }

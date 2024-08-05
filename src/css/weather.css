@@ -1,0 +1,67 @@
+/* Custom Bootstrap Overrides */
+
+/* Header and Navigation Bar */
+.navbar {
+  background-color: navy;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+}
+
+.navbar a:hover {
+  color: cyan;
+}
+
+/* Main Background */
+body {
+  background-color: lightgray;
+}
+
+/* Content Areas */
+.container, .content {
+  background-color: white;
+  color: darkgray;
+}
+
+/* Primary Buttons */
+.btn-primary {
+  background-color: cyan;
+  color: white;
+  border-color: cyan;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background-color: darkcyan;
+  border-color: darkcyan;
+}
+
+/* Secondary Buttons */
+.btn-secondary {
+  background-color: lightgray;
+  color: darkgray;
+  border-color: lightgray;
+}
+
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active {
+  background-color: darkgray;
+  color: white;
+  border-color: darkgray;
+}
+
+/* Highlights and Call-to-Action */
+.highlight, .cta {
+  color: orange;
+}
+
+/* Alerts and Notifications */
+.alert-danger {
+  background-color: red;
+  color: white;
+}
+
+.alert-success {
+  background-color: green;
+  color: white;
+}
