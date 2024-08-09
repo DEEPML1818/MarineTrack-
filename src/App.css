@@ -1,109 +1,38 @@
-/* General Styles */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../src/Fonts/montserrat-regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Additional font styles if necessary */
-@font-face {
-  font-family: 'Montserrat';
-  src: url('../src/Fonts/montserrat-bold.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-body {
-  margin: 0;
-  font-family: 'Montserrat';
-  background-color: #F1F1F1 ; /* Light Gray */
-  color: #333; /* Dark Gray text */
-}
-
-/* Header and Navigation Bar */
-header {
-  background-color: #001f3f; /* Navy Blue */
-  color: #ffffff; /* White text */
-  padding: 1rem;
+.App {
   text-align: center;
 }
 
-header a {
-  color: #00bcd4; /* Cyan Blue */
-  text-decoration: none;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-header a:hover {
-  color: #03a9f4; /* Lighter Cyan Blue for hover */
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
-/* Sidebar */
-.sidebar {
-  background-color: #001f3f; /* Navy Blue */
-  color: #ffffff; /* White text */
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-.sidebar ul li a {
-  color: #ffffff; /* White text */
+.App-link {
+  color: #61dafb;
 }
 
-.sidebar ul li a:hover {
-  background-color: #00bcd4; /* Cyan Blue for hover */
-}
-
-/* Main Content */
-.main-content {
-  background-color: #f1f1f1; /* White background */
-  color: #333; /* Dark Gray text */
-  padding: 1rem;
-}
-
-/* Buttons */
-button.primary {
-  background-color: #00bcd4; /* Cyan Blue */
-  color: #ffffff; /* White text */
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button.primary:hover {
-  background-color: #03a9f4; /* Lighter Cyan Blue for hover */
-}
-
-button.secondary {
-  background-color: #e0e0e0; /* Light Gray */
-  color: #333; /* Dark Gray text */
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button.secondary:hover {
-  background-color: #b0b0b0; /* Darker Gray for hover */
-}
-
-/* Highlights and Call-to-Action */
-.highlight {
-  color: #ff9800; /* Orange */
-}
-
-/* Alerts and Notifications */
-.alert-success {
-  color: #4caf50; /* Green */
-  background-color: #e8f5e9; /* Light Green */
-  border: 1px solid #c8e6c9; /* Green border */
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-.alert-error {
-  color: #f44336; /* Red */
-  background-color: #ffebee; /* Light Red */
-  border: 1px solid #ffcdd2; /* Red border */
-  padding: 0.5rem;
-  border-radius: 5px;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
