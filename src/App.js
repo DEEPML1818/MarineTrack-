@@ -18,6 +18,7 @@ import './css/bootstrap.min.css';
 import './css/weather.css';
 import logo from './Website-Header-Logo-Photoroom.png'; // Import the image
 import logo1 from './website-logo-Photoroom.png';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   const lat = 5.2831; // Labuan latitude
@@ -147,6 +148,7 @@ function App() {
             <Route path="/marine-news" element={<MarineNews />} />
             {/* Add more routes as needed */}
           </Routes>
+          <Analytics />
         </div>
       </div>
     </Router>
