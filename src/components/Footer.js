@@ -11,21 +11,12 @@ const Footer = () => {
         <div className="flex flex-col items-center text-center space-y-4">
 
           {/* Logo */}
-          <div className="mb-0">
-            <img src={Logo} alt="Logo" className="h-6" />
-          </div>
-
-          {/* MarineTech Portal Link */}
-          <div className="mb-0">
-            <a href="https://www.marinetech.press/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center hover:underline">
-              <img src={MarineTech} alt="MarineTech" className="h-24 mb-0" />
-              <p className="text-xs">For Technical article please visit our MarineTech Portal</p>
-            </a>
+          <div>
+            <img src={Logo} alt="Logo" className="h-12" />
           </div>
 
           {/* Contact Information and Important Links */}
-          <div className="flex flex-col md:flex-row justify-between w-full space-y-2 md:space-y-0 md:space-x-5">
-
+          <div className="flex flex-col md:flex-row justify-between w-full mt-4 md:space-x-8">
             <div className="text-left">
               <h5 className="text-lg font-bold mb-2">Contact Us</h5>
               <p className="text-sm">Bandar Putera 2, Klang, Selangor 41200</p>
@@ -45,8 +36,16 @@ const Footer = () => {
             </div>
           </div>
 
+          {/* MarineTech Portal Link */}
+          <div className="mt-4">
+            <a href="https://www.marinetech.press/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center hover:underline">
+              <img src={MarineTech} alt="MarineTech" className="h-24" />
+              <p className="text-xs mt-2">For Technical article please visit our MarineTech Portal</p>
+            </a>
+          </div>
+
           {/* Social Media Links */}
-          <div className="flex justify-center space-x-4">
+          <div className="flex justify-center space-x-4 mt-4">
             <a href="https://www.facebook.com/people/CyberPort/61564157661366/" target="_blank" rel="noopener noreferrer" className="hover:underline">
               <FaFacebook className="w-5 h-5" />
             </a>
