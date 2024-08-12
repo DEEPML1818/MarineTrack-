@@ -1,155 +1,104 @@
-// src/App.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { Link as ScrollLink, Element } from 'react-scroll'; // Import from react-scroll
-import MarineTrafficEmbed from './MarineTrafficEmbed';
-import MapComponent from './MapComponent';
-import WeatherData from './WeatherData';
-import OpenSeaMap from './OpenSeaMap';
-import TideData from './TideData';
-import 'leaflet/dist/leaflet.css';
-import VesselFinder from './VesselFinder';
-import MarineNews from './MarineNews';
-import AirPollutionData from './AirPollutionData';
-import './lib/owlcarousel/assets/owl.carousel.min.css';
-import './lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css';
-import './css/style.css'; // Custom styles
-import './css/bootstrap.min.css';
-import './css/weather.css';
-import logo from './Website-Header-Logo-Photoroom.png'; // Import the image
-import logo1 from './website-logo-Photoroom.png';
-import { Analytics } from '@vercel/analytics/react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
+import Sidebar from './components/sidebar';
+import WeatherData from './components/WeatherData';
+import MarineTrafficEmbed from './components/MarineTrafficEmbed'; // Import MarineTrafficEmbed
+import VesselFinderEmbed from './components/VesselFinderEmbed'; // Import VesselFinderEmbed
+import OpenSeaMap from './components/OpenSeaMap';
+import TideData from './components/TideData'; // Import TideData
+import MarineNews from './components/MarineNews'; // Import MarineNews
+import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
+import Header from './components/header';
+import AISDataPage from './components/AISDataPage';
 
 function App() {
-  const lat = 5.2831; // Labuan latitude
-  const lon = 115.2309; // Labuan longitude
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Set initial state to false to keep sidebar closed
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen); // Toggle the sidebar's visibility
+  };
 
   return (
     <Router>
-      <div className="App container-fluid position-relative d-flex p-0" style={{ backgroundColor: '#002B5B' }}>
-        <div className="sidebar pe-4 pb-3" style={{ backgroundColor: '#001f3f' }}>
-          <nav className="navbar navbar-dark" style={{ backgroundColor: '#002B5B' ,  }}>
-            <Link to="/" className="navbar-brand mx-4 mb-3">
-              <img src={logo1} alt="CyberPort Logo" style={{ height: '200px', position: 'relative', bottom: '10px' , left: '-59px' }} />
-            </Link>
-            <div className="navbar-nav w-100">
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-tachometer-alt me-2"></i>Weather
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Temperature
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Feels Like
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Wind
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Humidity
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Cloud Cover
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Precipitation
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Pressure
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>UV Index
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Gust
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Sea Wave Height
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>Condition
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>AQI
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>PM2.5
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>PM10
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>CO
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>NO
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>NO2
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>O3
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>SO2
-              </ScrollLink>
-              <ScrollLink to="weather-data" smooth={true} duration={500} className="nav-item nav-link active" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-thermometer-half me-2"></i>NH3
-              </ScrollLink>
-              <ScrollLink to="marine-traffic" smooth={true} duration={500} className="nav-item nav-link" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-ship me-2"></i>Ship Tracker 
-              </ScrollLink>
-              <ScrollLink to="marine-traffic" smooth={true} duration={500} className="nav-item nav-link" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-ship me-2"></i>Port Activity 
-              </ScrollLink>
-              <ScrollLink to="openseamap" smooth={true} duration={500} className="nav-item nav-link" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-map-marked-alt me-2"></i>Nautical Chart
-              </ScrollLink>
-              <ScrollLink to="tide-data" smooth={true} duration={500} className="nav-item nav-link" style={{ color: '#fff', padding: '10px' }} activeClass="active">
-                <i className="fa fa-water me-2"></i>Tide Data
-              </ScrollLink>
-              <Link to="/marine-news" className="nav-item nav-link" style={{ color: '#fff', padding: '10px' }}>
-                <i className="fa fa-newspaper me-2"></i>MarineNews
-              </Link>
-              {/* Add more navigation links as needed */}
+      <div
+        className={`bg-light-gray min-h-screen duration-300 ${
+          isSidebarOpen ? 'ml-64' : 'ml-0'
+        }`}
+      >
+        <Header />
+
+        <div className="container mx-auto p-6">
+          <div className="flex">
+            <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+            <div
+              className={`transition-transform duration-300 ${
+                isSidebarOpen ? 'ml-64' : 'ml-0'
+              } flex-1 pt-16 p-4`}
+            >
+              <Routes>
+                <Route path="/weather" element={<WeatherData />} />
+                <Route path="/tidedata" element={<TideData />} /> {/* Add this route */}
+                <Route path="/openseamap" element={<OpenSeaMap />} />
+                <Route path="/marinenews" element={<MarineNews />} /> {/* Add this route */}
+                <Route path="/historical-data/2023" element={<AISDataPage year={2023} />} />
+                <Route path="/historical-data/2024" element={<AISDataPage year={2024} />} />
+                <Route
+                  path="/marine-traffic"
+                  element={<MarineTrafficEmbed />} /* Route for MarineTrafficEmbed */
+                />
+                <Route
+                  path="/vessel-finder"
+                  element={<VesselFinderEmbed />} /* Route for VesselFinderEmbed */
+                />
+                <Route
+                  path="/dashboard"
+                  element={<Dashboard weatherData={WeatherData} />}
+                />
+
+                <Route
+                  path="/"
+                  element={
+                    <div className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-200px)] p-8">
+                      <h1 className="text-4xl Montserrat font-bold mb-4">
+                        Welcome to Cyberport
+                      </h1>
+                      <p className="text-xl text-gray-700 mb-8">
+                        Maritime Information and Management Web Application
+                      </p>
+                      <p className="text-lg text-gray-600 max-w-2xl leading-relaxed">
+                        Virtual Cyberport for Maritime Monitoring and Tracking
+                        offers a comprehensive solution for real-time data on
+                        weather conditions, ship tracking, tide information, and
+                        more. Our platform is designed to support maritime
+                        professionals by providing accurate and timely
+                        information in a user-friendly interface.
+                      </p>
+                      <img
+                        className="my-8 rounded-lg shadow-lg"
+                      />
+                      <p className="text-lg text-gray-600 max-w-xl leading-relaxed">
+                        Navigate through our services using the sidebar to
+                        explore detailed weather data, track vessels, access
+                        nautical charts, and stay updated with the latest marine
+                        news.
+                      </p>
+                      <button
+                        className="mt-8 px-6 py-3 bg-blue-950 text-white rounded-lg shadow hover:bg-blue-700 transition duration-300"
+                        onClick={toggleSidebar}
+                      >
+                        Launch App
+                      </button>
+                    </div>
+                  }
+                />
+              </Routes>
             </div>
-          </nav>
+          </div>
         </div>
-        <div className="content" style={{ backgroundColor: '#002B5B'  }}>
-          <nav className="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0" style={{ height: '10vh', backgroundColor: '#001f3f' }}>
-            <a href="index.html" className="navbar-brand d-flex d-lg-none me-4">
-              <h2 className="text-primary mb-0"><i className="fa fa-user-edit"></i></h2>
-            </a>
-            <a href="#" className="sidebar-toggler flex-shrink-0">
-              <i className="fa fa-bars"></i>
-            </a>
-            <form className="d-none d-md-flex ms-4" style={{ backgroundColor: '#002B5B'  }}>
-              <input className="form-control bg-dark border-0 text-white" type="search" placeholder="Search" />
-            </form>
-            <img src={logo} alt="Website Header Logo" style={{ position: 'absolute', height: '70%', right: '10px' }} />
-          </nav>
-          <Routes>
-            <Route path="/" element={
-              <main>
-                <Element name="weather-data">
-                  <WeatherData />
-                </Element>
-                <Element name="marine-traffic">
-                  <MarineTrafficEmbed />
-                </Element>
-                <Element name="openseamap">
-                  <OpenSeaMap />
-                </Element>
-                <Element name="tide-data">
-                  <TideData lat={lat} lon={lon} />
-                </Element>
-              </main>
-            } />
-            <Route path="/marine-news" element={<MarineNews />} />
-            {/* Add more routes as needed */}
-          </Routes>
-          <Analytics />
-        </div>
+        <Footer className="bg-blue-950 text-white py-8 mt-auto" />
       </div>
     </Router>
   );
