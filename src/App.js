@@ -12,6 +12,8 @@ import Dashboard from './components/Dashboard';
 import Footer from './components/Footer';
 import Header from './components/header';
 import AISDataPage from './components/AISDataPage';
+import 'leaflet/dist/leaflet.css';
+
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Set initial state to false to keep sidebar closed
