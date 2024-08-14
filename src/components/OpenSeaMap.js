@@ -10,7 +10,7 @@ const OpenSeaMap = ({ }) => {
     const lon = 115.2309; // Labuan longitude
     const zoom = 10; // Zoom level
   
-    const marineTrafficUrl = `https://map.openseamap.org/?zoom=12&lon=115.18574&lat=5.29125&layers=TFTFFTTFFTTFTFFFFFFFTT`;
+    const marineTrafficUrl = `https://map.openseamap.org/?zoom=15.9&lon=115.24140&lat=5.27301&layers=TFTFFFTFFTTFTFFFFTFFFT`;
   
     return (
       <div class="container-fluid pt-4 px-4">
@@ -30,13 +30,12 @@ const OpenSeaMap = ({ }) => {
                       title="MarineTraffic"
                     />
                     <div style={{
-                      position: 'absolute',
+                      position: 'relative',
                       top: 0,
                       left: 0,
                       width: '100%',
                       height: '100%',
-                      cursor: 'not-allowed',
-                      backgroundColor: 'transparent',
+                      backgroundColor: '',
                     }} />
                   </div>
                   </tbody>

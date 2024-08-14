@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MarineTrafficEmbed = () => {
-  const marineTrafficUrl = `https://www.marinetraffic.com/ais/embed/centerx:115.242/centery:5.322/zoom:12`;
+  const marineTrafficUrl = `https://www.marinetraffic.com/ais/embed/centerx:115.2481/centery:5.2627/zoom:14`;
 
   return (
     <div className="container-fluid pt-4" style={{ width: '100%', height: '85vh' }}>
@@ -19,13 +19,12 @@ const MarineTrafficEmbed = () => {
               />
               <div
                 style={{
-                  position: 'absolute',
+                  position: 'relative',
                   top: 0,
                   left: 0,
                   width: '100%',
                   height: '100%',
-                  cursor: 'not-allowed',
-                  backgroundColor: 'transparent',
+                  backgroundColor: '',
                 }}
               />
             </div>
