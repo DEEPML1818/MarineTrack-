@@ -11,6 +11,7 @@ const lon = 115.2309;
 const apiKey = '995e1ac7-9933-4100-a1cc-d49eb6938a88';
 const oneDayInMs = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 const fetchInterval = oneDayInMs; // Fetch data every 24 hours
+const oneHourInMs = 60 * 60 * 1000; // 1 hour in milliseconds
 
 // Function to read data from the JSON file
 const readDataFromFile = () => {
@@ -63,29 +64,30 @@ const fetchTideDataFromAPI = async () => {
 
 // Function to start the periodic fetching of tide data
 const startPeriodicFetching = () => {
-  // Read the current data from the file
-  const storedData = readDataFromFile();
-
-  // Check if the data is still fresh (less than 2 days old)
-  if (storedData && (Date.now() - storedData.timestamp < oneDayInMs * 2)) {
-    console.log('Data is fresh, no need to fetch new data.');
-  } else {
-    console.log('Data is stale or not available, fetching new data.');
-    fetchTideDataFromAPI(); // Fetch data immediately if stale
-  }
-
-  // Set an interval to check and fetch data periodically
-  setInterval(() => {
+  // Function to check and fetch data if it is old
+  const checkAndFetchData = () => {
     const storedData = readDataFromFile();
 
     // Fetch new data only if the stored data is old
     if (!storedData || (Date.now() - storedData.timestamp >= oneDayInMs * 2)) {
-      console.log('Periodic check: Data is stale, fetching new data.');
+      console.log('Data is stale or not available, fetching new data.');
       fetchTideDataFromAPI();
     } else {
-      console.log('Periodic check: Data is still fresh, no need to fetch.');
+      console.log('Data is fresh, no need to fetch new data.');
     }
-  }, fetchInterval);
+  };
+
+  // Initial check when the server starts
+  checkAndFetchData();
+
+  // Set an interval to fetch new data every 24 hours
+  setInterval(checkAndFetchData, fetchInterval);
+
+  // Additional check every hour to ensure data freshness
+  setInterval(() => {
+    console.log('Hourly check: Verifying if the data is fresh...');
+    checkAndFetchData();
+  }, oneHourInMs);
 };
 
 // Start the server on port 3001
