@@ -1,13 +1,15 @@
 // src/components/WeatherData.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
 
-const WeatherData = () => {
+const WeatherData = ({ globalSelectedPort }) => {
   const [weather, setWeather] = useState(null);
   const [waveHeight, setWaveHeight] = useState(null);
   const [pollutionData, setPollutionData] = useState(null);
-  const lat = 5.2831; // Labuan latitude
-  const lon = 115.2309; // Labuan longitude
+  const selectedPort = MALAYSIAN_PORTS.find(p => p.id === globalSelectedPort) || MALAYSIAN_PORTS[0];
+  const lat = selectedPort.lat;
+  const lon = selectedPort.lon;
   const weatherApiKey = '4d5ea12f38be4e04b8c120842242507';
   const airPollutionApiKey = '94ff7daecfb2522167538d473a405862';
   const stormGlassApiKey = '2d3c71cc-4cf2-11ef-968a-0242ac130004-2d3c7230-4cf2-11ef-968a-0242ac130004';
@@ -63,14 +65,14 @@ const WeatherData = () => {
       }
     })
     .catch(error => console.error('Error fetching wave height data:', error));
-  }, [lat, lon, weatherApiKey, airPollutionApiKey, stormGlassApiKey]);
+  }, [selectedPort, lat, lon, weatherApiKey, airPollutionApiKey, stormGlassApiKey]);
 
   return (
     <div className="relative bg-cover bg-center h-screen">
       <div className="absolute inset-0 bg-black opacity-50"></div>
       <div className="relative z-10 container mx-auto p-6">
         <div className="bg-white rounded-lg shadow-lg p-6 md:p-8 lg:p-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Weather Data</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center text-gray-900">Weather Data - {selectedPort.name}</h2>
           
           {weather && (
             <div className="mb-6">

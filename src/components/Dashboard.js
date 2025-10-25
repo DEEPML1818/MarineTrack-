@@ -1,4 +1,4 @@
-// src/components/WeatherData.js
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -32,7 +32,7 @@ const WeatherData = () => {
       const dataAge = Date.now() - cachedTimestamp;
       if (dataAge < threeHoursInMs) {
         setWaveHeight(JSON.parse(cachedWaveData));
-        return; // Data is fresh, no need to fetch
+        return;
       }
     }
 
@@ -45,146 +45,158 @@ const WeatherData = () => {
         source: 'noaa',
       },
       headers: {
-        Authorization: stormGlassApiKey, // Replace with your Storm Glass API key
+        Authorization: stormGlassApiKey,
       },
     })
     .then(response => {
       if (response.data.hours && response.data.hours[0] && response.data.hours[0].waveHeight) {
         const waveData = response.data.hours[0].waveHeight.noaa;
         setWaveHeight(waveData);
-        console.log(waveData);
-
-        // Store the fetched data and timestamp in localStorage
         localStorage.setItem('waveHeightData', JSON.stringify(waveData));
         localStorage.setItem('waveHeightTimestamp', Date.now());
-      } else {
-        console.warn('No wave height data available.');
       }
     })
     .catch(error => console.error('Error fetching wave height data:', error));
   }, [lat, lon, weatherApiKey, airPollutionApiKey, stormGlassApiKey]);
 
+  const DataCard = ({ title, value, color = "#00f3ff" }) => (
+    <div className="glassmorphism rounded-lg p-4 border border-cyan-500/30 hover-lift-cyber">
+      <p className="text-xs text-cyan-300/60 mb-2 uppercase tracking-wide">{title}</p>
+      <p className="text-xl font-bold" style={{ color }}>{value}</p>
+    </div>
+  );
+
   return (
-    <div className="relative bg-cover bg-center ">
-      <div className="absolute inset-0 bg-black opacity-45"></div>
-      <div className="relative z-10 container mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-center text-gray-900">Weather Dashboard</h2>
+    <div className="relative min-h-screen">
+      <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="glassmorphism-card rounded-xl p-8 max-w-6xl mx-auto cyber-border">
+          <h2 className="text-4xl font-bold mb-8 text-center neon-text">Weather Dashboard</h2>
 
           {weather && (
             <div className="mb-8">
-              <h3 className="text-3xl font-semibold text-gray-800 mb-6">Current Weather</h3>
-              <div className="flex flex-row flex-wrap justify-center gap-6 mb-6">
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg font-semibold"><strong>Location:</strong> {weather.location.name}, {weather.location.country}</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Temperature:</strong> {weather.current.temp_c}°C</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Feels Like:</strong> {weather.current.feelslike_c}°C</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Condition:</strong> {weather.current.condition.text}</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Wind Speed:</strong> {weather.current.wind_kph} kph</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Wind Direction:</strong> {weather.current.wind_dir}</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Humidity:</strong> {weather.current.humidity}%</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Pressure:</strong> {weather.current.pressure_mb} mb</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>UV Index:</strong> {weather.current.uv}</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Cloud Cover:</strong> {weather.current.cloud}%</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Precipitation:</strong> {weather.current.precip_mm} mm</p>
-                </div>
-                <div className="flex flex-col justify-center items-center bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-lg p-4 shadow-md">
-                  <p className="text-lg"><strong>Gust:</strong> {weather.current.gust_kph} kph</p>
-                </div>
+              <h3 className="text-3xl font-semibold text-cyan-400 mb-6">Current Weather</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                <DataCard 
+                  title="Location" 
+                  value={`${weather.location.name}, ${weather.location.country}`} 
+                />
+                <DataCard 
+                  title="Temperature" 
+                  value={`${weather.current.temp_c}°C`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Feels Like" 
+                  value={`${weather.current.feelslike_c}°C`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Condition" 
+                  value={weather.current.condition.text} 
+                />
+                <DataCard 
+                  title="Wind Speed" 
+                  value={`${weather.current.wind_kph} kph`} 
+                  color="#2ec4b6"
+                />
+                <DataCard 
+                  title="Wind Direction" 
+                  value={weather.current.wind_dir} 
+                  color="#2ec4b6"
+                />
+                <DataCard 
+                  title="Humidity" 
+                  value={`${weather.current.humidity}%`} 
+                  color="#0099ff"
+                />
+                <DataCard 
+                  title="Pressure" 
+                  value={`${weather.current.pressure_mb} mb`} 
+                />
+                <DataCard 
+                  title="UV Index" 
+                  value={weather.current.uv} 
+                  color="#ff6b6b"
+                />
+                <DataCard 
+                  title="Cloud Cover" 
+                  value={`${weather.current.cloud}%`} 
+                />
+                <DataCard 
+                  title="Precipitation" 
+                  value={`${weather.current.precip_mm} mm`} 
+                  color="#0099ff"
+                />
+                <DataCard 
+                  title="Gust" 
+                  value={`${weather.current.gust_kph} kph`} 
+                  color="#2ec4b6"
+                />
               </div>
             </div>
           )}
 
-{waveHeight && (
+          {waveHeight && (
             <div className="mb-8">
-              <h3 className="text-3xl font-semibold text-gray-800 mb-6">Sea Wave Height</h3>
-              <div className="flex flex-row flex-wrap justify-center items-center bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 text-white rounded-lg p-4 shadow-md">
-                <p className="text-xl"><strong>Wave Height:</strong> {waveHeight} meters</p>
+              <h3 className="text-3xl font-semibold text-cyan-400 mb-6">Sea Wave Height</h3>
+              <div className="glassmorphism rounded-lg p-6 border border-cyan-500/30 text-center">
+                <p className="text-2xl font-bold text-purple-400">Wave Height: {waveHeight} meters</p>
               </div>
             </div>
           )}
 
-{pollutionData && (
-  <div className="mb-8">
-    <h3 className="text-3xl font-semibold text-gray-800 mb-6">Air Pollution</h3>
-    <div className="flex flex-row flex-wrap justify-center gap-6 mb-6">
-      
-      {/* AQI */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Air Quality Index</p>
-        <p className="text-lg"><strong>AQI:</strong> {pollutionData.list[0].main.aqi}</p>
-      </div>
-
-      {/* PM2.5 */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Particle Matter (PM2.5)</p>
-        <p className="text-lg"><strong>PM2.5:</strong> {pollutionData.list[0].components.pm2_5} µg/m³</p>
-      </div>
-
-      {/* PM10 */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-red-400 via-red-500 to-red-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Particle Matter (PM10)</p>
-        <p className="text-lg"><strong>PM10:</strong> {pollutionData.list[0].components.pm10} µg/m³</p>
-      </div>
-
-      {/* CO */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Carbon Monoxide (CO)</p>
-        <p className="text-lg"><strong>CO:</strong> {pollutionData.list[0].components.co} µg/m³</p>
-      </div>
-
-      {/* NO */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Nitric Oxide (NO)</p>
-        <p className="text-lg"><strong>NO:</strong> {pollutionData.list[0].components.no} µg/m³</p>
-      </div>
-
-      {/* NO2 */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Nitrogen Dioxide (NO2)</p>
-        <p className="text-lg"><strong>NO2:</strong> {pollutionData.list[0].components.no2} µg/m³</p>
-      </div>
-
-      {/* O3 */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Ozone (O3)</p>
-        <p className="text-lg"><strong>O3:</strong> {pollutionData.list[0].components.o3} µg/m³</p>
-      </div>
-
-      {/* SO2 */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Sulfur Dioxide (SO2)</p>
-        <p className="text-lg"><strong>SO2:</strong> {pollutionData.list[0].components.so2} µg/m³</p>
-      </div>
-
-      {/* NH3 */}
-      <div className="flex flex-col justify-center items-center bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-white rounded-lg p-4 shadow-md">
-        <p className='text-xl font-bold'>Ammonia (NH3)</p>
-        <p className="text-lg"><strong>NH3:</strong> {pollutionData.list[0].components.nh3} µg/m³</p>
-      </div>
-    </div>
-  </div>
-)}  
+          {pollutionData && (
+            <div className="mb-8">
+              <h3 className="text-3xl font-semibold text-cyan-400 mb-6">Air Pollution</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <DataCard 
+                  title="Air Quality Index" 
+                  value={pollutionData.list[0].main.aqi} 
+                  color="#ff6b6b"
+                />
+                <DataCard 
+                  title="PM2.5" 
+                  value={`${pollutionData.list[0].components.pm2_5} µg/m³`} 
+                  color="#ff6b6b"
+                />
+                <DataCard 
+                  title="PM10" 
+                  value={`${pollutionData.list[0].components.pm10} µg/m³`} 
+                  color="#ff6b6b"
+                />
+                <DataCard 
+                  title="Carbon Monoxide (CO)" 
+                  value={`${pollutionData.list[0].components.co} µg/m³`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Nitric Oxide (NO)" 
+                  value={`${pollutionData.list[0].components.no} µg/m³`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Nitrogen Dioxide (NO2)" 
+                  value={`${pollutionData.list[0].components.no2} µg/m³`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Ozone (O3)" 
+                  value={`${pollutionData.list[0].components.o3} µg/m³`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Sulfur Dioxide (SO2)" 
+                  value={`${pollutionData.list[0].components.so2} µg/m³`} 
+                  color="#ff9900"
+                />
+                <DataCard 
+                  title="Ammonia (NH3)" 
+                  value={`${pollutionData.list[0].components.nh3} µg/m³`} 
+                  color="#ff9900"
+                />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

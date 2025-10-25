@@ -26,10 +26,11 @@
     "react-scripts": "5.0.1",
     "react-scroll": "^1.9.0",
     "recharts": "^2.12.7",
+    "serve": "^14.2.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts  start",
+    "start": "HOST=0.0.0.0 PORT=5000 DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
     "server": "node ./src/Server/server.js",
     "dev": "concurrently \"npm run server\" \"npm run start\"",
     "build": "react-scripts build",
