@@ -1,123 +1,73 @@
-/* src/components/css/style.css */
 .container-fluid {
-    padding: 0;
-    margin: 0;
-  }
-  
-  .bg-secondary {
-    background-color: #6c757d;
-  }
-  
-  .table-responsive {
-    overflow-x: auto;
-  }
-  
-  .iframeContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .iframeContent {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-  
-  /* General Styles */
-body {
+  padding: 0;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5; /* Light Gray */
-  color: #333; /* Dark Gray text */
 }
 
-/* Header and Navigation Bar */
-header {
-  background-color: #001f3f; /* Navy Blue */
-  color: #ffffff; /* White text */
+.bg-secondary {
+  background: linear-gradient(135deg, #5a6c7d 0%, #8e9eab 100%);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: white;
+  margin: 1rem 0;
+}
+
+.table-responsive table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-responsive thead {
+  background: linear-gradient(135deg, #0077be 0%, #00d4ff 100%);
+  color: white;
+}
+
+.table-responsive thead th {
   padding: 1rem;
-  text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.875rem;
 }
 
-header a {
-  color: #00bcd4; /* Cyan Blue */
-  text-decoration: none;
+.table-responsive tbody tr {
+  transition: all 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-header a:hover {
-  color: #03a9f4; /* Lighter Cyan Blue for hover */
+.table-responsive tbody tr:hover {
+  background: rgba(0, 119, 190, 0.05);
+  transform: scale(1.01);
 }
 
-/* Sidebar */
-.sidebar {
-  background-color: #001f3f; /* Navy Blue */
-  color: #ffffff; /* White text */
-}
-
-.sidebar ul li a {
-  color: #ffffff; /* White text */
-}
-
-.sidebar ul li a:hover {
-  background-color: #00bcd4; /* Cyan Blue for hover */
-}
-
-/* Main Content */
-.main-content {
-  background-color: #ffffff; /* White background */
-  color: #333; /* Dark Gray text */
+.table-responsive tbody td {
   padding: 1rem;
+  color: #333;
 }
 
-/* Buttons */
-button.primary {
-  background-color: #00bcd4; /* Cyan Blue */
-  color: #ffffff; /* White text */
+.iframeContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border: 3px solid rgba(0, 119, 190, 0.2);
+  transition: all 0.3s ease;
+}
+
+.iframeContainer:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.iframeContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button.primary:hover {
-  background-color: #03a9f4; /* Lighter Cyan Blue for hover */
-}
-
-button.secondary {
-  background-color: #e0e0e0; /* Light Gray */
-  color: #333; /* Dark Gray text */
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button.secondary:hover {
-  background-color: #b0b0b0; /* Darker Gray for hover */
-}
-
-/* Highlights and Call-to-Action */
-.highlight {
-  color: #ff9800; /* Orange */
-}
-
-/* Alerts and Notifications */
-.alert-success {
-  color: #4caf50; /* Green */
-  background-color: #e8f5e9; /* Light Green */
-  border: 1px solid #c8e6c9; /* Green border */
-  padding: 0.5rem;
-  border-radius: 5px;
-}
-
-.alert-error {
-  color: #f44336; /* Red */
-  background-color: #ffebee; /* Light Red */
-  border: 1px solid #ffcdd2; /* Red border */
-  padding: 0.5rem;
-  border-radius: 5px;
 }
