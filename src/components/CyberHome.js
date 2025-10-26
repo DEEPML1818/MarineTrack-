@@ -1,157 +1,249 @@
-import React from 'react';
-import { FaGlobe, FaChartBar, FaWater, FaCloudSun } from 'react-icons/fa';
+
+import React, { useState, useEffect } from 'react';
+import { FaGlobe, FaChartBar, FaWater, FaCloudSun, FaShip, FaAnchor } from 'react-icons/fa';
+import axios from 'axios';
 import StatsCards from './StatsCards';
 import AIInsights from './AIInsights';
 import OpenSeaMap from './OpenSeaMap';
 import MalaysianPortsStats from './MalaysianPortsStats';
+import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
 
 const CyberHome = ({ globalSelectedPort }) => {
+  const [weather, setWeather] = useState(null);
+  const [tideData, setTideData] = useState(null);
+  const [vesselCount, setVesselCount] = useState(0);
+  const [vesselData, setVesselData] = useState(null);
+  const selectedPort = MALAYSIAN_PORTS.find(p => p.id === globalSelectedPort) || MALAYSIAN_PORTS[0];
+
+  useEffect(() => {
+    // Fetch real-time weather data
+    const fetchWeather = async () => {
+      try {
+        const weatherApiKey = '4d5ea12f38be4e04b8c120842242507';
+        const response = await axios.get(
+          `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${selectedPort.lat},${selectedPort.lon}`
+        );
+        setWeather(response.data);
+      } catch (error) {
+        console.error('Error fetching weather:', error);
+      }
+    };
+
+    // Fetch real-time tide data
+    const fetchTideData = async () => {
+      try {
+        const response = await axios.get('http://0.0.0.0:3001/api/tide-data');
+        setTideData(response.data);
+      } catch (error) {
+        console.error('Error fetching tide data:', error);
+      }
+    };
+
+    // Fetch real-time vessel data from AIS Hub (free API)
+    const fetchVesselData = async () => {
+      try {
+        // Using AISHub free API - requires registration at aishub.net
+        // Alternative: Use vessel density API or Marine Traffic public endpoints
+        const radius = 50; // km radius from port
+        const response = await axios.get(
+          `https://data.aishub.net/ws.php?username=AH_DEMO&format=1&output=json&compress=0&latmin=${selectedPort.lat - 0.5}&latmax=${selectedPort.lat + 0.5}&lonmin=${selectedPort.lon - 0.5}&lonmax=${selectedPort.lon + 0.5}`
+        );
+        
+        if (response.data && response.data[0]) {
+          const vessels = response.data[0].ERROR === 'FALSE' ? response.data[1] : [];
+          setVesselCount(vessels.length || 0);
+          setVesselData(vessels);
+        }
+      } catch (error) {
+        console.error('Error fetching vessel data:', error);
+        // Fallback: Try alternative free API - MyShipTracking
+        try {
+          const bbox = `${selectedPort.lon - 0.5},${selectedPort.lat - 0.5},${selectedPort.lon + 0.5},${selectedPort.lat + 0.5}`;
+          const altResponse = await axios.get(
+            `https://api.myshiptracking.com/vessels.json?bbox=${bbox}`
+          );
+          setVesselCount(altResponse.data?.length || 0);
+          setVesselData(altResponse.data);
+        } catch (altError) {
+          console.error('Error with alternative vessel API:', altError);
+          setVesselCount(0);
+        }
+      }
+    };
+
+    fetchWeather();
+    fetchTideData();
+    fetchVesselData();
+
+    // Refresh data every 30 seconds for weather, 60 seconds for tide, 15 seconds for vessels
+    const weatherInterval = setInterval(fetchWeather, 30000);
+    const tideInterval = setInterval(fetchTideData, 60000);
+    const vesselInterval = setInterval(fetchVesselData, 15000);
+
+    return () => {
+      clearInterval(weatherInterval);
+      clearInterval(tideInterval);
+      clearInterval(vesselInterval);
+    };
+  }, [selectedPort]);
+
   return (
-    <div className="min-h-screen p-6 pt-24 relative" style={{ zIndex: 10 }}>
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-8 animate-fade-in-cyber">
-          <h1 className="text-4xl font-bold mb-2 neon-text tracking-tight">
-            Welcome to CyberPort
-          </h1>
-          <p className="text-cyan-300/70 text-lg">
-            Maritime Information and Management Web Application
-          </p>
-          <p className="text-cyan-400/60 mt-2 leading-relaxed max-w-3xl">
-            Virtual Cyberport for Maritime Monitoring and Tracking offers a comprehensive 
-            solution for real-time data on weather conditions, ship tracking, tide 
-            information, and more. Our platform is designed to support maritime 
-            professionals by providing accurate and timely information in a user-friendly 
-            interface.
-          </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 relative overflow-hidden">
+      {/* Animated Grid Background */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
+          animation: 'gridScroll 20s linear infinite'
+        }} />
+      </div>
+
+      <div className="container mx-auto px-6 py-8 relative z-10">
+        {/* Header Section with Real-Time Status */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-2">
+                Maritime Intelligence Hub
+              </h1>
+              <p className="text-cyan-400/70 text-lg">
+                Real-Time Port Operations - {selectedPort.name}
+              </p>
+            </div>
+            <div className="flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-6 py-3 rounded-xl border border-green-400/30">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              </span>
+              <span className="text-green-400 font-semibold">LIVE DATA FEED</span>
+            </div>
+          </div>
+
+          {/* Real-Time Stats Bar */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl p-4 border border-cyan-400/30">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-cyan-400/60 text-sm">Active Vessels</p>
+                  <p className="text-3xl font-bold text-cyan-400">{vesselCount}</p>
+                </div>
+                <FaShip className="text-4xl text-cyan-400/30" />
+              </div>
+            </div>
+
+            {weather && (
+              <>
+                <div className="bg-gradient-to-br from-orange-500/10 to-red-500/10 rounded-xl p-4 border border-orange-400/30">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-orange-400/60 text-sm">Temperature</p>
+                      <p className="text-3xl font-bold text-orange-400">{weather.current.temp_c}°C</p>
+                    </div>
+                    <FaCloudSun className="text-4xl text-orange-400/30" />
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-xl p-4 border border-blue-400/30">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-blue-400/60 text-sm">Wind Speed</p>
+                      <p className="text-3xl font-bold text-blue-400">{weather.current.wind_kph} kph</p>
+                    </div>
+                    <FaWater className="text-4xl text-blue-400/30" />
+                  </div>
+                </div>
+              </>
+            )}
+
+            {tideData && tideData.heights && tideData.heights.length > 0 && (
+              <div className="bg-gradient-to-br from-teal-500/10 to-cyan-500/10 rounded-xl p-4 border border-teal-400/30">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-teal-400/60 text-sm">Current Tide</p>
+                    <p className="text-3xl font-bold text-teal-400">
+                      {tideData.heights[0].height?.toFixed(2) || 'N/A'}m
+                    </p>
+                  </div>
+                  <FaAnchor className="text-4xl text-teal-400/30" />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
+        {/* Stats Cards */}
         <StatsCards />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-          <div className="lg:col-span-2 glassmorphism-card rounded-xl p-6 cyber-border hover-lift-cyber animate-fade-in-cyber" style={{ animationDelay: '0.2s' }}>
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center neon-glow mr-3">
-                  <FaGlobe className="w-5 h-5 text-cyan-400" />
-                </div>
-                <h2 className="text-xl font-bold neon-text tracking-wide">
-                  Global Maritime Map
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+          {/* Live Map Section */}
+          <div className="lg:col-span-2">
+            <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-2xl border border-cyan-400/30 p-6 shadow-2xl">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-cyan-400 flex items-center">
+                  <FaGlobe className="mr-3" />
+                  Live Port Map
                 </h2>
-              </div>
-              <div className="flex items-center space-x-2">
-                <button className="px-3 py-1 text-xs font-semibold rounded-lg bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-500/30 transition-all duration-300">
-                  3D View
-                </button>
-                <button className="px-3 py-1 text-xs font-semibold rounded-lg text-cyan-400/60 hover:text-cyan-400 hover:bg-cyan-500/10 transition-all duration-300">
-                  Filters
-                </button>
-              </div>
-            </div>
-
-            <div className="relative rounded-lg overflow-hidden border border-cyan-500/30" style={{ height: '500px' }}>
-              <OpenSeaMap />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                <div className="glassmorphism px-4 py-2 rounded-lg border border-cyan-500/30">
-                  <span className="text-xs text-cyan-300">Tracking <span className="font-bold text-cyan-400">1,247</span> vessels</span>
+                <div className="flex items-center space-x-2 text-sm text-cyan-400/60">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  <span>Real-Time</span>
                 </div>
-                <div className="glassmorphism px-4 py-2 rounded-lg border border-cyan-500/30">
-                  <span className="text-xs text-cyan-300">Last update: <span className="font-bold text-cyan-400">2 sec ago</span></span>
-                </div>
+              </div>
+              <div className="h-[500px] rounded-xl overflow-hidden border border-cyan-400/20">
+                <OpenSeaMap globalSelectedPort={globalSelectedPort} />
               </div>
             </div>
           </div>
 
+          {/* Side Panel */}
           <div className="space-y-6">
-            <MalaysianPortsStats globalSelectedPort={globalSelectedPort} />
-
             <AIInsights />
-
-            <div className="glassmorphism-card rounded-xl p-6 cyber-border hover-lift-cyber animate-fade-in-cyber" style={{ animationDelay: '0.3s' }}>
-              <div className="flex items-center mb-4">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center neon-glow mr-3">
-                  <FaWater className="w-5 h-5 text-blue-400" />
+            
+            {/* Weather Details */}
+            {weather && (
+              <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 rounded-2xl border border-cyan-400/30 p-6">
+                <h3 className="text-xl font-bold text-cyan-400 mb-4">Weather Conditions</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-cyan-400/60">Condition:</span>
+                    <span className="text-cyan-300">{weather.current.condition.text}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-cyan-400/60">Feels Like:</span>
+                    <span className="text-cyan-300">{weather.current.feelslike_c}°C</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-cyan-400/60">Humidity:</span>
+                    <span className="text-cyan-300">{weather.current.humidity}%</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-cyan-400/60">Pressure:</span>
+                    <span className="text-cyan-300">{weather.current.pressure_mb} mb</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-cyan-400/60">Visibility:</span>
+                    <span className="text-cyan-300">{weather.current.vis_km} km</span>
+                  </div>
                 </div>
-                <h2 className="text-lg font-bold text-cyan-400 tracking-wide">
-                  Quick Access
-                </h2>
               </div>
-
-              <div className="space-y-3">
-                <QuickAccessButton 
-                  icon={FaChartBar} 
-                  title="Tide Data" 
-                  description="View tidal charts"
-                  link="/tidedata"
-                  color="#00f3ff"
-                />
-                <QuickAccessButton 
-                  icon={FaCloudSun} 
-                  title="Weather Data" 
-                  description="Current conditions"
-                  link="/weather"
-                  color="#0099ff"
-                />
-                <QuickAccessButton 
-                  icon={FaGlobe} 
-                  title="Marine News" 
-                  description="Latest updates"
-                  link="/marinenews"
-                  color="#2ec4b6"
-                />
-              </div>
-            </div>
+            )}
           </div>
         </div>
 
-        <div className="glassmorphism-card rounded-xl p-8 cyber-border text-center animate-fade-in-cyber" style={{ animationDelay: '0.4s' }}>
-          <p className="text-cyan-300/80 text-sm mb-4">
-            Navigate through our services using the sidebar to explore detailed 
-            weather data, track vessels, access nautical charts, and stay 
-            updated with the latest marine news.
-          </p>
-          <button className="px-8 py-3 rounded-lg font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 text-white hover-lift-cyber neon-glow-strong transition-all duration-300">
-            Explore Dashboard
-          </button>
-        </div>
+        {/* Port Statistics */}
+        <MalaysianPortsStats globalSelectedPort={globalSelectedPort} />
       </div>
-    </div>
-  );
-};
 
-const QuickAccessButton = ({ icon: Icon, title, description, link, color }) => {
-  return (
-    <a
-      href={link}
-      className="block p-4 glassmorphism rounded-lg border border-cyan-500/20 hover:border-cyan-400/50 transition-all duration-300 hover-lift-cyber group"
-    >
-      <div className="flex items-center">
-        <div 
-          className="w-10 h-10 rounded-lg flex items-center justify-center mr-3 flex-shrink-0"
-          style={{
-            background: `linear-gradient(135deg, ${color}33 0%, ${color}11 100%)`,
-            border: `1px solid ${color}55`
-          }}
-        >
-          <Icon className="w-5 h-5" style={{ color }} />
-        </div>
-        <div className="flex-1 min-w-0">
-          <h3 className="text-sm font-semibold text-cyan-300 mb-0.5 group-hover:text-cyan-200 transition-colors">
-            {title}
-          </h3>
-          <p className="text-xs text-cyan-400/60">
-            {description}
-          </p>
-        </div>
-        <svg 
-          className="w-5 h-5 text-cyan-400/40 group-hover:text-cyan-400 group-hover:translate-x-1 transition-all duration-300" 
-          fill="none" 
-          stroke="currentColor" 
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </div>
-    </a>
+      <style jsx>{`
+        @keyframes gridScroll {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(50px); }
+        }
+      `}</style>
+    </div>
   );
 };
 

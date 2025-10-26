@@ -218,8 +218,8 @@ app.post('/api/refresh-tide-data', async (req, res) => {
 });
 
 // Start the server on port 3001
-app.listen(3001, 'localhost', () => {
-  console.log('Server is running on localhost:3001');
+app.listen(3001, '0.0.0.0', () => {
+  console.log('Server is running on 0.0.0.0:3001');
   console.log('API Endpoints:');
   console.log('  GET  /api/tide-data - Get current tide data');
   console.log('  POST /api/refresh-tide-data - Manually refresh tide data');

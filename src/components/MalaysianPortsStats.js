@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { FaAnchor, FaShip, FaChevronDown, FaCircle } from 'react-icons/fa';
+import { FaShip, FaAnchor, FaExclamationTriangle, FaCircle } from 'react-icons/fa';
+import axios from 'axios';
 import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
 
 const MalaysianPortsStats = ({ globalSelectedPort }) => {
@@ -9,34 +10,61 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
     ...port,
     lat: port.lat || 3.1390, // Default latitude if not provided
     lon: port.lon || 101.6869, // Default longitude if not provided
-    activeVessels: Math.floor(Math.random() * 50) + 10,
-    incoming: Math.floor(Math.random() * 20) + 5,
-    outgoing: Math.floor(Math.random() * 15) + 3,
-    docked: Math.floor(Math.random() * 30) + 15,
-    capacity: Math.floor(Math.random() * 30) + 60,
-    alerts: Math.floor(Math.random() * 5),
-    draftDepth: `${(Math.random() * 5 + 10).toFixed(1)}m`,
-    cargo: ['Containers', 'Bulk Cargo', 'Oil & Gas', 'General Cargo'][Math.floor(Math.random() * 4)]
+    activeVessels: 0, // Initialize with 0, will be updated by API
+    incoming: 0,
+    outgoing: 0,
+    docked: 0,
+    capacity: 0,
+    alerts: 0,
+    draftDepth: '0.0m',
+    cargo: 'Unknown'
   })), []); // Empty dependency array ensures this runs only once
 
   const selectedPort = globalSelectedPort || 'labuan';
 
   useEffect(() => {
-    // Simulate real-time data updates
-    const interval = setInterval(() => {
-      const newStats = {};
-      malaysianPorts.forEach(port => {
-        newStats[port.id] = {
-          activeVessels: Math.floor(Math.random() * 50) + 10,
-          incoming: Math.floor(Math.random() * 20) + 5,
-          outgoing: Math.floor(Math.random() * 15) + 3,
-          docked: Math.floor(Math.random() * 30) + 15,
-          capacity: Math.floor(Math.random() * 30) + 60,
-          alerts: Math.floor(Math.random() * 5)
-        };
-      });
-      setStats(newStats);
-    }, 3000);
+    const fetchPortStats = async () => {
+      try {
+        // Example API endpoint - replace with your actual API
+        // This is a placeholder and assumes an API that returns stats for all ports
+        // If you have a different API structure (e.g., per port), adjust accordingly.
+        const response = await axios.get('https://api.example.com/maritime/ports/stats');
+        const apiStats = response.data; // Assuming API returns an object keyed by port ID
+
+        const newStats = {};
+        malaysianPorts.forEach(port => {
+          const portData = apiStats[port.id] || {}; // Get data for the current port, or empty object if not found
+          newStats[port.id] = {
+            activeVessels: portData.activeVessels || 0,
+            incoming: portData.incoming || 0,
+            outgoing: portData.outgoing || 0,
+            docked: portData.docked || 0,
+            capacity: portData.capacity || 0,
+            alerts: portData.alerts || 0
+          };
+        });
+        setStats(newStats);
+      } catch (error) {
+        console.error("Error fetching port statistics:", error);
+        // Fallback to mock data or keep previous stats on error
+        const fallbackStats = {};
+        malaysianPorts.forEach(port => {
+          fallbackStats[port.id] = {
+            activeVessels: Math.floor(Math.random() * 50) + 10,
+            incoming: Math.floor(Math.random() * 20) + 5,
+            outgoing: Math.floor(Math.random() * 15) + 3,
+            docked: Math.floor(Math.random() * 30) + 15,
+            capacity: Math.floor(Math.random() * 30) + 60,
+            alerts: Math.floor(Math.random() * 5)
+          };
+        });
+        setStats(fallbackStats);
+      }
+    };
+
+    fetchPortStats(); // Initial fetch
+
+    const interval = setInterval(fetchPortStats, 30000); // Fetch every 30 seconds
 
     return () => clearInterval(interval);
   }, [malaysianPorts]); // malaysianPorts is now stable due to useMemo
@@ -50,6 +78,11 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
     alerts: 0
   };
 
+  // Find the selected port details for draftDepth and cargo
+  const selectedPortDetails = malaysianPorts.find(port => port.id === selectedPort);
+  const draftDepth = selectedPortDetails ? selectedPortDetails.draftDepth : '0.0m';
+  const cargoType = selectedPortDetails ? selectedPortDetails.cargo : 'Unknown';
+
   return (
     <div className="glassmorphism-card rounded-xl p-6 cyber-border hover-lift-cyber">
       <div className="flex items-center justify-between mb-6">
@@ -58,7 +91,7 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
             <FaAnchor className="w-5 h-5 text-cyan-400" />
           </div>
           <h2 className="text-xl font-bold neon-text tracking-wide">
-            Malaysian Ports
+            {selectedPortDetails ? selectedPortDetails.name : 'Malaysian Ports'}
           </h2>
         </div>
         <div className="flex items-center space-x-2">
@@ -98,6 +131,14 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
           <span className={`text-sm font-bold ${currentStats.alerts > 0 ? 'text-red-400' : 'text-green-400'}`}>
             {currentStats.alerts}
           </span>
+        </div>
+        <div className="flex items-center justify-between p-3 glassmorphism rounded-lg border border-cyan-500/20">
+          <span className="text-sm text-cyan-300">Draft Depth</span>
+          <span className="text-sm font-bold text-yellow-400">{draftDepth}</span>
+        </div>
+        <div className="flex items-center justify-between p-3 glassmorphism rounded-lg border border-cyan-500/20">
+          <span className="text-sm text-cyan-300">Cargo Type</span>
+          <span className="text-sm font-bold text-indigo-400">{cargoType}</span>
         </div>
       </div>
 

@@ -1,0 +1,77 @@
+Uncaught ReferenceError: FaCircle is not defined
+    at MalaysianPortsStats (MalaysianPortsStats.js:97:1)
+    at renderWithHooks (react-dom.development.js:15486:1)
+    at mountIndeterminateComponent (react-dom.development.js:20103:1)
+    at beginWork (react-dom.development.js:21626:1)
+    at HTMLUnknownElement.callCallback (react-dom.development.js:4164:1)
+    at Object.invokeGuardedCallbackDev (react-dom.development.js:4213:1)
+    at invokeGuardedCallback (react-dom.development.js:4277:1)
+    at beginWork$1 (react-dom.development.js:27490:1)
+    at performUnitOfWork (react-dom.development.js:26596:1)
+    at workLoopSync (react-dom.development.js:26505:1)
+react-dom.development.js:86  Warning: Received `true` for a non-boolean attribute `jsx`.
+
+If you want to write it to the DOM, pass a string instead: jsx="true" or jsx={value.toString()}.
+    at style
+    at div
+    at CyberHome (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:1183:3)
+    at RenderedRoute (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:114650:5)
+    at Routes (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:115352:5)
+    at main
+    at div
+    at Router (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:115286:15)
+    at BrowserRouter (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:113227:5)
+    at App (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:126:92)
+    at ThemeProvider (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:20994:28)
+printWarning @ react-dom.development.js:86
+MalaysianPortsStats.js:97  Uncaught ReferenceError: FaCircle is not defined
+    at MalaysianPortsStats (MalaysianPortsStats.js:97:1)
+    at renderWithHooks (react-dom.development.js:15486:1)
+    at mountIndeterminateComponent (react-dom.development.js:20103:1)
+    at beginWork (react-dom.development.js:21626:1)
+    at HTMLUnknownElement.callCallback (react-dom.development.js:4164:1)
+    at Object.invokeGuardedCallbackDev (react-dom.development.js:4213:1)
+    at invokeGuardedCallback (react-dom.development.js:4277:1)
+    at beginWork$1 (react-dom.development.js:27490:1)
+    at performUnitOfWork (react-dom.development.js:26596:1)
+    at workLoopSync (react-dom.development.js:26505:1)
+react-dom.development.js:18704  The above error occurred in the <MalaysianPortsStats> component:
+
+    at MalaysianPortsStats (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:2547:3)
+    at div
+    at div
+    at CyberHome (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:1183:3)
+    at RenderedRoute (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:114650:5)
+    at Routes (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:115352:5)
+    at main
+    at div
+    at Router (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:115286:15)
+    at BrowserRouter (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:113227:5)
+    at App (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:126:92)
+    at ThemeProvider (https://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev/static/js/bundle.js:20994:28)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+logCapturedError @ react-dom.development.js:18704
+react-dom.development.js:26962  Uncaught ReferenceError: FaCircle is not defined
+    at MalaysianPortsStats (MalaysianPortsStats.js:97:1)
+    at renderWithHooks (react-dom.development.js:15486:1)
+    at mountIndeterminateComponent (react-dom.development.js:20103:1)
+    at beginWork (react-dom.development.js:21626:1)
+    at beginWork$1 (react-dom.development.js:27465:1)
+    at performUnitOfWork (react-dom.development.js:26596:1)
+    at workLoopSync (react-dom.development.js:26505:1)
+    at renderRootSync (react-dom.development.js:26473:1)
+    at recoverFromConcurrentError (react-dom.development.js:25889:1)
+    at performConcurrentWorkOnRoot (react-dom.development.js:25789:1)
+WebSocketClient.js:13  WebSocket connection to 'wss://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+WebSocketClient.js:13  WebSocket connection to 'wss://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+WebSocketClient.js:13  WebSocket connection to 'wss://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+WebSocketClient.js:13  WebSocket connection to 'wss://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+initSocket @ socket.js:27
+(anonymous) @ socket.js:51
+WebSocketClient.js:13  WebSocket connection to 'wss://5546a74f-170e-4021-94a4-b208def91036-00-2084zfxx3bhjs.riker.replit.dev:5000/ws' failed: 
