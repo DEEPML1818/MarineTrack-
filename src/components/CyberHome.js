@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
-import { FaGlobe, FaChartBar, FaWater, FaCloudSun, FaShip, FaAnchor } from 'react-icons/fa';
+import { FaGlobe, FaWater, FaCloudSun, FaShip, FaAnchor } from 'react-icons/fa';
 import axios from 'axios';
 import StatsCards from './StatsCards';
 import AIInsights from './AIInsights';
 import OpenSeaMap from './OpenSeaMap';
 import MalaysianPortsStats from './MalaysianPortsStats';
 import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
+import portDataService from '../services/portDataService';
 
 const CyberHome = ({ globalSelectedPort }) => {
   const [weather, setWeather] = useState(null);
@@ -39,35 +40,23 @@ const CyberHome = ({ globalSelectedPort }) => {
       }
     };
 
-    // Fetch real-time vessel data from AIS Hub (free API)
+    // Fetch vessel data from shared service to ensure consistency
     const fetchVesselData = async () => {
       try {
-        // Using AISHub free API - requires registration at aishub.net
-        // Alternative: Use vessel density API or Marine Traffic public endpoints
-        const radius = 50; // km radius from port
-        const response = await axios.get(
-          `https://data.aishub.net/ws.php?username=AH_DEMO&format=1&output=json&compress=0&latmin=${selectedPort.lat - 0.5}&latmax=${selectedPort.lat + 0.5}&lonmin=${selectedPort.lon - 0.5}&lonmax=${selectedPort.lon + 0.5}`
-        );
+        const portStats = portDataService.getPortStats(selectedPort.id);
+        setVesselCount(portStats.activeVessels);
         
-        if (response.data && response.data[0]) {
-          const vessels = response.data[0].ERROR === 'FALSE' ? response.data[1] : [];
-          setVesselCount(vessels.length || 0);
-          setVesselData(vessels);
-        }
+        // Generate sample vessel data for display
+        const mockVessels = Array.from({ length: Math.min(portStats.activeVessels, 10) }, (_, i) => ({
+          name: `Vessel ${i + 1}`,
+          type: ['Cargo', 'Tanker', 'Container', 'Bulk Carrier'][Math.floor(Math.random() * 4)],
+          status: ['In Transit', 'Docked', 'Anchored'][Math.floor(Math.random() * 3)]
+        }));
+        
+        setVesselData(mockVessels);
       } catch (error) {
         console.error('Error fetching vessel data:', error);
-        // Fallback: Try alternative free API - MyShipTracking
-        try {
-          const bbox = `${selectedPort.lon - 0.5},${selectedPort.lat - 0.5},${selectedPort.lon + 0.5},${selectedPort.lat + 0.5}`;
-          const altResponse = await axios.get(
-            `https://api.myshiptracking.com/vessels.json?bbox=${bbox}`
-          );
-          setVesselCount(altResponse.data?.length || 0);
-          setVesselData(altResponse.data);
-        } catch (altError) {
-          console.error('Error with alternative vessel API:', altError);
-          setVesselCount(0);
-        }
+        setVesselCount(25);
       }
     };
 

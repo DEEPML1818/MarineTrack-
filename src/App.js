@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Sidebar from './components/sidebar';
 import WeatherData from './components/WeatherData';
 import MarineTrafficEmbed from './components/MarineTrafficEmbed';
 import VesselFinderEmbed from './components/VesselFinderEmbed';
@@ -35,10 +34,8 @@ function App() {
           selectedPort={globalSelectedPort} 
           onPortChange={handlePortChange}
         />
-        
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
-        <main className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'} pt-16`}>
+        <main className="flex-1 pt-16">
           <Routes>
             <Route path="/" element={<CyberHome globalSelectedPort={globalSelectedPort} />} />
             <Route path="/weather" element={<div className="p-6 pt-24"><WeatherData globalSelectedPort={globalSelectedPort} /></div>} />

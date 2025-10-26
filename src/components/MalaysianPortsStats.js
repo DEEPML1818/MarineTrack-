@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { FaShip, FaAnchor, FaExclamationTriangle, FaCircle } from 'react-icons/fa';
-import axios from 'axios';
+import { FaAnchor, FaCircle } from 'react-icons/fa';
 import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
 
 const MalaysianPortsStats = ({ globalSelectedPort }) => {
@@ -23,50 +22,20 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
   const selectedPort = globalSelectedPort || 'labuan';
 
   useEffect(() => {
-    const fetchPortStats = async () => {
-      try {
-        // Example API endpoint - replace with your actual API
-        // This is a placeholder and assumes an API that returns stats for all ports
-        // If you have a different API structure (e.g., per port), adjust accordingly.
-        const response = await axios.get('https://api.example.com/maritime/ports/stats');
-        const apiStats = response.data; // Assuming API returns an object keyed by port ID
+    // Import the shared port data service
+    import('../services/portDataService').then(module => {
+      const portDataService = module.default;
+      
+      const updateStats = () => {
+        const allStats = portDataService.getAllPortStats();
+        setStats(allStats);
+      };
 
-        const newStats = {};
-        malaysianPorts.forEach(port => {
-          const portData = apiStats[port.id] || {}; // Get data for the current port, or empty object if not found
-          newStats[port.id] = {
-            activeVessels: portData.activeVessels || 0,
-            incoming: portData.incoming || 0,
-            outgoing: portData.outgoing || 0,
-            docked: portData.docked || 0,
-            capacity: portData.capacity || 0,
-            alerts: portData.alerts || 0
-          };
-        });
-        setStats(newStats);
-      } catch (error) {
-        console.error("Error fetching port statistics:", error);
-        // Fallback to mock data or keep previous stats on error
-        const fallbackStats = {};
-        malaysianPorts.forEach(port => {
-          fallbackStats[port.id] = {
-            activeVessels: Math.floor(Math.random() * 50) + 10,
-            incoming: Math.floor(Math.random() * 20) + 5,
-            outgoing: Math.floor(Math.random() * 15) + 3,
-            docked: Math.floor(Math.random() * 30) + 15,
-            capacity: Math.floor(Math.random() * 30) + 60,
-            alerts: Math.floor(Math.random() * 5)
-          };
-        });
-        setStats(fallbackStats);
-      }
-    };
+      updateStats(); // Initial fetch
+      const interval = setInterval(updateStats, 15000); // Update every 15 seconds
 
-    fetchPortStats(); // Initial fetch
-
-    const interval = setInterval(fetchPortStats, 30000); // Fetch every 30 seconds
-
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    });
   }, [malaysianPorts]); // malaysianPorts is now stable due to useMemo
 
   const currentStats = stats[selectedPort] || {
