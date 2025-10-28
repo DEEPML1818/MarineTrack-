@@ -8,40 +8,67 @@ const StatsCards = () => {
     alerts: 0,
     avgETA: 0
   });
+  const [connectionStatus, setConnectionStatus] = useState('connecting');
+  const [dataSource, setDataSource] = useState('unknown');
 
   useEffect(() => {
-    const targetStats = {
-      activeVessels: 1247,
-      portsOnline: 89,
-      alerts: 12,
-      avgETA: 4.2
-    };
+    const fetchMaritimeStats = async () => {
+      try {
+        const response = await fetch('/api/maritime-stats');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const targetStats = await response.json();
+        
+        setConnectionStatus(targetStats.connectionStatus || 'unknown');
+        setDataSource(targetStats.dataSource || 'unknown');
 
-    let frame = 0;
-    const totalFrames = 60;
+        let frame = 0;
+        const totalFrames = 60;
 
-    const animateNumbers = () => {
-      frame++;
-      const progress = frame / totalFrames;
-      const easeOut = 1 - Math.pow(1 - progress, 3);
+        const animateNumbers = () => {
+          frame++;
+          const progress = frame / totalFrames;
+          const easeOut = 1 - Math.pow(1 - progress, 3);
 
-      setStats({
-        activeVessels: Math.floor(targetStats.activeVessels * easeOut),
-        portsOnline: Math.floor(targetStats.portsOnline * easeOut),
-        alerts: Math.floor(targetStats.alerts * easeOut),
-        avgETA: (targetStats.avgETA * easeOut).toFixed(1)
-      });
+          setStats({
+            activeVessels: Math.floor(targetStats.activeVessels * easeOut),
+            portsOnline: Math.floor(targetStats.portsOnline * easeOut),
+            alerts: Math.floor(targetStats.alerts * easeOut),
+            avgETA: (targetStats.avgETA * easeOut).toFixed(1)
+          });
 
-      if (frame < totalFrames) {
+          if (frame < totalFrames) {
+            requestAnimationFrame(animateNumbers);
+          }
+        };
+
         requestAnimationFrame(animateNumbers);
+      } catch (error) {
+        console.error('Error fetching maritime stats:', error);
+        setStats({
+          activeVessels: 0,
+          portsOnline: 0,
+          alerts: 0,
+          avgETA: 0
+        });
       }
     };
 
     const timer = setTimeout(() => {
-      requestAnimationFrame(animateNumbers);
+      fetchMaritimeStats();
     }, 300);
 
-    return () => clearTimeout(timer);
+    const interval = setInterval(() => {
+      fetchMaritimeStats();
+    }, 15000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   const cardData = [

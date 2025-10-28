@@ -14,6 +14,8 @@ const CyberHome = ({ globalSelectedPort }) => {
   const [tideData, setTideData] = useState(null);
   const [vesselCount, setVesselCount] = useState(0);
   const [vesselData, setVesselData] = useState(null);
+  const [connectionStatus, setConnectionStatus] = useState('connecting');
+  const [dataSource, setDataSource] = useState('unknown');
   const selectedPort = MALAYSIAN_PORTS.find(p => p.id === globalSelectedPort) || MALAYSIAN_PORTS[0];
 
   useEffect(() => {
@@ -21,10 +23,16 @@ const CyberHome = ({ globalSelectedPort }) => {
     const fetchWeather = async () => {
       try {
         const weatherApiKey = '4d5ea12f38be4e04b8c120842242507';
-        const response = await axios.get(
+        const response = await fetch(
           `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${selectedPort.lat},${selectedPort.lon}`
         );
-        setWeather(response.data);
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setWeather(data);
       } catch (error) {
         console.error('Error fetching weather:', error);
       }
@@ -33,21 +41,35 @@ const CyberHome = ({ globalSelectedPort }) => {
     // Fetch real-time tide data
     const fetchTideData = async () => {
       try {
-        const response = await axios.get('http://0.0.0.0:3001/api/tide-data');
-        setTideData(response.data);
+        const response = await fetch('/api/tide-data');
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        setTideData(data);
       } catch (error) {
         console.error('Error fetching tide data:', error);
       }
     };
 
-    // Fetch vessel data from shared service to ensure consistency
+    // Fetch real-time vessel data from API
     const fetchVesselData = async () => {
       try {
-        const portStats = portDataService.getPortStats(selectedPort.id);
-        setVesselCount(portStats.activeVessels);
+        const response = await fetch('/api/maritime-stats');
         
-        // Generate sample vessel data for display
-        const mockVessels = Array.from({ length: Math.min(portStats.activeVessels, 10) }, (_, i) => ({
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const maritimeStats = await response.json();
+        setVesselCount(maritimeStats.activeVessels);
+        setConnectionStatus(maritimeStats.connectionStatus || 'unknown');
+        setDataSource(maritimeStats.dataSource || 'unknown');
+        
+        // Generate sample vessel data for display based on real count
+        const mockVessels = Array.from({ length: Math.min(maritimeStats.activeVessels, 10) }, (_, i) => ({
           name: `Vessel ${i + 1}`,
           type: ['Cargo', 'Tanker', 'Container', 'Bulk Carrier'][Math.floor(Math.random() * 4)],
           status: ['In Transit', 'Docked', 'Anchored'][Math.floor(Math.random() * 3)]
@@ -56,7 +78,7 @@ const CyberHome = ({ globalSelectedPort }) => {
         setVesselData(mockVessels);
       } catch (error) {
         console.error('Error fetching vessel data:', error);
-        setVesselCount(25);
+        setVesselCount(0);
       }
     };
 
@@ -99,12 +121,40 @@ const CyberHome = ({ globalSelectedPort }) => {
                 Real-Time Port Operations - {selectedPort.name}
               </p>
             </div>
-            <div className="flex items-center space-x-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 px-6 py-3 rounded-xl border border-green-400/30">
+            <div className={`flex items-center space-x-2 px-6 py-3 rounded-xl border ${
+              connectionStatus === 'connected' 
+                ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-400/30' 
+                : connectionStatus === 'stale' || connectionStatus === 'disconnected'
+                ? 'bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border-yellow-400/30'
+                : 'bg-gradient-to-r from-red-500/20 to-red-600/20 border-red-400/30'
+            }`}>
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                {connectionStatus === 'connected' && (
+                  <>
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                  </>
+                )}
+                {(connectionStatus === 'stale' || connectionStatus === 'disconnected') && (
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-yellow-500"></span>
+                )}
+                {connectionStatus === 'unavailable' && (
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                )}
               </span>
-              <span className="text-green-400 font-semibold">LIVE DATA FEED</span>
+              <span className={`font-semibold ${
+                connectionStatus === 'connected' 
+                  ? 'text-green-400' 
+                  : connectionStatus === 'stale' || connectionStatus === 'disconnected'
+                  ? 'text-yellow-400'
+                  : 'text-red-400'
+              }`}>
+                {connectionStatus === 'connected' && dataSource === 'aisstream.io' && 'LIVE AIS DATA'}
+                {connectionStatus === 'connected' && dataSource !== 'aisstream.io' && 'LIVE DATA FEED'}
+                {(connectionStatus === 'stale' || connectionStatus === 'disconnected') && 'SIMULATED DATA'}
+                {connectionStatus === 'unavailable' && 'OFFLINE'}
+                {connectionStatus === 'connecting' && 'CONNECTING...'}
+              </span>
             </div>
           </div>
 
@@ -225,13 +275,6 @@ const CyberHome = ({ globalSelectedPort }) => {
         {/* Port Statistics */}
         <MalaysianPortsStats globalSelectedPort={globalSelectedPort} />
       </div>
-
-      <style jsx>{`
-        @keyframes gridScroll {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(50px); }
-        }
-      `}</style>
     </div>
   );
 };

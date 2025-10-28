@@ -7,7 +7,7 @@ integrations = ["javascript_gemini:1.0.0"]
 channel = "stable-25_05"
 
 [workflows]
-runButton = "Project"
+runButton = "Marine Dashboard with Backend"
 
 [[workflows.workflow]]
 name = "Project"
@@ -30,6 +30,19 @@ waitForPort = 5000
 [workflows.workflow.metadata]
 outputType = "webview"
 
+[[workflows.workflow]]
+name = "Marine Dashboard with Backend"
+author = 43316538
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "node src/Server/server.js"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm start"
+
 [[ports]]
 localPort = 3001
 externalPort = 3001
@@ -37,6 +50,10 @@ externalPort = 3001
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 5001
+externalPort = 3002
 
 [[ports]]
 localPort = 42717

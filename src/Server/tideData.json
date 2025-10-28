@@ -1345,11 +1345,11 @@
       "wave_period": 7.2
     }
   ],
-  "timestamp": 1761578118896,
+  "timestamp": 1761580350861,
   "rawData": {
     "latitude": 5.291664,
     "longitude": 115.20836,
-    "generationtime_ms": 0.13589859008789062,
+    "generationtime_ms": 0.1779794692993164,
     "utc_offset_seconds": 28800,
     "timezone": "Asia/Kuala_Lumpur",
     "timezone_abbreviation": "GMT+8",
