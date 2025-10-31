@@ -8,20 +8,18 @@ const WeatherData = () => {
   const [pollutionData, setPollutionData] = useState(null);
   const lat = 5.2831; // Labuan latitude
   const lon = 115.2309; // Labuan longitude
-  const weatherApiKey = '4d5ea12f38be4e04b8c120842242507';
-  const airPollutionApiKey = '94ff7daecfb2522167538d473a405862';
-  const stormGlassApiKey = '2d3c71cc-4cf2-11ef-968a-0242ac130004-2d3c7230-4cf2-11ef-968a-0242ac130004';
+  const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY || '';
+  const stormGlassApiKey = process.env.REACT_APP_STORMGLASS_API_KEY || '';
 
   useEffect(() => {
     // Fetch general weather data
-    axios.get(`https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${lat},${lon}`)
-      .then(response => setWeather(response.data))
-      .catch(error => console.error('Error fetching weather data:', error));
-
-    // Fetch air pollution data
-    axios.get(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${airPollutionApiKey}`)
-      .then(response => setPollutionData(response.data))
-      .catch(error => console.error('Error fetching air pollution data:', error));
+    if (weatherApiKey) {
+      axios.get(`https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${lat},${lon}`)
+        .then(response => setWeather(response.data))
+        .catch(error => console.error('Error fetching weather data:', error));
+    } else {
+      console.warn('Weather API key not configured');
+    }
 
     // Check if wave height data is in localStorage and not outdated
     const cachedWaveData = localStorage.getItem('waveHeightData');
@@ -37,27 +35,29 @@ const WeatherData = () => {
     }
 
     // Fetch sea wave height data
-    axios.get(`https://api.stormglass.io/v2/weather/point`, {
-      params: {
-        lat,
-        lng: lon,
-        params: 'waveHeight',
-        source: 'noaa',
-      },
-      headers: {
-        Authorization: stormGlassApiKey,
-      },
-    })
-    .then(response => {
-      if (response.data.hours && response.data.hours[0] && response.data.hours[0].waveHeight) {
-        const waveData = response.data.hours[0].waveHeight.noaa;
-        setWaveHeight(waveData);
-        localStorage.setItem('waveHeightData', JSON.stringify(waveData));
-        localStorage.setItem('waveHeightTimestamp', Date.now());
-      }
-    })
-    .catch(error => console.error('Error fetching wave height data:', error));
-  }, [lat, lon, weatherApiKey, airPollutionApiKey, stormGlassApiKey]);
+    if (stormGlassApiKey) {
+      axios.get(`https://api.stormglass.io/v2/weather/point`, {
+        params: {
+          lat,
+          lng: lon,
+          params: 'waveHeight',
+          source: 'noaa',
+        },
+        headers: {
+          Authorization: stormGlassApiKey,
+        },
+      })
+      .then(response => {
+        if (response.data.hours && response.data.hours[0] && response.data.hours[0].waveHeight) {
+          const waveData = response.data.hours[0].waveHeight.noaa;
+          setWaveHeight(waveData);
+          localStorage.setItem('waveHeightData', JSON.stringify(waveData));
+          localStorage.setItem('waveHeightTimestamp', Date.now());
+        }
+      })
+      .catch(error => console.error('Error fetching wave height data:', error));
+    }
+  }, [lat, lon, weatherApiKey, stormGlassApiKey]);
 
   const DataCard = ({ title, value, color = "#00f3ff" }) => (
     <div className="glassmorphism rounded-lg p-4 border border-cyan-500/30 hover-lift-cyber">

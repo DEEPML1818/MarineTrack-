@@ -1,0 +1,113 @@
+Uncaught Error: Module build failed (from ./node_modules/babel-loader/lib/index.js):
+SyntaxError: /home/runner/workspace/src/components/LiveVesselMap.js: Identifier 'React' has already been declared. (244:7)
+
+[0m [90m 242 |[39m
+ [90m 243 |[39m [36mexport[39m [36mdefault[39m [33mLiveVesselMap[39m[33m;[39m
+[31m[1m>[22m[39m[90m 244 |[39m [36mimport[39m [33mReact[39m[33m,[39m { useEffect[33m,[39m useState[33m,[39m useRef } [36mfrom[39m [32m'react'[39m[33m;[39m
+ [90m     |[39m        [31m[1m^[22m[39m
+ [90m 245 |[39m [36mimport[39m { [33mMapContainer[39m[33m,[39m [33mTileLayer[39m[33m,[39m [33mMarker[39m[33m,[39m [33mPopup[39m[33m,[39m [33mPolyline[39m[33m,[39m useMap } [36mfrom[39m [32m'react-leaflet'[39m[33m;[39m
+ [90m 246 |[39m [36mimport[39m [33mL[39m [36mfrom[39m [32m'leaflet'[39m[33m;[39m
+ [90m 247 |[39m [36mimport[39m [32m'leaflet/dist/leaflet.css'[39m[33m;[39m[0m
+    at constructor (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:349:19)
+    at FlowParserMixin.raise (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:3247:19)
+    at FlowScopeHandler.checkRedeclarationInScope (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1494:19)
+    at FlowScopeHandler.declareName (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1460:12)
+    at FlowScopeHandler.declareName (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1561:11)
+    at FlowParserMixin.declareNameFromIdentifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7335:16)
+    at FlowParserMixin.checkIdentifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7331:12)
+    at FlowParserMixin.checkLVal (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7272:12)
+    at FlowParserMixin.finishImportSpecifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13708:10)
+    at FlowParserMixin.parseImportSpecifierLocal (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5501:31)
+    at FlowParserMixin.maybeParseDefaultImportSpecifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13816:12)
+    at FlowParserMixin.parseImportSpecifiersAndAfter (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13682:29)
+    at FlowParserMixin.parseImport (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13678:17)
+    at FlowParserMixin.parseStatementContent (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12325:27)
+    at FlowParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12217:17)
+    at FlowParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5038:24)
+    at FlowParserMixin.parseModuleItem (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12194:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12770:36)
+    at FlowParserMixin.parseBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12763:10)
+    at FlowParserMixin.parseProgram (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12091:10)
+    at FlowParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12081:25)
+    at FlowParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5805:28)
+    at FlowParserMixin.parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13893:10)
+    at parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13927:38)
+    at parser (/home/runner/workspace/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/runner/workspace/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/runner/workspace/node_modules/@babel/core/lib/transformation/index.js:21:50)
+    at run.next (<anonymous>)
+    at transform (/home/runner/workspace/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/runner/workspace/node_modules/gensync/index.js:261:32)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/workspace/node_modules/gensync/index.js:223:11)
+    at /home/runner/workspace/node_modules/gensync/index.js:189:28
+    at /home/runner/workspace/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+    at /home/runner/workspace/node_modules/gensync/index.js:113:33
+    at step (/home/runner/workspace/node_modules/gensync/index.js:287:14)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/workspace/node_modules/gensync/index.js:223:11)
+    at constructor (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:349:19)
+    at FlowParserMixin.raise (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:3247:19)
+    at FlowScopeHandler.checkRedeclarationInScope (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1494:19)
+    at FlowScopeHandler.declareName (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1460:12)
+    at FlowScopeHandler.declareName (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:1561:11)
+    at FlowParserMixin.declareNameFromIdentifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7335:16)
+    at FlowParserMixin.checkIdentifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7331:12)
+    at FlowParserMixin.checkLVal (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:7272:12)
+    at FlowParserMixin.finishImportSpecifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13708:10)
+    at FlowParserMixin.parseImportSpecifierLocal (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5501:31)
+    at FlowParserMixin.maybeParseDefaultImportSpecifier (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13816:12)
+    at FlowParserMixin.parseImportSpecifiersAndAfter (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13682:29)
+    at FlowParserMixin.parseImport (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13678:17)
+    at FlowParserMixin.parseStatementContent (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12325:27)
+    at FlowParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12217:17)
+    at FlowParserMixin.parseStatementLike (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5038:24)
+    at FlowParserMixin.parseModuleItem (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12194:17)
+    at FlowParserMixin.parseBlockOrModuleBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12770:36)
+    at FlowParserMixin.parseBlockBody (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12763:10)
+    at FlowParserMixin.parseProgram (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12091:10)
+    at FlowParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:12081:25)
+    at FlowParserMixin.parseTopLevel (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:5805:28)
+    at FlowParserMixin.parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13893:10)
+    at parse (/home/runner/workspace/node_modules/@babel/parser/lib/index.js:13927:38)
+    at parser (/home/runner/workspace/node_modules/@babel/core/lib/parser/index.js:41:34)
+    at parser.next (<anonymous>)
+    at normalizeFile (/home/runner/workspace/node_modules/@babel/core/lib/transformation/normalize-file.js:64:37)
+    at normalizeFile.next (<anonymous>)
+    at run (/home/runner/workspace/node_modules/@babel/core/lib/transformation/index.js:21:50)
+    at run.next (<anonymous>)
+    at transform (/home/runner/workspace/node_modules/@babel/core/lib/transform.js:22:33)
+    at transform.next (<anonymous>)
+    at step (/home/runner/workspace/node_modules/gensync/index.js:261:32)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/workspace/node_modules/gensync/index.js:223:11)
+    at /home/runner/workspace/node_modules/gensync/index.js:189:28
+    at /home/runner/workspace/node_modules/@babel/core/lib/gensync-utils/async.js:67:7
+    at /home/runner/workspace/node_modules/gensync/index.js:113:33
+    at step (/home/runner/workspace/node_modules/gensync/index.js:287:14)
+    at /home/runner/workspace/node_modules/gensync/index.js:273:13
+    at async.call.result.err.err (/home/runner/workspace/node_modules/gensync/index.js:223:11)
+    at ./src/components/LiveVesselMap.js (Footer.js:99:1)
+    at options.factory (react refresh:6:1)
+    at __webpack_require__ (bootstrap:22:1)
+    at fn (hot module replacement:61:1)
+    at ./src/App.js (data.js:21:1)
+    at options.factory (react refresh:6:1)
+    at __webpack_require__ (bootstrap:22:1)
+    at fn (hot module replacement:61:1)
+    at ./src/index.js (malaysianPorts.js:10:1)
+    at options.factory (react refresh:6:1)
+WebSocketClient.js:13  WebSocket connection to 'wss://2304d16e-e6a5-43ba-9dda-b301bc494841-00-36t5uaae8sr4g.spock.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+WebSocketClient.js:13  WebSocket connection to 'wss://2304d16e-e6a5-43ba-9dda-b301bc494841-00-36t5uaae8sr4g.spock.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+WebSocketClient.js:13  WebSocket connection to 'wss://2304d16e-e6a5-43ba-9dda-b301bc494841-00-36t5uaae8sr4g.spock.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+WebSocketClient.js:13  WebSocket connection to 'wss://2304d16e-e6a5-43ba-9dda-b301bc494841-00-36t5uaae8sr4g.spock.replit.dev:5000/ws' failed: 
+WebSocketClient @ WebSocketClient.js:13
+initSocket @ socket.js:27
+(anonymous) @ socket.js:51
+WebSocketClient.js:13  WebSocket connection to 'wss://2304d16e-e6a5-43ba-9dda-b301bc494841-00-36t5uaae8sr4g.spock.replit.dev:5000/ws' failed: 

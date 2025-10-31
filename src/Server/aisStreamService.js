@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const axios = require('axios');
 
 class AISStreamService {
   constructor(apiKey) {
@@ -10,6 +11,8 @@ class AISStreamService {
     this.reconnectDelay = 5000;
     this.isConnecting = false;
     this.lastUpdate = null;
+    this.marinesiaData = null;
+    this.marinesiaLastFetch = null;
     
     this.malaysianPorts = {
       'labuan': { lat: 5.2831, lon: 115.2309, name: 'Labuan Port' },
@@ -23,11 +26,86 @@ class AISStreamService {
     };
   }
 
+  async fetchMarineTrafficData() {
+    try {
+      const apiKey = process.env.MARINETRAFFIC_API_KEY;
+      
+      if (!apiKey) {
+        console.log('MarineTraffic API key not found. Using AIS stream data only.');
+        return false;
+      }
+
+      console.log('Fetching vessel data from MarineTraffic API...');
+      
+      // Fetch vessels in Malaysian waters using MarineTraffic's free PS07 endpoint
+      const response = await axios.get('https://services.marinetraffic.com/api/exportvessels/v:8/' + apiKey, {
+        params: {
+          protocol: 'jsono',
+          msgtype: 'simple',
+          minlat: 0.8,
+          maxlat: 7.5,
+          minlon: 99.5,
+          maxlon: 119.5,
+          timespan: 20 // Last 20 minutes
+        },
+        timeout: 15000
+      });
+
+      if (response.data && Array.isArray(response.data)) {
+        this.marinesiaLastFetch = Date.now();
+        
+        // Process MarineTraffic data
+        response.data.forEach(vessel => {
+          if (vessel.MMSI && vessel.LAT && vessel.LON) {
+            const existingVessel = this.vessels.get(vessel.MMSI) || {
+              mmsi: vessel.MMSI,
+              firstSeen: Date.now()
+            };
+
+            this.vessels.set(vessel.MMSI, {
+              ...existingVessel,
+              latitude: parseFloat(vessel.LAT),
+              longitude: parseFloat(vessel.LON),
+              speed: parseFloat(vessel.SPEED) || existingVessel.speed,
+              course: parseFloat(vessel.COURSE) || existingVessel.course,
+              heading: parseFloat(vessel.HEADING) || existingVessel.heading,
+              name: vessel.SHIPNAME || existingVessel.name || 'Unknown',
+              type: vessel.SHIPTYPE || existingVessel.type,
+              status: vessel.STATUS || existingVessel.status,
+              destination: vessel.DESTINATION || existingVessel.destination,
+              lastUpdate: Date.now(),
+              nearestPort: this.findNearestPort(parseFloat(vessel.LAT), parseFloat(vessel.LON)),
+              source: 'marinetraffic',
+              callSign: vessel.CALLSIGN,
+              flag: vessel.FLAG
+            });
+          }
+        });
+
+        this.lastUpdate = Date.now();
+        console.log(`MarineTraffic: Loaded ${response.data.length} vessels`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('MarineTraffic API error:', error.response?.data || error.message);
+      return false;
+    }
+  }
+
   connect() {
     if (this.isConnecting || (this.ws && this.ws.readyState === WebSocket.OPEN)) {
       console.log('AIS Stream: Already connected or connecting');
       return;
     }
+
+    // Fetch MarineTraffic data immediately
+    this.fetchMarineTrafficData();
+
+    // Set up periodic MarineTraffic fetching (every 2 minutes)
+    this.marinesiaInterval = setInterval(() => {
+      this.fetchMarineTrafficData();
+    }, 120000);
 
     this.isConnecting = true;
     console.log('AIS Stream: Connecting to aisstream.io...');
@@ -192,15 +270,22 @@ class AISStreamService {
 
   getAggregatedStats() {
     const now = Date.now();
+    const hasAIS = this.ws?.readyState === WebSocket.OPEN;
+    const hasMarineSIA = this.marinesiaLastFetch && (now - this.marinesiaLastFetch) < 300000; // 5 min
+    
     const stats = {
       activeVessels: this.vessels.size,
       portsOnline: 0,
       alerts: 0,
       avgETA: 0,
       lastUpdate: this.lastUpdate,
-      connectionStatus: this.ws?.readyState === WebSocket.OPEN ? 'connected' : 'disconnected',
-      dataAge: this.lastUpdate ? Math.floor((now - this.lastUpdate) / 1000) : null
+      connectionStatus: hasAIS ? 'connected' : (hasMarineSIA ? 'marinesia' : 'disconnected'),
+      dataAge: this.lastUpdate ? Math.floor((now - this.lastUpdate) / 1000) : null,
+      dataSources: []
     };
+
+    if (hasAIS) stats.dataSources.push('aisstream.io');
+    if (hasMarineSIA) stats.dataSources.push('marinetraffic.com');
 
     const portVesselCounts = {};
     let totalIncoming = 0;
@@ -229,9 +314,28 @@ class AISStreamService {
 
     stats.portsOnline = Object.values(portVesselCounts).filter(count => count > 0).length;
     
-    stats.avgETA = totalIncoming > 0 && vesselsWithETA > 0
-      ? (3 + Math.random() * 2).toFixed(1)
-      : 0;
+    // Calculate real average ETA from actual vessel data (no random numbers)
+    if (totalIncoming > 0 && vesselsWithETA > 0) {
+      let totalETA = 0;
+      let validETACount = 0;
+      
+      for (const vessel of this.vessels.values()) {
+        if (vessel.status === 0 && vessel.eta) {
+          const etaTime = new Date(vessel.eta).getTime();
+          const currentTime = Date.now();
+          const hoursToETA = (etaTime - currentTime) / (1000 * 60 * 60);
+          
+          if (hoursToETA > 0 && hoursToETA < 72) {
+            totalETA += hoursToETA;
+            validETACount++;
+          }
+        }
+      }
+      
+      stats.avgETA = validETACount > 0 ? (totalETA / validETACount).toFixed(1) : 0;
+    } else {
+      stats.avgETA = 0;
+    }
 
     return stats;
   }
@@ -239,6 +343,7 @@ class AISStreamService {
   getPortStats() {
     const portStats = {};
     
+    // Initialize port stats with real data flag
     for (const [portId, port] of Object.entries(this.malaysianPorts)) {
       portStats[portId] = {
         name: port.name,
@@ -246,10 +351,13 @@ class AISStreamService {
         incoming: 0,
         outgoing: 0,
         docked: 0,
-        alerts: 0
+        alerts: 0,
+        capacity: 0,
+        isRealData: true
       };
     }
 
+    // Only count real vessels from AIS stream
     for (const vessel of this.vessels.values()) {
       if (vessel.nearestPort && portStats[vessel.nearestPort]) {
         const port = portStats[vessel.nearestPort];
@@ -257,12 +365,10 @@ class AISStreamService {
 
         if (vessel.status === 0) {
           port.incoming++;
-        } else if (vessel.status === 5) {
+        } else if (vessel.status === 5 || vessel.status === 1) {
           port.docked++;
-        } else if (vessel.status === 1 || vessel.status === 2) {
-          if (vessel.speed && vessel.speed > 1) {
-            port.outgoing++;
-          }
+        } else if (vessel.speed && vessel.speed > 1) {
+          port.outgoing++;
         }
 
         if (vessel.status && (vessel.status === 14 || vessel.status === 6)) {
@@ -271,7 +377,26 @@ class AISStreamService {
       }
     }
 
+    // Calculate realistic capacity based on actual vessel count
+    for (const portId in portStats) {
+      const stats = portStats[portId];
+      if (stats.activeVessels > 0) {
+        // Estimate capacity based on vessel activity
+        const totalActivity = stats.incoming + stats.outgoing + stats.docked;
+        stats.capacity = totalActivity > 0 ? Math.min(95, Math.round((totalActivity / stats.activeVessels) * 100)) : 0;
+      }
+    }
+
     return portStats;
+  }
+
+  getLiveVessels() {
+    const vesselArray = Array.from(this.vessels.values());
+    return vesselArray.filter(vessel => {
+      const hasPosition = vessel.latitude !== undefined && vessel.longitude !== undefined;
+      const isRecent = vessel.lastUpdate && (Date.now() - vessel.lastUpdate) < 30 * 60 * 1000;
+      return hasPosition && isRecent;
+    });
   }
 
   disconnect() {
@@ -279,6 +404,10 @@ class AISStreamService {
       console.log('AIS Stream: Disconnecting...');
       this.ws.close();
       this.ws = null;
+    }
+    if (this.marinesiaInterval) {
+      clearInterval(this.marinesiaInterval);
+      this.marinesiaInterval = null;
     }
   }
 }

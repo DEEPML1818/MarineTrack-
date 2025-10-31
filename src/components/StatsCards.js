@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaShip, FaAnchor, FaExclamationTriangle, FaClock } from 'react-icons/fa';
 
-const StatsCards = () => {
+const StatsCards = ({ selectedPort = 'labuan' }) => {
   const [stats, setStats] = useState({
     activeVessels: 0,
     portsOnline: 0,
@@ -12,64 +12,60 @@ const StatsCards = () => {
   const [dataSource, setDataSource] = useState('unknown');
 
   useEffect(() => {
-    const fetchMaritimeStats = async () => {
+    const fetchPortSpecificStats = async () => {
       try {
-        const response = await fetch('/api/maritime-stats');
+        // Fetch port-specific data instead of global totals
+        const response = await fetch('/api/port-stats');
         
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         
-        const targetStats = await response.json();
+        const allPortStats = await response.json();
+        const portData = allPortStats[selectedPort];
         
-        setConnectionStatus(targetStats.connectionStatus || 'unknown');
-        setDataSource(targetStats.dataSource || 'unknown');
+        if (!portData) {
+          setStats({ activeVessels: 0, portsOnline: 0, alerts: 0, avgETA: 0 });
+          setConnectionStatus('no_data');
+          setDataSource('No Data');
+          return;
+        }
 
-        let frame = 0;
-        const totalFrames = 60;
+        setConnectionStatus(portData.activeVessels > 0 ? 'connected' : 'no_data');
+        setDataSource(portData.isRealData ? 'Real AIS Data' : 'No Data');
 
-        const animateNumbers = () => {
-          frame++;
-          const progress = frame / totalFrames;
-          const easeOut = 1 - Math.pow(1 - progress, 3);
-
-          setStats({
-            activeVessels: Math.floor(targetStats.activeVessels * easeOut),
-            portsOnline: Math.floor(targetStats.portsOnline * easeOut),
-            alerts: Math.floor(targetStats.alerts * easeOut),
-            avgETA: (targetStats.avgETA * easeOut).toFixed(1)
-          });
-
-          if (frame < totalFrames) {
-            requestAnimationFrame(animateNumbers);
-          }
-        };
-
-        requestAnimationFrame(animateNumbers);
+        // Set stats directly without animation to avoid accumulation
+        setStats({
+          activeVessels: portData.activeVessels || 0,
+          portsOnline: portData.activeVessels > 0 ? 1 : 0,
+          alerts: portData.alerts || 0,
+          avgETA: 0  // Port-specific ETA not available
+        });
       } catch (error) {
-        console.error('Error fetching maritime stats:', error);
+        console.error('Error fetching port stats:', error);
         setStats({
           activeVessels: 0,
           portsOnline: 0,
           alerts: 0,
           avgETA: 0
         });
+        setConnectionStatus('error');
       }
     };
 
     const timer = setTimeout(() => {
-      fetchMaritimeStats();
+      fetchPortSpecificStats();
     }, 300);
 
     const interval = setInterval(() => {
-      fetchMaritimeStats();
+      fetchPortSpecificStats();
     }, 15000);
 
     return () => {
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, []);
+  }, [selectedPort]);
 
   const cardData = [
     {

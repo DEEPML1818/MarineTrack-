@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.3",
     "concurrently": "^8.2.2",
+    "dotenv": "^17.2.3",
     "express": "^4.19.2",
     "flowbite-react": "^0.10.1",
     "fs": "^0.0.1-security",

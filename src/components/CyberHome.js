@@ -7,7 +7,6 @@ import AIInsights from './AIInsights';
 import OpenSeaMap from './OpenSeaMap';
 import MalaysianPortsStats from './MalaysianPortsStats';
 import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
-import portDataService from '../services/portDataService';
 
 const CyberHome = ({ globalSelectedPort }) => {
   const [weather, setWeather] = useState(null);
@@ -19,10 +18,14 @@ const CyberHome = ({ globalSelectedPort }) => {
   const selectedPort = MALAYSIAN_PORTS.find(p => p.id === globalSelectedPort) || MALAYSIAN_PORTS[0];
 
   useEffect(() => {
-    // Fetch real-time weather data
+    // Fetch real-time weather data for selected port
     const fetchWeather = async () => {
       try {
-        const weatherApiKey = '4d5ea12f38be4e04b8c120842242507';
+        const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY || '';
+        if (!weatherApiKey) {
+          console.warn('Weather API key not configured');
+          return;
+        }
         const response = await fetch(
           `https://api.weatherapi.com/v1/current.json?key=${weatherApiKey}&q=${selectedPort.lat},${selectedPort.lon}`
         );
@@ -35,6 +38,30 @@ const CyberHome = ({ globalSelectedPort }) => {
         setWeather(data);
       } catch (error) {
         console.error('Error fetching weather:', error);
+      }
+    };
+    
+    // Fetch real port-specific vessel data
+    const fetchPortData = async () => {
+      try {
+        const response = await fetch('/api/port-stats');
+        const data = await response.json();
+        
+        if (data && data[globalSelectedPort]) {
+          const portData = data[globalSelectedPort];
+          setVesselCount(portData.activeVessels || 0);
+          setVesselData(portData);
+          setConnectionStatus(portData.activeVessels > 0 ? 'connected' : 'no_data');
+          setDataSource(portData.isRealData ? 'Real AIS Data' : 'No Data');
+        } else {
+          setVesselCount(0);
+          setVesselData(null);
+          setConnectionStatus('no_data');
+          setDataSource('No Data');
+        }
+      } catch (error) {
+        console.error('Error fetching port data:', error);
+        setConnectionStatus('error');
       }
     };
 
@@ -68,14 +95,8 @@ const CyberHome = ({ globalSelectedPort }) => {
         setConnectionStatus(maritimeStats.connectionStatus || 'unknown');
         setDataSource(maritimeStats.dataSource || 'unknown');
         
-        // Generate sample vessel data for display based on real count
-        const mockVessels = Array.from({ length: Math.min(maritimeStats.activeVessels, 10) }, (_, i) => ({
-          name: `Vessel ${i + 1}`,
-          type: ['Cargo', 'Tanker', 'Container', 'Bulk Carrier'][Math.floor(Math.random() * 4)],
-          status: ['In Transit', 'Docked', 'Anchored'][Math.floor(Math.random() * 3)]
-        }));
-        
-        setVesselData(mockVessels);
+        // No mock data - only use real vessel data from the API
+        setVesselData(maritimeStats);
       } catch (error) {
         console.error('Error fetching vessel data:', error);
         setVesselCount(0);
@@ -211,7 +232,7 @@ const CyberHome = ({ globalSelectedPort }) => {
         </div>
 
         {/* Stats Cards */}
-        <StatsCards />
+        <StatsCards selectedPort={globalSelectedPort} />
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">

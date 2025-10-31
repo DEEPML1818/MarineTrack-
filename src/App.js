@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import Header from './components/header';
 import AISDataPage from './components/AISDataPage';
 import CyberHome from './components/CyberHome';
+import LiveVesselMap from './components/LiveVesselMap';
 import 'leaflet/dist/leaflet.css';
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
             <Route path="/historical-data/2024" element={<div className="p-6 pt-24"><AISDataPage year={2024} /></div>} />
             <Route path="/marine-traffic" element={<div className="p-6 pt-24"><MarineTrafficEmbed globalSelectedPort={globalSelectedPort} /></div>} />
             <Route path="/vessel-finder" element={<div className="p-6 pt-24"><VesselFinderEmbed globalSelectedPort={globalSelectedPort} /></div>} />
+            <Route path="/live-vessel-map" element={<div className="p-6 pt-24"><LiveVesselMap globalSelectedPort={globalSelectedPort} /></div>} />
             <Route path="/dashboard" element={<div className="p-6 pt-24"><Dashboard weatherData={WeatherData} globalSelectedPort={globalSelectedPort} /></div>} />
           </Routes>
         </main>

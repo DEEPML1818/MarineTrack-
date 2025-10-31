@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const fs = require('fs');
@@ -24,12 +25,19 @@ app.use((req, res, next) => {
 app.use(express.json());
 const dataFilePath = path.join(__dirname, 'tideData.json');
 
-// Initialize AIS Stream Service with API key
-const aisApiKey = process.env.AISSTREAM_API_KEY;
+// Initialize AIS Stream Service with API keys
+const aisApiKey = process.env.AISSTREAM_API_KEY || '';
+const marineTrafficKey = process.env.MARINETRAFFIC_API_KEY;
+
 let aisService = null;
 
 if (aisApiKey) {
   console.log('AIS Stream API key found, initializing real-time vessel tracking...');
+  if (marineTrafficKey) {
+    console.log('MarineTraffic API key found - will use dual data sources for enhanced coverage');
+  } else {
+    console.log('💡 Add MARINETRAFFIC_API_KEY for enhanced vessel data (sign up free at marinetraffic.com/en/ais-api-services)');
+  }
   aisService = new AISStreamService(aisApiKey);
   aisService.connect();
 } else {
@@ -38,7 +46,7 @@ if (aisApiKey) {
 
 const lat = 5.2831;
 const lon = 115.2309;
-const stormGlassApiKey = '27716680-b17d-11f0-b4de-0242ac130003-27716702-b17d-11f0-b4de-0242ac130003';
+const stormGlassApiKey = process.env.STORMGLASS_API_KEY || '';
 const oneDayInMs = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 const fetchInterval = oneDayInMs; // Fetch data every 24 hours
 const oneHourInMs = 60 * 60 * 1000; // 1 hour in milliseconds
@@ -247,134 +255,95 @@ app.post('/api/refresh-tide-data', async (req, res) => {
   }
 });
 
-// Port statistics service
-class PortStatsService {
-  constructor() {
-    this.currentStats = {};
-    this.lastUpdate = null;
-    this.updateInterval = 15000;
-  }
+// No synthetic data service - using only real AIS data
 
-  portVesselCounts = {
-    'labuan': { min: 20, max: 35 },
-    'port-klang': { min: 150, max: 220 },
-    'penang': { min: 80, max: 120 },
-    'johor': { min: 120, max: 180 },
-    'kuantan': { min: 35, max: 60 },
-    'bintulu': { min: 50, max: 80 },
-    'kota-kinabalu': { min: 25, max: 50 },
-    'kuching': { min: 30, max: 55 }
-  };
-
-  generatePortStats() {
-    const stats = {};
-    const now = Date.now();
-
-    Object.keys(this.portVesselCounts).forEach(portId => {
-      const portData = this.portVesselCounts[portId];
-      const activeVessels = Math.floor(Math.random() * (portData.max - portData.min + 1)) + portData.min;
-      const docked = Math.floor(activeVessels * 0.6) + Math.floor(Math.random() * 5);
-      const incoming = Math.floor(activeVessels * 0.2) + Math.floor(Math.random() * 3);
-      const outgoing = Math.floor(activeVessels * 0.15) + Math.floor(Math.random() * 3);
-      
-      stats[portId] = {
-        activeVessels: activeVessels,
-        incoming: incoming,
-        outgoing: outgoing,
-        docked: docked,
-        capacity: 70 + Math.floor(Math.random() * 25),
-        alerts: Math.random() < 0.15 ? Math.floor(Math.random() * 3) + 1 : 0
-      };
-    });
-
-    this.currentStats = stats;
-    this.lastUpdate = now;
-    return stats;
-  }
-
-  getAllPortStats() {
-    const now = Date.now();
-    
-    if (!this.lastUpdate || (now - this.lastUpdate) >= this.updateInterval) {
-      this.generatePortStats();
-    }
-
-    return this.currentStats;
-  }
-
-  getAggregatedStats() {
-    const portStats = this.getAllPortStats();
-    let totalActiveVessels = 0;
-    let totalIncoming = 0;
-    let totalOutgoing = 0;
-    let totalAlerts = 0;
-    let portsOnline = 0;
-
-    Object.keys(portStats).forEach(portId => {
-      const port = portStats[portId];
-      totalActiveVessels += port.activeVessels;
-      totalIncoming += port.incoming;
-      totalOutgoing += port.outgoing;
-      totalAlerts += port.alerts;
-      portsOnline++;
-    });
-
-    const avgETA = totalIncoming > 0 ? (3.5 + Math.random() * 2).toFixed(1) : 0;
-
-    return {
-      activeVessels: totalActiveVessels,
-      portsOnline: portsOnline,
-      alerts: totalAlerts,
-      avgETA: parseFloat(avgETA),
-      lastUpdate: this.lastUpdate
-    };
-  }
-}
-
-const portStatsService = new PortStatsService();
-
-// Add endpoint to get aggregated maritime statistics
+// Add endpoint to get aggregated maritime statistics - REAL DATA ONLY
 app.get('/api/maritime-stats', (req, res) => {
   try {
-    let stats;
     const now = Date.now();
     const maxDataAge = 5 * 60 * 1000;
     
-    if (aisService && aisService.lastUpdate && (now - aisService.lastUpdate) < maxDataAge) {
-      stats = aisService.getAggregatedStats();
-      stats.dataSource = 'aisstream.io';
-      stats.isRealData = true;
-      stats.connectionStatus = aisService.ws && aisService.ws.readyState === 1 ? 'connected' : 'disconnected';
-    } else {
-      if (aisService && aisService.lastUpdate && (now - aisService.lastUpdate) >= maxDataAge) {
-        console.warn(`AIS data is stale (age: ${Math.floor((now - aisService.lastUpdate) / 1000)}s), using fallback`);
-      }
-      stats = portStatsService.getAggregatedStats();
-      stats.dataSource = 'simulated';
-      stats.isRealData = false;
-      stats.connectionStatus = aisService ? 'stale' : 'unavailable';
-      console.log('Using fallback synthetic data (AIS stream not available or stale)');
+    if (!aisService) {
+      return res.json({
+        activeVessels: 0,
+        portsOnline: 0,
+        alerts: 0,
+        avgETA: 0,
+        dataSource: 'unavailable',
+        isRealData: false,
+        connectionStatus: 'no_service',
+        message: 'AIS service not initialized'
+      });
     }
     
-    res.json(stats);
+    if (aisService.lastUpdate && (now - aisService.lastUpdate) < maxDataAge) {
+      const stats = aisService.getAggregatedStats();
+      stats.isRealData = true;
+      
+      // Determine primary data source
+      if (stats.dataSources && stats.dataSources.length > 0) {
+        stats.dataSource = stats.dataSources.join(' + ');
+      } else {
+        stats.dataSource = 'aisstream.io';
+      }
+      
+      res.json(stats);
+    } else {
+      // No real data available
+      console.warn(`No real AIS data available (last update: ${aisService.lastUpdate ? Math.floor((now - aisService.lastUpdate) / 1000) + 's ago' : 'never'})`);
+      res.json({
+        activeVessels: 0,
+        portsOnline: 0,
+        alerts: 0,
+        avgETA: 0,
+        dataSource: 'none',
+        isRealData: false,
+        connectionStatus: aisService.ws?.readyState === 1 ? 'connected_no_data' : 'disconnected',
+        message: 'Waiting for real AIS data...'
+      });
+    }
   } catch (error) {
     console.error('Error getting maritime stats:', error);
     res.status(500).json({ error: 'Failed to get maritime statistics' });
   }
 });
 
-// Add endpoint to get individual port statistics
-app.get('/api/port-stats', (req, res) => {
+// Add endpoint to get live vessel positions
+app.get('/api/live-vessels', (req, res) => {
   try {
-    let stats;
+    let vessels = [];
+    let connectionStatus = 'disconnected';
     
-    if (aisService && aisService.lastUpdate) {
-      stats = aisService.getPortStats();
+    if (aisService && aisService.ws && aisService.ws.readyState === 1) {
+      vessels = aisService.getLiveVessels();
+      connectionStatus = 'connected';
     } else {
-      stats = portStatsService.getAllPortStats();
-      console.log('Using fallback synthetic port data (AIS stream not available)');
+      connectionStatus = aisService ? 'disconnected' : 'unavailable';
     }
     
+    res.json({
+      vessels: vessels,
+      count: vessels.length,
+      connectionStatus: connectionStatus,
+      timestamp: Date.now()
+    });
+  } catch (error) {
+    console.error('Error getting live vessels:', error);
+    res.status(500).json({ error: 'Failed to get live vessel data' });
+  }
+});
+
+// Add endpoint to get individual port statistics - REAL DATA ONLY
+app.get('/api/port-stats', (req, res) => {
+  try {
+    if (!aisService) {
+      return res.json({
+        error: 'AIS service not available',
+        isRealData: false
+      });
+    }
+    
+    const stats = aisService.getPortStats();
     res.json(stats);
   } catch (error) {
     console.error('Error getting port stats:', error);

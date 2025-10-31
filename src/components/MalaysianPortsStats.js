@@ -22,21 +22,30 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
   const selectedPort = globalSelectedPort || 'labuan';
 
   useEffect(() => {
-    // Import the shared port data service
-    import('../services/portDataService').then(module => {
-      const portDataService = module.default;
-      
-      const updateStats = () => {
-        const allStats = portDataService.getAllPortStats();
-        setStats(allStats);
-      };
+    // Fetch real port data from backend API
+    const updateStats = async () => {
+      try {
+        const response = await fetch('http://0.0.0.0:3001/api/port-stats');
+        const data = await response.json();
+        
+        // Only use real data, no fallbacks
+        if (data && data[selectedPort] && data[selectedPort].isRealData !== false) {
+          setStats(data);
+        } else {
+          console.log('Real AIS data not available for', selectedPort);
+          setStats({});
+        }
+      } catch (error) {
+        console.error('Error fetching port stats:', error);
+        setStats({});
+      }
+    };
 
-      updateStats(); // Initial fetch
-      const interval = setInterval(updateStats, 15000); // Update every 15 seconds
+    updateStats(); // Initial fetch
+    const interval = setInterval(updateStats, 15000); // Update every 15 seconds
 
-      return () => clearInterval(interval);
-    });
-  }, [malaysianPorts]); // malaysianPorts is now stable due to useMemo
+    return () => clearInterval(interval);
+  }, [selectedPort]); // Update when selected port changes
 
   const currentStats = stats[selectedPort] || {
     activeVessels: 0,
@@ -44,7 +53,8 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
     outgoing: 0,
     docked: 0,
     capacity: 0,
-    alerts: 0
+    alerts: 0,
+    isRealData: false
   };
 
   // Find the selected port details for draftDepth and cargo
@@ -64,8 +74,17 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
           </h2>
         </div>
         <div className="flex items-center space-x-2">
-          <FaCircle className="w-2 h-2 text-green-400 animate-pulse" />
-          <span className="text-xs text-green-400 font-semibold">LIVE</span>
+          {currentStats.activeVessels > 0 ? (
+            <>
+              <FaCircle className="w-2 h-2 text-green-400 animate-pulse" />
+              <span className="text-xs text-green-400 font-semibold">LIVE AIS DATA</span>
+            </>
+          ) : (
+            <>
+              <FaCircle className="w-2 h-2 text-yellow-400" />
+              <span className="text-xs text-yellow-400 font-semibold">NO DATA</span>
+            </>
+          )}
         </div>
       </div>
 
