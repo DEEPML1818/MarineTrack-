@@ -17,7 +17,7 @@ const VesselFinderData = ({ globalSelectedPort }) => {
       try {
         setLoading(true);
         const response = await fetch(
-          `/api/vesselfinder/port/${globalSelectedPort}`,
+          `https://cyberport-maritime-information-and.onrender.com/api/vesselfinder/port/${globalSelectedPort}`,
         );
         const data = await response.json();
         setPortData(data);

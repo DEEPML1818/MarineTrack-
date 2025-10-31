@@ -26,11 +26,11 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
     const updateStats = async () => {
       try {
         // Fetch VesselFinder scraped data
-        const vesselFinderResponse = await fetch(`http://0.0.0.0:3001/api/vesselfinder/stats/${selectedPort}`);
+        const vesselFinderResponse = await fetch(`https://cyberport-maritime-information-and.onrender.com/api/vesselfinder/stats/${selectedPort}`);
         const vesselFinderData = await vesselFinderResponse.json();
 
         // Fetch AIS data as backup
-        const aisResponse = await fetch('http://0.0.0.0:3001/api/port-stats');
+        const aisResponse = await fetch('https://cyberport-maritime-information-and.onrender.com/api/port-stats');
         const aisData = await aisResponse.json();
 
         // Prioritize VesselFinder data if available
