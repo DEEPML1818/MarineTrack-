@@ -107,11 +107,11 @@ const Header = ({ isSidebarOpen, selectedPort, onPortChange }) => {
               </div>
 
               <div className="flex flex-col">
-                <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">
-                  CyberPort
+                <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text ">
+                  MarineTrack
                 </h1>
                 <p className="text-xs text-cyan-400/70 tracking-widest uppercase font-medium">
-                  Maritime Intelligence
+                  Navigate The Future
                 </p>
               </div>
             </div>
