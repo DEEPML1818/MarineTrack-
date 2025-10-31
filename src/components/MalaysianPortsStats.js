@@ -22,17 +22,24 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
   const selectedPort = globalSelectedPort || 'labuan';
 
   useEffect(() => {
-    // Fetch real port data from backend API
+    // Fetch real port data from VesselFinder and AIS
     const updateStats = async () => {
       try {
-        const response = await fetch('http://0.0.0.0:3001/api/port-stats');
-        const data = await response.json();
-        
-        // Only use real data, no fallbacks
-        if (data && data[selectedPort] && data[selectedPort].isRealData !== false) {
-          setStats(data);
+        // Fetch VesselFinder scraped data
+        const vesselFinderResponse = await fetch(`http://0.0.0.0:3001/api/vesselfinder/stats/${selectedPort}`);
+        const vesselFinderData = await vesselFinderResponse.json();
+
+        // Fetch AIS data as backup
+        const aisResponse = await fetch('http://0.0.0.0:3001/api/port-stats');
+        const aisData = await aisResponse.json();
+
+        // Prioritize VesselFinder data if available
+        if (vesselFinderData && vesselFinderData.isRealData) {
+          setStats({ [selectedPort]: vesselFinderData });
+        } else if (aisData && aisData[selectedPort] && aisData[selectedPort].isRealData !== false) {
+          setStats(aisData);
         } else {
-          console.log('Real AIS data not available for', selectedPort);
+          console.log('No real data available for', selectedPort);
           setStats({});
         }
       } catch (error) {
@@ -54,7 +61,8 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
     docked: 0,
     capacity: 0,
     alerts: 0,
-    isRealData: false
+    isRealData: false,
+    inPort: 0 // Ensure inPort is available, default to 0
   };
 
   // Find the selected port details for draftDepth and cargo
@@ -74,15 +82,15 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
           </h2>
         </div>
         <div className="flex items-center space-x-2">
-          {currentStats.activeVessels > 0 ? (
+          {currentStats.isRealData && currentStats.activeVessels > 0 ? (
             <>
               <FaCircle className="w-2 h-2 text-green-400 animate-pulse" />
-              <span className="text-xs text-green-400 font-semibold">LIVE AIS DATA</span>
+              <span className="text-xs text-green-400 font-semibold">VESSELFINDER DATA</span>
             </>
           ) : (
             <>
               <FaCircle className="w-2 h-2 text-yellow-400" />
-              <span className="text-xs text-yellow-400 font-semibold">NO DATA</span>
+              <span className="text-xs text-yellow-400 font-semibold">LOADING...</span>
             </>
           )}
         </div>
@@ -127,6 +135,10 @@ const MalaysianPortsStats = ({ globalSelectedPort }) => {
         <div className="flex items-center justify-between p-3 glassmorphism rounded-lg border border-cyan-500/20">
           <span className="text-sm text-cyan-300">Cargo Type</span>
           <span className="text-sm font-bold text-indigo-400">{cargoType}</span>
+        </div>
+        <div className="flex items-center justify-between p-3 glassmorphism rounded-lg border border-cyan-500/20">
+          <span className="text-sm text-cyan-300">In Port</span>
+          <span className="text-sm font-bold text-blue-400">{currentStats.inPort}</span>
         </div>
       </div>
 

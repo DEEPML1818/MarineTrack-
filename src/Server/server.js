@@ -4,6 +4,7 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const AISStreamService = require('./aisStreamService');
+const VesselFinderService = require('./vesselFinderService');
 
 const app = express();
 
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Credentials', 'true');
-  
+
   // Handle preflight requests
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
@@ -26,10 +27,11 @@ app.use(express.json());
 const dataFilePath = path.join(__dirname, 'tideData.json');
 
 // Initialize AIS Stream Service with API keys
-const aisApiKey = process.env.AISSTREAM_API_KEY || '';
+const aisApiKey = process.env.AISSTREAM_API_KEY || '786e06e04c50efda09a5075482678ca8b48014fd';
 const marineTrafficKey = process.env.MARINETRAFFIC_API_KEY;
 
 let aisService = null;
+const vesselFinderService = new VesselFinderService();
 
 if (aisApiKey) {
   console.log('AIS Stream API key found, initializing real-time vessel tracking...');
@@ -44,9 +46,11 @@ if (aisApiKey) {
   console.warn('⚠️  AIS Stream API key not found. Maritime stats will use fallback synthetic data.');
 }
 
+console.log('VesselFinder scraping service initialized');
+
 const lat = 5.2831;
 const lon = 115.2309;
-const stormGlassApiKey = process.env.STORMGLASS_API_KEY || '';
+const stormGlassApiKey = process.env.STORMGLASS_API_KEY || '5cf7a41a-b626-11f0-a8f4-0242ac130003-5cf7a492-b626-11f0-a8f4-0242ac130003';
 const oneDayInMs = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 const fetchInterval = oneDayInMs; // Fetch data every 24 hours
 const oneHourInMs = 60 * 60 * 1000; // 1 hour in milliseconds
@@ -262,7 +266,7 @@ app.get('/api/maritime-stats', (req, res) => {
   try {
     const now = Date.now();
     const maxDataAge = 5 * 60 * 1000;
-    
+
     if (!aisService) {
       return res.json({
         activeVessels: 0,
@@ -275,18 +279,18 @@ app.get('/api/maritime-stats', (req, res) => {
         message: 'AIS service not initialized'
       });
     }
-    
+
     if (aisService.lastUpdate && (now - aisService.lastUpdate) < maxDataAge) {
       const stats = aisService.getAggregatedStats();
       stats.isRealData = true;
-      
+
       // Determine primary data source
       if (stats.dataSources && stats.dataSources.length > 0) {
         stats.dataSource = stats.dataSources.join(' + ');
       } else {
         stats.dataSource = 'aisstream.io';
       }
-      
+
       res.json(stats);
     } else {
       // No real data available
@@ -313,14 +317,14 @@ app.get('/api/live-vessels', (req, res) => {
   try {
     let vessels = [];
     let connectionStatus = 'disconnected';
-    
+
     if (aisService && aisService.ws && aisService.ws.readyState === 1) {
       vessels = aisService.getLiveVessels();
       connectionStatus = 'connected';
     } else {
       connectionStatus = aisService ? 'disconnected' : 'unavailable';
     }
-    
+
     res.json({
       vessels: vessels,
       count: vessels.length,
@@ -342,12 +346,51 @@ app.get('/api/port-stats', (req, res) => {
         isRealData: false
       });
     }
-    
+
     const stats = aisService.getPortStats();
     res.json(stats);
   } catch (error) {
     console.error('Error getting port stats:', error);
     res.status(500).json({ error: 'Failed to get port statistics' });
+  }
+});
+
+// VesselFinder endpoints
+app.get('/api/vesselfinder/port/:portId', async (req, res) => {
+  try {
+    const portId = req.params.portId;
+    const data = await vesselFinderService.getPortData(portId);
+    res.json(data);
+  } catch (error) {
+    console.error('Error fetching VesselFinder data:', error);
+    res.status(500).json({ error: 'Failed to fetch port data' });
+  }
+});
+
+app.get('/api/vesselfinder/stats/:portId', async (req, res) => {
+  try {
+    const portId = req.params.portId;
+    const stats = vesselFinderService.getPortStats(portId);
+    res.json(stats);
+  } catch (error) {
+    console.error('Error fetching VesselFinder stats:', error);
+    res.status(500).json({ error: 'Failed to fetch stats' });
+  }
+});
+
+app.get('/api/vesselfinder/all-stats', async (req, res) => {
+  try {
+    const allStats = {};
+    const portIds = ['labuan', 'port-klang', 'penang', 'johor', 'kuantan', 'bintulu', 'kota-kinabalu', 'kuching'];
+
+    for (const portId of portIds) {
+      allStats[portId] = vesselFinderService.getPortStats(portId);
+    }
+
+    res.json(allStats);
+  } catch (error) {
+    console.error('Error fetching all VesselFinder stats:', error);
+    res.status(500).json({ error: 'Failed to fetch all stats' });
   }
 });
 

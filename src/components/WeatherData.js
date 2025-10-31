@@ -10,8 +10,8 @@ const WeatherData = ({ globalSelectedPort }) => {
   const selectedPort = MALAYSIAN_PORTS.find(p => p.id === globalSelectedPort) || MALAYSIAN_PORTS[0];
   const lat = selectedPort.lat;
   const lon = selectedPort.lon;
-  const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY || '';
-  const stormGlassApiKey = process.env.REACT_APP_STORMGLASS_API_KEY || '';
+  const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY || 'b8662263280e4b65a6864833253110';
+  const stormGlassApiKey = process.env.REACT_APP_STORMGLASS_API_KEY || '5cf7a41a-b626-11f0-a8f4-0242ac130003-5cf7a492-b626-11f0-a8f4-0242ac130003';
 
   useEffect(() => {
     // Fetch general weather data

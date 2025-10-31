@@ -6,6 +6,9 @@ import StatsCards from './StatsCards';
 import AIInsights from './AIInsights';
 import OpenSeaMap from './OpenSeaMap';
 import MalaysianPortsStats from './MalaysianPortsStats';
+import EnhancedWeatherDashboard from './EnhancedWeatherDashboard';
+import PortMapViewer from './PortMapViewer';
+import VesselFinderData from './VesselFinderData';
 import { MALAYSIAN_PORTS } from '../constants/malaysianPorts';
 
 const CyberHome = ({ globalSelectedPort }) => {
@@ -21,7 +24,7 @@ const CyberHome = ({ globalSelectedPort }) => {
     // Fetch real-time weather data for selected port
     const fetchWeather = async () => {
       try {
-        const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY || '';
+        const weatherApiKey = process.env.REACT_APP_WEATHER_API_KEY || 'b8662263280e4b65a6864833253110';
         if (!weatherApiKey) {
           console.warn('Weather API key not configured');
           return;
@@ -232,7 +235,22 @@ const CyberHome = ({ globalSelectedPort }) => {
         </div>
 
         {/* Stats Cards */}
-        <StatsCards selectedPort={globalSelectedPort} />
+        <StatsCards selectedPort={globalSelectedPort || 'labuan'} />
+
+        {/* Enhanced Weather Dashboard */}
+        <div className="mb-8">
+          <EnhancedWeatherDashboard globalSelectedPort={globalSelectedPort} />
+        </div>
+
+        {/* Port Map Viewer */}
+        <div className="mb-8">
+          <PortMapViewer globalSelectedPort={globalSelectedPort} />
+        </div>
+
+        {/* VesselFinder Real Data */}
+        <div className="mb-8">
+          <VesselFinderData globalSelectedPort={globalSelectedPort} />
+        </div>
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
