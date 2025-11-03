@@ -15,7 +15,7 @@ const StatsCards = ({ selectedPort = 'labuan' }) => {
     const fetchStats = async () => {
       try {
         // Fetch VesselFinder data for the selected port
-        const vesselFinderResponse = await fetch(`/api/vesselfinder/stats/${selectedPort}`);
+        const vesselFinderResponse = await fetch(`https://cyberport-maritime-information-and.onrender.com/api/vesselfinder/stats/${selectedPort}`);
         const vesselFinderData = await vesselFinderResponse.json();
 
         console.log('VesselFinder Stats:', vesselFinderData);

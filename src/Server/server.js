@@ -24,6 +24,13 @@ app.use((req, res, next) => {
 
 // Add JSON body parser
 app.use(express.json());
+
+// Serve static files from React build in production
+if (process.env.NODE_ENV === 'production') {
+  const buildPath = path.join(__dirname, '../../build');
+  app.use(express.static(buildPath));
+  console.log('Serving React build from:', buildPath);
+}
 const dataFilePath = path.join(__dirname, 'tideData.json');
 
 // Initialize AIS Stream Service with API keys
@@ -394,10 +401,18 @@ app.get('/api/vesselfinder/all-stats', async (req, res) => {
   }
 });
 
-// Start the server on port 3001
+// Catch-all handler to serve React app for client-side routing (must be after API routes)
+if (process.env.NODE_ENV === 'production') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
+  });
+}
+
+// Start the server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on 0.0.0.0:${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
   console.log('API Endpoints:');
   console.log('  GET  /api/tide-data - Get current tide data');
   console.log('  POST /api/refresh-tide-data - Manually refresh tide data');

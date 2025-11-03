@@ -79,7 +79,7 @@ const Footer = () => {
             </div>
             
             <p className="text-xs text-cyan-300/60 tracking-wide">
-              &copy; {new Date().getFullYear()} CyberPort Maritime Intelligence. All rights reserved.
+              &copy; {new Date().getFullYear()} MarineTrack - Navigate The Future. All rights reserved.
             </p>
           </div>
 
