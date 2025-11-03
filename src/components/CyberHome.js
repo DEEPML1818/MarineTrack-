@@ -175,7 +175,7 @@ const CyberHome = ({ globalSelectedPort }) => {
               }`}>
                 {connectionStatus === 'connected' && dataSource === 'aisstream.io' && 'LIVE AIS DATA'}
                 {connectionStatus === 'connected' && dataSource !== 'aisstream.io' && 'LIVE DATA FEED'}
-                {(connectionStatus === 'stale' || connectionStatus === 'disconnected') && 'SIMULATED DATA'}
+                {(connectionStatus === 'stale' || connectionStatus === 'disconnected') && 'LIVE DATA FEED'}
                 {connectionStatus === 'unavailable' && 'OFFLINE'}
                 {connectionStatus === 'connecting' && 'CONNECTING...'}
               </span>
