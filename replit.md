@@ -1,217 +1,186 @@
-# MarineTrack Mobile Application
-
-**Last Updated:** November 3, 2025
+# Marine Dashboard v2 - Real-Time AIS Integration
 
 ## Overview
-MarineTrack is a cross-platform mobile application designed for fishermen, seafarers, and small vessel operators to enhance safety, communication, and sustainable fishing at sea. Built with React Native and Expo for web, iOS, and Android platforms.
+A comprehensive marine monitoring dashboard built with React and Node.js that provides real-time maritime data including:
+- **Real-time AIS vessel tracking** via AISstream.io WebSocket API (Malaysian waters)
+- Live maritime statistics (Active Vessels, Ports Online, Alerts, Average ETA)
+- Real-time weather information via WeatherAPI
+- Live tide data with visualizations via Open-Meteo API
+- Marine traffic and vessel finder integrations
+- Historical shipping data (2023-2024)
+- Interactive maps using OpenSeaMap and Leaflet
+- Marine news feed
 
-## Project Purpose
-MarineTrack is now a **fully integrated application** with a working backend server enabling real-time vessel tracking, multi-device communication, and persistent data storage.
+## Project Architecture
 
-## Current State
-✅ **Completed Features:**
-- **Frontend:**
-  - Ocean-themed UI design (deep navy, ocean blue, seafoam colors)
-  - Complete onboarding flow (3 slides)
-  - Authentication screens (login/register)
-  - Main dashboard with map placeholder and vessel tracking UI
-  - Weather & Navigation screen with forecast display
-  - SOS Emergency screen with alert functionality
-  - Communication/Chat screen for vessel contacts
-  - Settings & Profile screen with sustainable fishing tips
-  - Tab-based navigation with 5 main sections
-  - Responsive design optimized for mobile and web
-  
-- **Backend Integration:**
-  - Node.js/Express backend server running on port 3000
-  - JSON file-based data storage for vessels, users, and messages
-  - Real-time Socket.IO support for vessel updates and chat
-  - RESTful API endpoints for tracking data
-  - Multi-device vessel detection and communication
-  - Automatic backend URL configuration for Replit environment
-  - Vessel likes and comments system with persistent storage
-  - Fishing zone data API with boundary information
+### Frontend (React)
+- **Framework**: Create React App with React 18.3.1
+- **UI Libraries**: 
+  - Tailwind CSS for styling
+  - Material Tailwind for components
+  - Flowbite React for additional components
+  - React Icons for iconography
+- **Key Features**:
+  - Responsive sidebar navigation
+  - Multiple data visualization components using Recharts
+  - Interactive maps with React Leaflet
+  - Routing with React Router DOM
+  - Weather data displays
+  - Tide data charts
+  - Historical AIS data viewing
 
-## Architecture
+### Backend (Express + WebSocket)
+- **Server**: Node.js Express server (port 3001)
+- **Real-Time Data Services**:
+  - **AIS Stream Service**: WebSocket connection to aisstream.io for real-time vessel tracking
+    - Monitors Malaysian waters (lat: 0-7.5°N, lon: 99-120°E)
+    - Tracks 250-400+ vessels in real-time
+    - Auto-reconnects with exponential backoff
+    - Provides maritime statistics via `/api/maritime-stats` endpoint
+  - **Tide Data Service**: Fetches tide/wave data from Open-Meteo API
+    - Provides current tide height and forecast
+    - 7-day forecast with hourly resolution
+    - Caches data to minimize API calls
+- **Data Management**: 
+  - Real-time WebSocket streaming for AIS data
+  - REST API endpoints for frontend consumption
+  - CORS enabled for Replit environment
+  - Proxy configured in package.json for frontend API calls
 
-### Screen Flow
+### Project Structure
 ```
-app/
-├── index.tsx                    # Entry point (redirects to onboarding)
-├── onboarding.tsx              # 3-slide onboarding
-├── auth/
-│   ├── login.tsx               # Login screen
-│   ├── register.tsx            # Registration with vessel info
-│   └── _layout.tsx             # Auth navigation
-└── (tabs)/
-    ├── index.tsx               # Dashboard (map, vessels, weather)
-    ├── weather.tsx             # Weather forecasts & alerts
-    ├── sos.tsx                 # Emergency SOS
-    ├── chat.tsx                # Vessel communication
-    ├── settings.tsx            # Profile & settings
-    └── _layout.tsx             # Tab navigation
-```
-
-### Tech Stack
-- **Frontend:** React Native + Expo
-- **Backend:** Node.js + Express + Socket.IO
-- **Navigation:** Expo Router (file-based routing)
-- **Styling:** StyleSheet with themed colors
-- **State:** React Hooks (useState)
-- **Storage:** JSON file-based database (backend/data/)
-- **Real-time:** Socket.IO for live updates
-- **Platform:** Web (port 5000), iOS, Android
-
-### Backend Architecture
-```
-backend/
-├── server.js              # Main Express server with Socket.IO
-└── data/                  # JSON data storage
-    ├── vessels.json       # Vessel tracking data
-    ├── users.json         # User accounts
-    └── messages.json      # Chat messages
-
-API Endpoints:
-- GET    /api/health                      # Health check
-- GET    /api/vessels                     # Get all vessels
-- GET    /api/vessels/nearby              # Get nearby vessels (with lat/lng/radius)
-- POST   /api/tracking                    # Submit vessel location
-- POST   /api/users                       # Save/update user data
-- GET    /api/messages                    # Get all messages
-- POST   /api/messages                    # Send a message
-- GET    /api/fishing-zones               # Get fishing zone boundaries
-- GET    /api/vessels/:id/likes           # Get likes count for vessel
-- POST   /api/vessels/:id/like            # Like a vessel
-- DELETE /api/vessels/:id/like            # Unlike a vessel
-- GET    /api/vessels/:id/comments        # Get all comments for vessel
-- POST   /api/vessels/:id/comments        # Add comment to vessel
-
-Socket.IO Events:
-- vessel_location          # Real-time location updates
-- vessel_update            # Broadcast vessel changes
-- chat_message             # Send chat messages
-- new_message              # Broadcast new messages
-```
-
-## Features
-
-### 1. Dashboard (Map Screen)
-- Live GPS coordinates display
-- Interactive OpenStreetMap with vessel markers
-- Clickable boat markers showing vessel details
-- Fishing zone overlays with color-coded boundaries (green=allowed, red=restricted, orange=danger)
-- Nearby vessels list with distance and status
-- Weather summary (temperature, wind, waves)
-- Quick action buttons (SOS, Weather, Fishing zones)
-- **Vessel Interactions:**
-  - Like/unlike vessels with real-time counter
-  - Add comments to vessels with username and timestamp
-  - Tabbed modal interface (Chat, Likes, Comments) for each vessel
-  - View all likes and comments from other users
-
-### 2. Weather & Navigation
-- Current weather conditions
-- Hourly forecast
-- Weather alerts
-- Safety tips for maritime navigation
-
-### 3. SOS Emergency
-- Large emergency button
-- GPS location sharing
-- Emergency contact list
-- Step-by-step emergency instructions
-
-### 4. Communication
-- Vessel-to-vessel chat
-- Contact list with location tracking
-- Message history
-- "Last seen" status
-
-### 5. Settings & Profile
-- User and vessel information
-- Notification preferences
-- Emergency contacts management
-- Sustainable fishing tips and best practices
-
-## Recent Changes
-**November 3, 2025 (Latest Session):**
-- ✅ Added vessel likes and comments feature with backend API endpoints
-- ✅ Implemented interactive vessel markers on map with click handlers
-- ✅ Built tabbed modal interface (Chat, Likes, Comments) for vessel details
-- ✅ Added fishing zone overlays to map with color-coded boundaries
-- ✅ Fixed import path issues in map component (../../config)
-- ✅ Integrated OpenStreetMap component with polygon overlay support
-- ✅ Persistent storage for likes/comments in backend/data/ directory
-
-**November 3, 2025 (Earlier):**
-- ✅ Integrated Express backend server with Socket.IO
-- ✅ Configured backend URL to use localhost:3000 (via .env)
-- ✅ Installed socket.io and socket.io-client packages
-- ✅ Created JSON file-based storage for multi-device data sharing
-- ✅ Set up API endpoints for vessel tracking and messaging
-- ✅ Fixed Replit environment configuration for frontend-backend communication
-- ✅ Both workflows running: backend-server (port 3000) and expo-app (port 5000)
-
-**October 30, 2025:**
-- Created complete app structure with 13 screens
-- Implemented ocean-themed color scheme
-- Built navigation flow: onboarding → auth → main app
-- Added mock data for vessels, weather, contacts
-- Configured Expo web workflow on port 5000
-- Fixed deprecated shadow style props
-
-## Next Steps for Production
-
-### Backend Integration
-1. **Authentication:** Integrate Firebase Authentication or Supabase Auth
-   - Implement sign-up/sign-in flows
-   - Add session persistence
-   - Gate tab navigation behind auth state
-
-2. **Real-time Data:**
-   - Add MapView component (react-native-maps)
-   - Integrate OpenWeatherMap or StormGlass API for weather
-   - Set up vessel tracking with GPS
-   - Implement real-time chat with Firebase/Supabase
-
-3. **Emergency Features:**
-   - Connect SOS to Twilio for SMS alerts
-   - Integrate push notifications (FCM)
-   - Add offline data persistence
-
-### Additional Features
-- Fishing zone map overlays
-- Route planning and navigation
-- Vessel history tracking
-- Multi-language support
-- Offline-first data sync
-
-## User Preferences
-- Focus on maritime safety and sustainability
-- Ocean-themed visual design
-- Simple, intuitive interface for use at sea
-- Prototype with mock data for demonstration
-
-## Development Commands
-```bash
-# Frontend (Expo)
-npm start -- --web --port 5000   # Start web development server
-npm run android                   # Run on Android
-npm run ios                       # Run on iOS
-
-# Backend
-cd backend && node server.js     # Start backend server on port 3000
+├── public/              # Static assets and HTML template
+├── src/
+│   ├── AIS/            # AIS historical data files
+│   ├── asset/          # Images and logos
+│   ├── components/     # React components
+│   │   ├── CyberHome.js       # Main dashboard with real-time data
+│   │   ├── StatsCards.js      # Real-time maritime statistics cards
+│   │   ├── AIInsights.js      # AI-powered vessel insights
+│   │   ├── Dashboard.js
+│   │   ├── WeatherData.js
+│   │   ├── TideData.js
+│   │   ├── MarineNews.js
+│   │   ├── OpenSeaMap.js
+│   │   ├── AISDataPage.js
+│   │   ├── sidebar.js
+│   │   ├── header.js
+│   │   └── Footer.js
+│   ├── Fonts/          # Custom fonts
+│   ├── Server/         # Backend server
+│   │   ├── server.js          # Express server with API endpoints
+│   │   └── aisStreamService.js # Real-time AIS WebSocket service
+│   ├── services/       # Frontend data services
+│   │   └── portDataService.js
+│   ├── App.js          # Main React app component
+│   └── index.js        # Entry point
+├── package.json
+└── tailwind.config.js
 ```
 
 ## Configuration
-- **Frontend Port:** 5000 (Expo web server)
-- **Backend Port:** 3000 (Express API server)
-- **Backend URL:** Configured via `.env` file (EXPO_PUBLIC_BACKEND_URL=http://localhost:3000)
-- **Data Storage:** `backend/data/` directory with JSON files
+
+### Development Setup
+- **Frontend Port**: 5000 (configured for Replit environment)
+- **Backend Port**: 3001 (localhost only)
+- **Host Configuration**: Frontend allows all hosts to work with Replit's proxy
+
+### Environment Variables
+The app uses environment variables for configuration:
+
+**Development (.env.local)**:
+- `PORT=5000` - Frontend port
+- `HOST=0.0.0.0` - Frontend host (allows Replit proxy)
+- `DANGEROUSLY_DISABLE_HOST_CHECK=true` - Required for Replit iframe proxy
+- `BROWSER=none` - Prevents automatic browser opening
+
+**Secrets (via Replit Secrets)**:
+- `AISSTREAM_API_KEY` - API key for aisstream.io real-time vessel tracking
+
+## Running the Project
+
+### Development Mode
+```bash
+npm run dev
+```
+This runs both the backend server and frontend concurrently.
+
+### Frontend Only
+```bash
+npm start
+```
+
+### Backend Only
+```bash
+npm run server
+```
+
+### Production Build
+```bash
+npm run build
+```
+
+## External APIs
+
+### Real-Time Data Sources
+- **AISstream.io** (WebSocket): Real-time vessel tracking via AIS data
+  - Filters vessels in Malaysian waters bounding box
+  - Provides position updates, vessel details, and navigation data
+  - Auto-reconnection with exponential backoff
+  - API Key stored in Replit Secrets as `AISSTREAM_API_KEY`
+
+- **Open-Meteo Marine API**: Tide and wave data
+  - Current tide height and wave direction
+  - 7-day forecast with hourly resolution
+  - No API key required (open-source weather API)
+
+- **WeatherAPI.com**: Current weather conditions
+  - Temperature, wind speed, and general conditions
+  - Updated every request for accurate real-time data
+
+## Recent Changes
+
+### 2025-10-27: Real-Time AIS Integration Complete ✅
+- **Integrated AISstream.io**: Live vessel tracking via WebSocket
+  - Created `aisStreamService.js` for WebSocket connection management
+  - Implemented bounding box filter for Malaysian waters (lat: 0-7.5°N, lon: 99-120°E)
+  - Auto-reconnection with exponential backoff (10 retry attempts)
+  - Real-time vessel counting: 250-400+ vessels tracked simultaneously
+- **API Endpoints**: Added `/api/maritime-stats` endpoint
+  - Returns: activeVessels, portsOnline, alerts, avgETA
+  - Includes metadata: dataSource, isRealData, connectionStatus, dataAge
+  - Fallback to synthetic data if WebSocket disconnected
+- **Frontend Integration**: Updated StatsCards and CyberHome components
+  - Configured proxy in package.json to forward /api calls to port 3001
+  - Simplified URL construction for Replit environment compatibility
+  - Real-time data updates every 15 seconds
+- **Tide Data Service**: Replaced WorldTides with Open-Meteo API
+  - No API key required
+  - 7-day forecast with wave height and direction
+  - Integrated into `/api/tide-data` endpoint
+- **CORS Configuration**: Added proper CORS middleware for Replit proxy
+- **Security**: API key stored in Replit Secrets (`AISSTREAM_API_KEY`)
+
+### 2025-10-25: Futuristic CyberPort UI Redesign
+- Implemented dark navy gradient background (#001b2e to #00314d) with cyber blue theme
+- Created futuristic header with wave icon logo, CyberPort branding, and status bar
+- Added glassmorphism design system with neon cyan glow effects
+- Created StatsCards component with animated counters
+- Created AIInsights component with glowing alerts panel
+- Redesigned Footer with Launch Simulation and Export Report buttons
+- Added grid overlays and holographic animations
+- Implemented CSS animations: glow-pulse, scanline, hover effects
+
+### 2025-10-25: Initial Replit Environment Setup
+- Configured frontend to run on port 5000 with 0.0.0.0 host
+- Updated backend to explicitly use localhost
+- Set up development workflow for concurrent frontend/backend execution
+- Added proper host check bypass for Replit proxy compatibility
+
+## User Preferences
+None specified yet.
 
 ## Notes
-- Backend and frontend run on the same server (localhost communication)
-- Vessel tracking data is shared across all devices via backend API
-- Real-time updates supported via Socket.IO
-- Colors defined in `constants/Colors.ts` for easy theming
-- Map component is ready for MapView integration
+- The application embeds third-party marine traffic services (MarineTraffic, VesselFinder)
+- Uses static JSON files for AIS historical data
+- Tide data is cached and refreshed periodically to minimize API calls

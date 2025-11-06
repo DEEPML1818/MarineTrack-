@@ -1,1355 +1,1355 @@
 {
   "heights": [
     {
+      "dt": 1762041600,
+      "date": "2025-11-02T00:00",
+      "height": 0.42,
+      "wave_direction": 342,
+      "wave_period": 7.6
+    },
+    {
+      "dt": 1762045200,
+      "date": "2025-11-02T01:00",
+      "height": 0.42,
+      "wave_direction": 342,
+      "wave_period": 7.6
+    },
+    {
+      "dt": 1762048800,
+      "date": "2025-11-02T02:00",
+      "height": 0.42,
+      "wave_direction": 343,
+      "wave_period": 7.6
+    },
+    {
+      "dt": 1762052400,
+      "date": "2025-11-02T03:00",
+      "height": 0.42,
+      "wave_direction": 344,
+      "wave_period": 7.6
+    },
+    {
+      "dt": 1762056000,
+      "date": "2025-11-02T04:00",
+      "height": 0.42,
+      "wave_direction": 345,
+      "wave_period": 7.6
+    },
+    {
+      "dt": 1762059600,
+      "date": "2025-11-02T05:00",
+      "height": 0.42,
+      "wave_direction": 346,
+      "wave_period": 7.6
+    },
+    {
+      "dt": 1762063200,
+      "date": "2025-11-02T06:00",
+      "height": 0.42,
+      "wave_direction": 346,
+      "wave_period": 7.55
+    },
+    {
+      "dt": 1762066800,
+      "date": "2025-11-02T07:00",
+      "height": 0.4,
+      "wave_direction": 347,
+      "wave_period": 7.55
+    },
+    {
+      "dt": 1762070400,
+      "date": "2025-11-02T08:00",
+      "height": 0.4,
+      "wave_direction": 347,
+      "wave_period": 7.5
+    },
+    {
+      "dt": 1762074000,
+      "date": "2025-11-02T09:00",
+      "height": 0.4,
+      "wave_direction": 347,
+      "wave_period": 7.45
+    },
+    {
+      "dt": 1762077600,
+      "date": "2025-11-02T10:00",
+      "height": 0.38,
+      "wave_direction": 348,
+      "wave_period": 7.45
+    },
+    {
+      "dt": 1762081200,
+      "date": "2025-11-02T11:00",
+      "height": 0.38,
+      "wave_direction": 348,
+      "wave_period": 7.4
+    },
+    {
+      "dt": 1762084800,
+      "date": "2025-11-02T12:00",
+      "height": 0.38,
+      "wave_direction": 348,
+      "wave_period": 7.4
+    },
+    {
+      "dt": 1762088400,
+      "date": "2025-11-02T13:00",
+      "height": 0.38,
+      "wave_direction": 348,
+      "wave_period": 7.35
+    },
+    {
+      "dt": 1762092000,
+      "date": "2025-11-02T14:00",
+      "height": 0.38,
+      "wave_direction": 348,
+      "wave_period": 7.35
+    },
+    {
+      "dt": 1762095600,
+      "date": "2025-11-02T15:00",
+      "height": 0.38,
+      "wave_direction": 348,
+      "wave_period": 7.3
+    },
+    {
+      "dt": 1762099200,
+      "date": "2025-11-02T16:00",
+      "height": 0.36,
+      "wave_direction": 348,
+      "wave_period": 7.3
+    },
+    {
+      "dt": 1762102800,
+      "date": "2025-11-02T17:00",
+      "height": 0.36,
+      "wave_direction": 348,
+      "wave_period": 7.25
+    },
+    {
+      "dt": 1762106400,
+      "date": "2025-11-02T18:00",
+      "height": 0.36,
+      "wave_direction": 348,
+      "wave_period": 7.25
+    },
+    {
+      "dt": 1762110000,
+      "date": "2025-11-02T19:00",
+      "height": 0.34,
+      "wave_direction": 347,
+      "wave_period": 7.25
+    },
+    {
+      "dt": 1762113600,
+      "date": "2025-11-02T20:00",
+      "height": 0.34,
+      "wave_direction": 347,
+      "wave_period": 7.25
+    },
+    {
+      "dt": 1762117200,
+      "date": "2025-11-02T21:00",
+      "height": 0.34,
+      "wave_direction": 347,
+      "wave_period": 7.25
+    },
+    {
+      "dt": 1762120800,
+      "date": "2025-11-02T22:00",
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.25
+    },
+    {
+      "dt": 1762124400,
+      "date": "2025-11-02T23:00",
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.25
+    },
+    {
       "dt": 1762128000,
       "date": "2025-11-03T00:00",
       "height": 0.34,
-      "wave_direction": 345,
-      "wave_period": 6.7
+      "wave_direction": 346,
+      "wave_period": 7.25
     },
     {
       "dt": 1762131600,
       "date": "2025-11-03T01:00",
       "height": 0.34,
       "wave_direction": 346,
-      "wave_period": 6.8
+      "wave_period": 7.3
     },
     {
       "dt": 1762135200,
       "date": "2025-11-03T02:00",
       "height": 0.34,
       "wave_direction": 346,
-      "wave_period": 6.85
+      "wave_period": 7.3
     },
     {
       "dt": 1762138800,
       "date": "2025-11-03T03:00",
       "height": 0.34,
       "wave_direction": 346,
-      "wave_period": 6.9
+      "wave_period": 7.3
     },
     {
       "dt": 1762142400,
       "date": "2025-11-03T04:00",
-      "height": 0.34,
-      "wave_direction": 346,
-      "wave_period": 7
+      "height": 0.32,
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762146000,
       "date": "2025-11-03T05:00",
-      "height": 0.34,
-      "wave_direction": 346,
-      "wave_period": 7.05
+      "height": 0.32,
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762149600,
       "date": "2025-11-03T06:00",
-      "height": 0.34,
-      "wave_direction": 346,
-      "wave_period": 7.1
+      "height": 0.32,
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762153200,
       "date": "2025-11-03T07:00",
       "height": 0.34,
-      "wave_direction": 347,
-      "wave_period": 7.15
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762156800,
       "date": "2025-11-03T08:00",
       "height": 0.34,
-      "wave_direction": 347,
-      "wave_period": 7.2
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762160400,
       "date": "2025-11-03T09:00",
       "height": 0.34,
-      "wave_direction": 347,
-      "wave_period": 7.25
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762164000,
       "date": "2025-11-03T10:00",
       "height": 0.34,
-      "wave_direction": 347,
+      "wave_direction": 345,
       "wave_period": 7.3
     },
     {
       "dt": 1762167600,
       "date": "2025-11-03T11:00",
       "height": 0.34,
-      "wave_direction": 347,
-      "wave_period": 7.35
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762171200,
       "date": "2025-11-03T12:00",
       "height": 0.34,
-      "wave_direction": 347,
-      "wave_period": 7.35
+      "wave_direction": 345,
+      "wave_period": 7.3
     },
     {
       "dt": 1762174800,
       "date": "2025-11-03T13:00",
-      "height": 0.36,
-      "wave_direction": 348,
-      "wave_period": 7.4
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762178400,
       "date": "2025-11-03T14:00",
-      "height": 0.36,
-      "wave_direction": 348,
-      "wave_period": 7.4
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762182000,
       "date": "2025-11-03T15:00",
-      "height": 0.36,
-      "wave_direction": 348,
-      "wave_period": 7.4
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762185600,
       "date": "2025-11-03T16:00",
-      "height": 0.36,
-      "wave_direction": 349,
-      "wave_period": 7.45
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762189200,
       "date": "2025-11-03T17:00",
-      "height": 0.36,
-      "wave_direction": 349,
-      "wave_period": 7.45
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762192800,
       "date": "2025-11-03T18:00",
-      "height": 0.36,
-      "wave_direction": 349,
-      "wave_period": 7.45
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762196400,
       "date": "2025-11-03T19:00",
-      "height": 0.36,
-      "wave_direction": 350,
-      "wave_period": 7.5
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762200000,
       "date": "2025-11-03T20:00",
-      "height": 0.36,
-      "wave_direction": 350,
-      "wave_period": 7.5
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762203600,
       "date": "2025-11-03T21:00",
-      "height": 0.36,
-      "wave_direction": 350,
-      "wave_period": 7.5
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762207200,
       "date": "2025-11-03T22:00",
-      "height": 0.36,
-      "wave_direction": 351,
-      "wave_period": 7.55
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762210800,
       "date": "2025-11-03T23:00",
-      "height": 0.36,
-      "wave_direction": 351,
-      "wave_period": 7.55
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762214400,
       "date": "2025-11-04T00:00",
-      "height": 0.36,
-      "wave_direction": 351,
-      "wave_period": 7.6
+      "height": 0.34,
+      "wave_direction": 346,
+      "wave_period": 7.3
     },
     {
       "dt": 1762218000,
       "date": "2025-11-04T01:00",
-      "height": 0.38,
-      "wave_direction": 351,
-      "wave_period": 7.6
+      "height": 0.36,
+      "wave_direction": 346,
+      "wave_period": 7.35
     },
     {
       "dt": 1762221600,
       "date": "2025-11-04T02:00",
-      "height": 0.38,
-      "wave_direction": 351,
-      "wave_period": 7.45
+      "height": 0.36,
+      "wave_direction": 346,
+      "wave_period": 7.2
     },
     {
       "dt": 1762225200,
       "date": "2025-11-04T03:00",
-      "height": 0.4,
-      "wave_direction": 347,
-      "wave_period": 6.95
+      "height": 0.38,
+      "wave_direction": 339,
+      "wave_period": 6.75
     },
     {
       "dt": 1762228800,
       "date": "2025-11-04T04:00",
-      "height": 0.42,
-      "wave_direction": 344,
-      "wave_period": 6.3
+      "height": 0.4,
+      "wave_direction": 332,
+      "wave_period": 6.15
     },
     {
       "dt": 1762232400,
       "date": "2025-11-04T05:00",
-      "height": 0.44,
-      "wave_direction": 340,
-      "wave_period": 5.8
+      "height": 0.42,
+      "wave_direction": 325,
+      "wave_period": 5.75
     },
     {
       "dt": 1762236000,
       "date": "2025-11-04T06:00",
-      "height": 0.46,
-      "wave_direction": 334,
-      "wave_period": 5.55
+      "height": 0.42,
+      "wave_direction": 327,
+      "wave_period": 5.75
     },
     {
       "dt": 1762239600,
       "date": "2025-11-04T07:00",
-      "height": 0.46,
+      "height": 0.4,
       "wave_direction": 328,
-      "wave_period": 5.45
+      "wave_period": 5.95
     },
     {
       "dt": 1762243200,
       "date": "2025-11-04T08:00",
-      "height": 0.48,
-      "wave_direction": 322,
-      "wave_period": 5.4
+      "height": 0.4,
+      "wave_direction": 330,
+      "wave_period": 6.05
     },
     {
       "dt": 1762246800,
       "date": "2025-11-04T09:00",
-      "height": 0.48,
-      "wave_direction": 324,
-      "wave_period": 5.45
+      "height": 0.42,
+      "wave_direction": 325,
+      "wave_period": 5.85
     },
     {
       "dt": 1762250400,
       "date": "2025-11-04T10:00",
-      "height": 0.46,
-      "wave_direction": 326,
-      "wave_period": 5.65
+      "height": 0.42,
+      "wave_direction": 320,
+      "wave_period": 5.55
     },
     {
       "dt": 1762254000,
       "date": "2025-11-04T11:00",
-      "height": 0.46,
-      "wave_direction": 328,
-      "wave_period": 5.7
+      "height": 0.44,
+      "wave_direction": 315,
+      "wave_period": 5.3
     },
     {
       "dt": 1762257600,
       "date": "2025-11-04T12:00",
       "height": 0.46,
-      "wave_direction": 325,
-      "wave_period": 5.6
+      "wave_direction": 313,
+      "wave_period": 5.15
     },
     {
       "dt": 1762261200,
       "date": "2025-11-04T13:00",
-      "height": 0.48,
-      "wave_direction": 323,
-      "wave_period": 5.45
+      "height": 0.46,
+      "wave_direction": 310,
+      "wave_period": 5.05
     },
     {
       "dt": 1762264800,
       "date": "2025-11-04T14:00",
       "height": 0.48,
-      "wave_direction": 320,
-      "wave_period": 5.3
+      "wave_direction": 308,
+      "wave_period": 4.95
     },
     {
       "dt": 1762268400,
       "date": "2025-11-04T15:00",
       "height": 0.5,
-      "wave_direction": 317,
-      "wave_period": 5.2
+      "wave_direction": 306,
+      "wave_period": 4.85
     },
     {
       "dt": 1762272000,
       "date": "2025-11-04T16:00",
       "height": 0.5,
-      "wave_direction": 315,
-      "wave_period": 5.15
+      "wave_direction": 305,
+      "wave_period": 4.8
     },
     {
       "dt": 1762275600,
       "date": "2025-11-04T17:00",
       "height": 0.52,
-      "wave_direction": 312,
-      "wave_period": 5.1
+      "wave_direction": 303,
+      "wave_period": 4.75
     },
     {
       "dt": 1762279200,
       "date": "2025-11-04T18:00",
       "height": 0.52,
-      "wave_direction": 312,
-      "wave_period": 5.1
+      "wave_direction": 303,
+      "wave_period": 4.8
     },
     {
       "dt": 1762282800,
       "date": "2025-11-04T19:00",
       "height": 0.52,
-      "wave_direction": 313,
-      "wave_period": 5.1
+      "wave_direction": 304,
+      "wave_period": 4.85
     },
     {
       "dt": 1762286400,
       "date": "2025-11-04T20:00",
       "height": 0.52,
-      "wave_direction": 313,
-      "wave_period": 5.1
+      "wave_direction": 304,
+      "wave_period": 4.9
     },
     {
       "dt": 1762290000,
       "date": "2025-11-04T21:00",
-      "height": 0.54,
-      "wave_direction": 312,
-      "wave_period": 5.1
+      "height": 0.52,
+      "wave_direction": 303,
+      "wave_period": 4.9
     },
     {
       "dt": 1762293600,
       "date": "2025-11-04T22:00",
-      "height": 0.54,
-      "wave_direction": 310,
-      "wave_period": 5.1
+      "height": 0.52,
+      "wave_direction": 301,
+      "wave_period": 4.9
     },
     {
       "dt": 1762297200,
       "date": "2025-11-04T23:00",
-      "height": 0.56,
-      "wave_direction": 309,
-      "wave_period": 5
+      "height": 0.52,
+      "wave_direction": 300,
+      "wave_period": 4.8
     },
     {
       "dt": 1762300800,
       "date": "2025-11-05T00:00",
-      "height": 0.62,
-      "wave_direction": 297,
-      "wave_period": 4.8
+      "height": 0.56,
+      "wave_direction": 290,
+      "wave_period": 4.6
     },
     {
       "dt": 1762304400,
       "date": "2025-11-05T01:00",
-      "height": 0.66,
-      "wave_direction": 284,
-      "wave_period": 4.5
+      "height": 0.62,
+      "wave_direction": 280,
+      "wave_period": 4.35
     },
     {
       "dt": 1762308000,
       "date": "2025-11-05T02:00",
-      "height": 0.72,
-      "wave_direction": 272,
-      "wave_period": 4.3
+      "height": 0.66,
+      "wave_direction": 270,
+      "wave_period": 4.2
     },
     {
       "dt": 1762311600,
       "date": "2025-11-05T03:00",
-      "height": 0.74,
-      "wave_direction": 266,
-      "wave_period": 4.25
+      "height": 0.66,
+      "wave_direction": 268,
+      "wave_period": 4.2
     },
     {
       "dt": 1762315200,
       "date": "2025-11-05T04:00",
-      "height": 0.76,
-      "wave_direction": 260,
-      "wave_period": 4.3
+      "height": 0.68,
+      "wave_direction": 267,
+      "wave_period": 4.35
     },
     {
       "dt": 1762318800,
       "date": "2025-11-05T05:00",
-      "height": 0.78,
-      "wave_direction": 254,
-      "wave_period": 4.4
+      "height": 0.68,
+      "wave_direction": 265,
+      "wave_period": 4.45
     },
     {
       "dt": 1762322400,
       "date": "2025-11-05T06:00",
-      "height": 0.76,
-      "wave_direction": 259,
+      "height": 0.68,
+      "wave_direction": 266,
       "wave_period": 4.55
     },
     {
       "dt": 1762326000,
       "date": "2025-11-05T07:00",
-      "height": 0.72,
-      "wave_direction": 264,
-      "wave_period": 4.75
+      "height": 0.66,
+      "wave_direction": 267,
+      "wave_period": 4.6
     },
     {
       "dt": 1762329600,
       "date": "2025-11-05T08:00",
-      "height": 0.7,
-      "wave_direction": 269,
-      "wave_period": 4.9
+      "height": 0.66,
+      "wave_direction": 268,
+      "wave_period": 4.65
     },
     {
       "dt": 1762333200,
       "date": "2025-11-05T09:00",
-      "height": 0.7,
-      "wave_direction": 272,
-      "wave_period": 5
+      "height": 0.68,
+      "wave_direction": 269,
+      "wave_period": 4.65
     },
     {
       "dt": 1762336800,
       "date": "2025-11-05T10:00",
-      "height": 0.72,
-      "wave_direction": 275,
-      "wave_period": 5.05
+      "height": 0.7,
+      "wave_direction": 270,
+      "wave_period": 4.65
     },
     {
       "dt": 1762340400,
       "date": "2025-11-05T11:00",
       "height": 0.72,
-      "wave_direction": 278,
-      "wave_period": 5.05
+      "wave_direction": 271,
+      "wave_period": 4.65
     },
     {
       "dt": 1762344000,
       "date": "2025-11-05T12:00",
-      "height": 0.78,
-      "wave_direction": 277,
-      "wave_period": 5
+      "height": 0.76,
+      "wave_direction": 272,
+      "wave_period": 4.65
     },
     {
       "dt": 1762347600,
       "date": "2025-11-05T13:00",
-      "height": 0.84,
-      "wave_direction": 277,
-      "wave_period": 4.9
+      "height": 0.82,
+      "wave_direction": 274,
+      "wave_period": 4.65
     },
     {
       "dt": 1762351200,
       "date": "2025-11-05T14:00",
-      "height": 0.9,
-      "wave_direction": 276,
-      "wave_period": 4.85
+      "height": 0.86,
+      "wave_direction": 275,
+      "wave_period": 4.65
     },
     {
       "dt": 1762354800,
       "date": "2025-11-05T15:00",
-      "height": 0.92,
-      "wave_direction": 275,
-      "wave_period": 4.85
+      "height": 0.86,
+      "wave_direction": 276,
+      "wave_period": 4.75
     },
     {
       "dt": 1762358400,
       "date": "2025-11-05T16:00",
-      "height": 0.94,
-      "wave_direction": 274,
-      "wave_period": 4.9
+      "height": 0.86,
+      "wave_direction": 276,
+      "wave_period": 4.85
     },
     {
       "dt": 1762362000,
       "date": "2025-11-05T17:00",
-      "height": 0.96,
-      "wave_direction": 273,
+      "height": 0.86,
+      "wave_direction": 277,
       "wave_period": 4.95
     },
     {
       "dt": 1762365600,
       "date": "2025-11-05T18:00",
-      "height": 0.98,
-      "wave_direction": 272,
+      "height": 0.86,
+      "wave_direction": 277,
       "wave_period": 5
     },
     {
       "dt": 1762369200,
       "date": "2025-11-05T19:00",
-      "height": 1.02,
-      "wave_direction": 271,
-      "wave_period": 5.05
+      "height": 0.84,
+      "wave_direction": 276,
+      "wave_period": 5.1
     },
     {
       "dt": 1762372800,
       "date": "2025-11-05T20:00",
-      "height": 1.04,
-      "wave_direction": 270,
+      "height": 0.84,
+      "wave_direction": 276,
       "wave_period": 5.1
     },
     {
       "dt": 1762376400,
       "date": "2025-11-05T21:00",
-      "height": 1.04,
-      "wave_direction": 268,
-      "wave_period": 5.1
+      "height": 0.86,
+      "wave_direction": 273,
+      "wave_period": 5.05
     },
     {
       "dt": 1762380000,
       "date": "2025-11-05T22:00",
-      "height": 1.06,
-      "wave_direction": 266,
-      "wave_period": 5.15
+      "height": 0.88,
+      "wave_direction": 270,
+      "wave_period": 5
     },
     {
       "dt": 1762383600,
       "date": "2025-11-05T23:00",
-      "height": 1.06,
-      "wave_direction": 264,
-      "wave_period": 5.15
+      "height": 0.9,
+      "wave_direction": 267,
+      "wave_period": 4.9
     },
     {
       "dt": 1762387200,
       "date": "2025-11-06T00:00",
-      "height": 1.04,
-      "wave_direction": 265,
-      "wave_period": 5.2
+      "height": 0.96,
+      "wave_direction": 262,
+      "wave_period": 4.8
     },
     {
       "dt": 1762390800,
       "date": "2025-11-06T01:00",
       "height": 1.04,
-      "wave_direction": 265,
-      "wave_period": 5.25
+      "wave_direction": 257,
+      "wave_period": 4.7
     },
     {
       "dt": 1762394400,
       "date": "2025-11-06T02:00",
-      "height": 1.02,
-      "wave_direction": 266,
-      "wave_period": 5.3
+      "height": 1.1,
+      "wave_direction": 252,
+      "wave_period": 4.65
     },
     {
       "dt": 1762398000,
       "date": "2025-11-06T03:00",
-      "height": 1,
-      "wave_direction": 269,
-      "wave_period": 5.4
+      "height": 1.06,
+      "wave_direction": 254,
+      "wave_period": 4.75
     },
     {
       "dt": 1762401600,
       "date": "2025-11-06T04:00",
-      "height": 0.96,
-      "wave_direction": 273,
-      "wave_period": 5.55
+      "height": 1,
+      "wave_direction": 257,
+      "wave_period": 4.9
     },
     {
       "dt": 1762405200,
       "date": "2025-11-06T05:00",
-      "height": 0.94,
-      "wave_direction": 276,
-      "wave_period": 5.65
+      "height": 0.96,
+      "wave_direction": 259,
+      "wave_period": 5.05
     },
     {
       "dt": 1762408800,
       "date": "2025-11-06T06:00",
       "height": 0.94,
-      "wave_direction": 278,
-      "wave_period": 5.75
+      "wave_direction": 260,
+      "wave_period": 5.1
     },
     {
       "dt": 1762412400,
       "date": "2025-11-06T07:00",
-      "height": 0.92,
-      "wave_direction": 281,
-      "wave_period": 5.85
+      "height": 0.94,
+      "wave_direction": 261,
+      "wave_period": 5.1
     },
     {
       "dt": 1762416000,
       "date": "2025-11-06T08:00",
       "height": 0.92,
-      "wave_direction": 283,
-      "wave_period": 5.95
+      "wave_direction": 262,
+      "wave_period": 5.15
     },
     {
       "dt": 1762419600,
       "date": "2025-11-06T09:00",
-      "height": 0.92,
-      "wave_direction": 285,
-      "wave_period": 6.05
+      "height": 0.94,
+      "wave_direction": 265,
+      "wave_period": 5.25
     },
     {
       "dt": 1762423200,
       "date": "2025-11-06T10:00",
       "height": 0.94,
-      "wave_direction": 287,
-      "wave_period": 6.1
+      "wave_direction": 267,
+      "wave_period": 5.35
     },
     {
       "dt": 1762426800,
       "date": "2025-11-06T11:00",
-      "height": 0.94,
-      "wave_direction": 289,
-      "wave_period": 6.15
+      "height": 0.96,
+      "wave_direction": 270,
+      "wave_period": 5.4
     },
     {
       "dt": 1762430400,
       "date": "2025-11-06T12:00",
-      "height": 0.98,
-      "wave_direction": 290,
-      "wave_period": 6.15
+      "height": 1.02,
+      "wave_direction": 270,
+      "wave_period": 5.4
     },
     {
       "dt": 1762434000,
       "date": "2025-11-06T13:00",
-      "height": 1,
-      "wave_direction": 290,
-      "wave_period": 6.1
+      "height": 1.08,
+      "wave_direction": 270,
+      "wave_period": 5.35
     },
     {
       "dt": 1762437600,
       "date": "2025-11-06T14:00",
-      "height": 1.04,
-      "wave_direction": 291,
-      "wave_period": 6.1
+      "height": 1.14,
+      "wave_direction": 270,
+      "wave_period": 5.4
     },
     {
       "dt": 1762441200,
       "date": "2025-11-06T15:00",
-      "height": 1.04,
-      "wave_direction": 293,
-      "wave_period": 6.2
+      "height": 1.12,
+      "wave_direction": 272,
+      "wave_period": 5.55
     },
     {
       "dt": 1762444800,
       "date": "2025-11-06T16:00",
-      "height": 1.02,
-      "wave_direction": 294,
-      "wave_period": 6.3
+      "height": 1.08,
+      "wave_direction": 275,
+      "wave_period": 5.75
     },
     {
       "dt": 1762448400,
       "date": "2025-11-06T17:00",
-      "height": 1.02,
-      "wave_direction": 296,
-      "wave_period": 6.4
+      "height": 1.06,
+      "wave_direction": 277,
+      "wave_period": 5.9
     },
     {
       "dt": 1762452000,
       "date": "2025-11-06T18:00",
-      "height": 0.98,
-      "wave_direction": 297,
-      "wave_period": 6.4
+      "height": 1.04,
+      "wave_direction": 281,
+      "wave_period": 6.05
     },
     {
       "dt": 1762455600,
       "date": "2025-11-06T19:00",
-      "height": 0.96,
-      "wave_direction": 297,
-      "wave_period": 6.4
+      "height": 1.04,
+      "wave_direction": 285,
+      "wave_period": 6.15
     },
     {
       "dt": 1762459200,
       "date": "2025-11-06T20:00",
-      "height": 0.92,
-      "wave_direction": 298,
-      "wave_period": 6.35
+      "height": 1.02,
+      "wave_direction": 289,
+      "wave_period": 6.25
     },
     {
       "dt": 1762462800,
       "date": "2025-11-06T21:00",
-      "height": 0.9,
-      "wave_direction": 298,
+      "height": 1.02,
+      "wave_direction": 290,
       "wave_period": 6.3
     },
     {
       "dt": 1762466400,
       "date": "2025-11-06T22:00",
-      "height": 0.86,
-      "wave_direction": 297,
-      "wave_period": 6.25
+      "height": 1,
+      "wave_direction": 292,
+      "wave_period": 6.3
     },
     {
       "dt": 1762470000,
       "date": "2025-11-06T23:00",
-      "height": 0.84,
-      "wave_direction": 297,
-      "wave_period": 6.25
+      "height": 1,
+      "wave_direction": 293,
+      "wave_period": 6.3
     },
     {
       "dt": 1762473600,
       "date": "2025-11-07T00:00",
-      "height": 0.82,
-      "wave_direction": 298,
+      "height": 0.98,
+      "wave_direction": 293,
       "wave_period": 6.3
     },
     {
       "dt": 1762477200,
       "date": "2025-11-07T01:00",
-      "height": 0.78,
-      "wave_direction": 299,
+      "height": 0.98,
+      "wave_direction": 292,
       "wave_period": 6.35
     },
     {
       "dt": 1762480800,
       "date": "2025-11-07T02:00",
-      "height": 0.76,
-      "wave_direction": 300,
-      "wave_period": 6.4
+      "height": 0.96,
+      "wave_direction": 292,
+      "wave_period": 6.35
     },
     {
       "dt": 1762484400,
       "date": "2025-11-07T03:00",
-      "height": 0.74,
-      "wave_direction": 301,
-      "wave_period": 6.5
+      "height": 0.92,
+      "wave_direction": 293,
+      "wave_period": 6.35
     },
     {
       "dt": 1762488000,
       "date": "2025-11-07T04:00",
-      "height": 0.72,
-      "wave_direction": 303,
-      "wave_period": 6.6
+      "height": 0.9,
+      "wave_direction": 293,
+      "wave_period": 6.4
     },
     {
       "dt": 1762491600,
       "date": "2025-11-07T05:00",
-      "height": 0.7,
-      "wave_direction": 304,
-      "wave_period": 6.7
+      "height": 0.86,
+      "wave_direction": 294,
+      "wave_period": 6.4
     },
     {
       "dt": 1762495200,
       "date": "2025-11-07T06:00",
-      "height": 0.7,
-      "wave_direction": 306,
-      "wave_period": 6.8
+      "height": 0.84,
+      "wave_direction": 295,
+      "wave_period": 6.45
     },
     {
       "dt": 1762498800,
       "date": "2025-11-07T07:00",
-      "height": 0.68,
-      "wave_direction": 307,
-      "wave_period": 6.9
+      "height": 0.8,
+      "wave_direction": 296,
+      "wave_period": 6.5
     },
     {
       "dt": 1762502400,
       "date": "2025-11-07T08:00",
-      "height": 0.68,
-      "wave_direction": 309,
-      "wave_period": 7
+      "height": 0.78,
+      "wave_direction": 297,
+      "wave_period": 6.55
     },
     {
       "dt": 1762506000,
       "date": "2025-11-07T09:00",
-      "height": 0.68,
-      "wave_direction": 310,
-      "wave_period": 7.1
+      "height": 0.78,
+      "wave_direction": 299,
+      "wave_period": 6.65
     },
     {
       "dt": 1762509600,
       "date": "2025-11-07T10:00",
-      "height": 0.7,
-      "wave_direction": 311,
-      "wave_period": 7.2
+      "height": 0.76,
+      "wave_direction": 300,
+      "wave_period": 6.75
     },
     {
       "dt": 1762513200,
       "date": "2025-11-07T11:00",
-      "height": 0.7,
-      "wave_direction": 312,
-      "wave_period": 7.25
+      "height": 0.76,
+      "wave_direction": 302,
+      "wave_period": 6.9
     },
     {
       "dt": 1762516800,
       "date": "2025-11-07T12:00",
-      "height": 0.7,
-      "wave_direction": 313,
-      "wave_period": 7.3
+      "height": 0.76,
+      "wave_direction": 304,
+      "wave_period": 7.05
     },
     {
       "dt": 1762520400,
       "date": "2025-11-07T13:00",
-      "height": 0.7,
-      "wave_direction": 313,
-      "wave_period": 7.35
+      "height": 0.76,
+      "wave_direction": 306,
+      "wave_period": 7.15
     },
     {
       "dt": 1762524000,
       "date": "2025-11-07T14:00",
-      "height": 0.7,
-      "wave_direction": 314,
-      "wave_period": 7.4
+      "height": 0.76,
+      "wave_direction": 308,
+      "wave_period": 7.3
     },
     {
       "dt": 1762527600,
       "date": "2025-11-07T15:00",
-      "height": 0.68,
-      "wave_direction": 314,
-      "wave_period": 7.45
+      "height": 0.78,
+      "wave_direction": 309,
+      "wave_period": 7.4
     },
     {
       "dt": 1762531200,
       "date": "2025-11-07T16:00",
-      "height": 0.68,
-      "wave_direction": 314,
-      "wave_period": 7.45
+      "height": 0.78,
+      "wave_direction": 311,
+      "wave_period": 7.5
     },
     {
       "dt": 1762534800,
       "date": "2025-11-07T17:00",
-      "height": 0.66,
-      "wave_direction": 314,
-      "wave_period": 7.45
+      "height": 0.8,
+      "wave_direction": 312,
+      "wave_period": 7.6
     },
     {
       "dt": 1762538400,
       "date": "2025-11-07T18:00",
-      "height": 0.66,
-      "wave_direction": 314,
-      "wave_period": 7.45
+      "height": 0.8,
+      "wave_direction": 313,
+      "wave_period": 7.7
     },
     {
       "dt": 1762542000,
       "date": "2025-11-07T19:00",
-      "height": 0.64,
+      "height": 0.78,
       "wave_direction": 313,
-      "wave_period": 7.45
+      "wave_period": 7.75
     },
     {
       "dt": 1762545600,
       "date": "2025-11-07T20:00",
-      "height": 0.64,
-      "wave_direction": 313,
-      "wave_period": 7.4
+      "height": 0.78,
+      "wave_direction": 314,
+      "wave_period": 7.8
     },
     {
       "dt": 1762549200,
       "date": "2025-11-07T21:00",
-      "height": 0.64,
-      "wave_direction": 313,
-      "wave_period": 7.35
+      "height": 0.76,
+      "wave_direction": 314,
+      "wave_period": 7.8
     },
     {
       "dt": 1762552800,
       "date": "2025-11-07T22:00",
-      "height": 0.62,
-      "wave_direction": 312,
-      "wave_period": 7.25
+      "height": 0.76,
+      "wave_direction": 314,
+      "wave_period": 7.8
     },
     {
       "dt": 1762556400,
       "date": "2025-11-07T23:00",
-      "height": 0.62,
-      "wave_direction": 312,
-      "wave_period": 7.15
+      "height": 0.74,
+      "wave_direction": 314,
+      "wave_period": 7.75
     },
     {
       "dt": 1762560000,
       "date": "2025-11-08T00:00",
-      "height": 0.6,
-      "wave_direction": 312,
-      "wave_period": 7.1
+      "height": 0.72,
+      "wave_direction": 313,
+      "wave_period": 7.7
     },
     {
       "dt": 1762563600,
       "date": "2025-11-08T01:00",
-      "height": 0.6,
-      "wave_direction": 311,
-      "wave_period": 7.05
+      "height": 0.72,
+      "wave_direction": 313,
+      "wave_period": 7.65
     },
     {
       "dt": 1762567200,
       "date": "2025-11-08T02:00",
-      "height": 0.58,
-      "wave_direction": 311,
-      "wave_period": 7.05
+      "height": 0.7,
+      "wave_direction": 312,
+      "wave_period": 7.6
     },
     {
       "dt": 1762570800,
       "date": "2025-11-08T03:00",
-      "height": 0.56,
+      "height": 0.68,
       "wave_direction": 311,
-      "wave_period": 7.05
+      "wave_period": 7.55
     },
     {
       "dt": 1762574400,
       "date": "2025-11-08T04:00",
-      "height": 0.54,
+      "height": 0.66,
       "wave_direction": 311,
-      "wave_period": 7
+      "wave_period": 7.55
     },
     {
       "dt": 1762578000,
       "date": "2025-11-08T05:00",
-      "height": 0.52,
-      "wave_direction": 311,
-      "wave_period": 7
+      "height": 0.64,
+      "wave_direction": 310,
+      "wave_period": 7.5
     },
     {
       "dt": 1762581600,
       "date": "2025-11-08T06:00",
-      "height": 0.5,
-      "wave_direction": 311,
-      "wave_period": 6.95
+      "height": 0.62,
+      "wave_direction": 310,
+      "wave_period": 7.45
     },
     {
       "dt": 1762585200,
       "date": "2025-11-08T07:00",
-      "height": 0.5,
-      "wave_direction": 311,
-      "wave_period": 6.95
+      "height": 0.6,
+      "wave_direction": 309,
+      "wave_period": 7.4
     },
     {
       "dt": 1762588800,
       "date": "2025-11-08T08:00",
-      "height": 0.48,
-      "wave_direction": 311,
-      "wave_period": 6.9
+      "height": 0.58,
+      "wave_direction": 309,
+      "wave_period": 7.35
     },
     {
       "dt": 1762592400,
       "date": "2025-11-08T09:00",
-      "height": 0.48,
-      "wave_direction": 311,
-      "wave_period": 6.85
+      "height": 0.56,
+      "wave_direction": 309,
+      "wave_period": 7.3
     },
     {
       "dt": 1762596000,
       "date": "2025-11-08T10:00",
-      "height": 0.46,
-      "wave_direction": 311,
-      "wave_period": 6.8
+      "height": 0.54,
+      "wave_direction": 309,
+      "wave_period": 7.25
     },
     {
       "dt": 1762599600,
       "date": "2025-11-08T11:00",
-      "height": 0.46,
-      "wave_direction": 311,
-      "wave_period": 6.75
+      "height": 0.52,
+      "wave_direction": 309,
+      "wave_period": 7.2
     },
     {
       "dt": 1762603200,
       "date": "2025-11-08T12:00",
-      "height": 0.44,
-      "wave_direction": 311,
-      "wave_period": 6.7
+      "height": 0.5,
+      "wave_direction": 309,
+      "wave_period": 7.15
     },
     {
       "dt": 1762606800,
       "date": "2025-11-08T13:00",
-      "height": 0.44,
-      "wave_direction": 311,
-      "wave_period": 6.65
+      "height": 0.5,
+      "wave_direction": 308,
+      "wave_period": 7.05
     },
     {
       "dt": 1762610400,
       "date": "2025-11-08T14:00",
-      "height": 0.42,
-      "wave_direction": 311,
-      "wave_period": 6.6
+      "height": 0.48,
+      "wave_direction": 308,
+      "wave_period": 7
     },
     {
       "dt": 1762614000,
       "date": "2025-11-08T15:00",
-      "height": 0.42,
-      "wave_direction": 311,
-      "wave_period": 6.55
+      "height": 0.48,
+      "wave_direction": 308,
+      "wave_period": 6.95
     },
     {
       "dt": 1762617600,
       "date": "2025-11-08T16:00",
-      "height": 0.4,
-      "wave_direction": 311,
-      "wave_period": 6.45
+      "height": 0.46,
+      "wave_direction": 308,
+      "wave_period": 6.85
     },
     {
       "dt": 1762621200,
       "date": "2025-11-08T17:00",
-      "height": 0.4,
-      "wave_direction": 311,
-      "wave_period": 6.4
+      "height": 0.46,
+      "wave_direction": 308,
+      "wave_period": 6.8
     },
     {
       "dt": 1762624800,
       "date": "2025-11-08T18:00",
-      "height": 0.4,
-      "wave_direction": 311,
-      "wave_period": 6.35
+      "height": 0.44,
+      "wave_direction": 308,
+      "wave_period": 6.75
     },
     {
       "dt": 1762628400,
       "date": "2025-11-08T19:00",
-      "height": 0.38,
-      "wave_direction": 312,
-      "wave_period": 6.3
+      "height": 0.44,
+      "wave_direction": 308,
+      "wave_period": 6.65
     },
     {
       "dt": 1762632000,
       "date": "2025-11-08T20:00",
-      "height": 0.38,
-      "wave_direction": 312,
-      "wave_period": 6.3
+      "height": 0.42,
+      "wave_direction": 308,
+      "wave_period": 6.6
     },
     {
       "dt": 1762635600,
       "date": "2025-11-08T21:00",
-      "height": 0.38,
-      "wave_direction": 312,
-      "wave_period": 6.3
+      "height": 0.42,
+      "wave_direction": 308,
+      "wave_period": 6.55
     },
     {
       "dt": 1762639200,
       "date": "2025-11-08T22:00",
-      "height": 0.36,
-      "wave_direction": 313,
-      "wave_period": 6.3
+      "height": 0.4,
+      "wave_direction": 308,
+      "wave_period": 6.55
     },
     {
       "dt": 1762642800,
       "date": "2025-11-08T23:00",
-      "height": 0.36,
-      "wave_direction": 313,
-      "wave_period": 6.3
+      "height": 0.4,
+      "wave_direction": 308,
+      "wave_period": 6.5
     },
     {
       "dt": 1762646400,
       "date": "2025-11-09T00:00",
-      "height": 0.36,
-      "wave_direction": 314,
-      "wave_period": 6.3
+      "height": 0.4,
+      "wave_direction": 308,
+      "wave_period": 6.45
     },
     {
       "dt": 1762650000,
       "date": "2025-11-09T01:00",
-      "height": 0.34,
-      "wave_direction": 314,
-      "wave_period": 6.35
+      "height": 0.38,
+      "wave_direction": 309,
+      "wave_period": 6.45
     },
     {
       "dt": 1762653600,
       "date": "2025-11-09T02:00",
-      "height": 0.34,
-      "wave_direction": 315,
-      "wave_period": 6.35
+      "height": 0.38,
+      "wave_direction": 309,
+      "wave_period": 6.4
     },
     {
       "dt": 1762657200,
       "date": "2025-11-09T03:00",
-      "height": 0.34,
-      "wave_direction": 316,
-      "wave_period": 6.35
+      "height": 0.38,
+      "wave_direction": 309,
+      "wave_period": 6.4
     },
     {
       "dt": 1762660800,
       "date": "2025-11-09T04:00",
-      "height": 0.34,
-      "wave_direction": 317,
+      "height": 0.38,
+      "wave_direction": 310,
       "wave_period": 6.35
     },
     {
       "dt": 1762664400,
       "date": "2025-11-09T05:00",
-      "height": 0.34,
-      "wave_direction": 318,
+      "height": 0.38,
+      "wave_direction": 310,
       "wave_period": 6.35
     },
     {
       "dt": 1762668000,
       "date": "2025-11-09T06:00",
-      "height": 0.34,
-      "wave_direction": 319,
+      "height": 0.38,
+      "wave_direction": 310,
       "wave_period": 6.35
     },
     {
       "dt": 1762671600,
       "date": "2025-11-09T07:00",
-      "height": 0.32,
-      "wave_direction": 320,
-      "wave_period": 6.4
+      "height": 0.36,
+      "wave_direction": 311,
+      "wave_period": 6.3
     },
     {
       "dt": 1762675200,
       "date": "2025-11-09T08:00",
-      "height": 0.32,
-      "wave_direction": 321,
-      "wave_period": 6.4
+      "height": 0.36,
+      "wave_direction": 311,
+      "wave_period": 6.3
     },
     {
       "dt": 1762678800,
       "date": "2025-11-09T09:00",
-      "height": 0.32,
-      "wave_direction": 322,
-      "wave_period": 6.4
+      "height": 0.36,
+      "wave_direction": 311,
+      "wave_period": 6.3
     },
     {
       "dt": 1762682400,
       "date": "2025-11-09T10:00",
-      "height": 0.3,
-      "wave_direction": 322,
-      "wave_period": 6.4
+      "height": 0.34,
+      "wave_direction": 311,
+      "wave_period": 6.25
     },
     {
       "dt": 1762686000,
       "date": "2025-11-09T11:00",
-      "height": 0.3,
-      "wave_direction": 323,
-      "wave_period": 6.4
+      "height": 0.34,
+      "wave_direction": 311,
+      "wave_period": 6.25
     },
     {
       "dt": 1762689600,
       "date": "2025-11-09T12:00",
-      "height": 0.3,
-      "wave_direction": 324,
-      "wave_period": 6.4
+      "height": 0.34,
+      "wave_direction": 311,
+      "wave_period": 6.25
     },
     {
       "dt": 1762693200,
       "date": "2025-11-09T13:00",
-      "height": 0.3,
-      "wave_direction": 324,
-      "wave_period": 6.4
+      "height": 0.34,
+      "wave_direction": 312,
+      "wave_period": 6.2
     },
     {
       "dt": 1762696800,
       "date": "2025-11-09T14:00",
-      "height": 0.3,
-      "wave_direction": 325,
-      "wave_period": 6.4
+      "height": 0.34,
+      "wave_direction": 312,
+      "wave_period": 6.2
     },
     {
       "dt": 1762700400,
       "date": "2025-11-09T15:00",
-      "height": 0.3,
-      "wave_direction": 325,
-      "wave_period": 6.4
+      "height": 0.34,
+      "wave_direction": 312,
+      "wave_period": 6.2
     },
     {
       "dt": 1762704000,
       "date": "2025-11-09T16:00",
-      "height": 0.3,
-      "wave_direction": 326,
-      "wave_period": 6.4
+      "height": 0.32,
+      "wave_direction": 313,
+      "wave_period": 6.15
     },
     {
       "dt": 1762707600,
       "date": "2025-11-09T17:00",
-      "height": 0.3,
-      "wave_direction": 326,
-      "wave_period": 6.4
+      "height": 0.32,
+      "wave_direction": 313,
+      "wave_period": 6.15
     },
     {
       "dt": 1762711200,
       "date": "2025-11-09T18:00",
-      "height": 0.3,
-      "wave_direction": 327,
-      "wave_period": 6.4
+      "height": 0.32,
+      "wave_direction": 314,
+      "wave_period": 6.15
     },
     {
       "dt": 1762714800,
       "date": "2025-11-09T19:00",
-      "height": 0.28,
-      "wave_direction": 327,
-      "wave_period": 6.4
+      "height": 0.3,
+      "wave_direction": 314,
+      "wave_period": 6.15
     },
     {
       "dt": 1762718400,
       "date": "2025-11-09T20:00",
-      "height": 0.28,
-      "wave_direction": 328,
-      "wave_period": 6.4
+      "height": 0.3,
+      "wave_direction": 315,
+      "wave_period": 6.15
     },
     {
       "dt": 1762722000,
       "date": "2025-11-09T21:00",
-      "height": 0.28,
-      "wave_direction": 329,
-      "wave_period": 6.4
+      "height": 0.3,
+      "wave_direction": 315,
+      "wave_period": 6.15
     },
     {
       "dt": 1762725600,
       "date": "2025-11-09T22:00",
-      "height": 0.26,
-      "wave_direction": 329,
-      "wave_period": 6.4
+      "height": 0.3,
+      "wave_direction": 316,
+      "wave_period": 6.1
     },
     {
       "dt": 1762729200,
       "date": "2025-11-09T23:00",
-      "height": 0.26,
-      "wave_direction": 330,
-      "wave_period": 6.4
-    },
-    {
-      "dt": 1762732800,
-      "date": "2025-11-10T00:00",
-      "height": 0.26,
-      "wave_direction": 331,
-      "wave_period": 6.4
-    },
-    {
-      "dt": 1762736400,
-      "date": "2025-11-10T01:00",
-      "height": 0.26,
-      "wave_direction": 331,
-      "wave_period": 6.45
-    },
-    {
-      "dt": 1762740000,
-      "date": "2025-11-10T02:00",
-      "height": 0.26,
-      "wave_direction": 332,
-      "wave_period": 6.45
-    },
-    {
-      "dt": 1762743600,
-      "date": "2025-11-10T03:00",
-      "height": 0.26,
-      "wave_direction": 333,
-      "wave_period": 6.5
-    },
-    {
-      "dt": 1762747200,
-      "date": "2025-11-10T04:00",
-      "height": 0.26,
-      "wave_direction": 335,
-      "wave_period": 6.5
-    },
-    {
-      "dt": 1762750800,
-      "date": "2025-11-10T05:00",
-      "height": 0.26,
-      "wave_direction": 336,
-      "wave_period": 6.55
-    },
-    {
-      "dt": 1762754400,
-      "date": "2025-11-10T06:00",
-      "height": 0.26,
-      "wave_direction": 337,
-      "wave_period": 6.6
-    },
-    {
-      "dt": 1762758000,
-      "date": "2025-11-10T07:00",
-      "height": 0.26,
-      "wave_direction": 339,
-      "wave_period": 6.6
-    },
-    {
-      "dt": 1762761600,
-      "date": "2025-11-10T08:00",
-      "height": 0.26,
-      "wave_direction": 340,
-      "wave_period": 6.65
-    },
-    {
-      "dt": 1762765200,
-      "date": "2025-11-10T09:00",
-      "height": 0.26,
-      "wave_direction": 341,
-      "wave_period": 6.7
-    },
-    {
-      "dt": 1762768800,
-      "date": "2025-11-10T10:00",
-      "height": 0.26,
-      "wave_direction": 343,
-      "wave_period": 6.7
-    },
-    {
-      "dt": 1762772400,
-      "date": "2025-11-10T11:00",
-      "height": 0.26,
-      "wave_direction": 344,
-      "wave_period": 6.75
-    },
-    {
-      "dt": 1762776000,
-      "date": "2025-11-10T12:00",
-      "height": 0.26,
-      "wave_direction": 345,
-      "wave_period": 6.75
-    },
-    {
-      "dt": 1762779600,
-      "date": "2025-11-10T13:00",
-      "height": 0.26,
-      "wave_direction": 345,
-      "wave_period": 6.75
-    },
-    {
-      "dt": 1762783200,
-      "date": "2025-11-10T14:00",
-      "height": 0.26,
-      "wave_direction": 346,
-      "wave_period": 6.75
-    },
-    {
-      "dt": 1762786800,
-      "date": "2025-11-10T15:00",
-      "height": 0.26,
-      "wave_direction": 347,
-      "wave_period": 6.75
-    },
-    {
-      "dt": 1762790400,
-      "date": "2025-11-10T16:00",
-      "height": 0.26,
-      "wave_direction": 348,
-      "wave_period": 6.7
-    },
-    {
-      "dt": 1762794000,
-      "date": "2025-11-10T17:00",
-      "height": 0.26,
-      "wave_direction": 349,
-      "wave_period": 6.7
-    },
-    {
-      "dt": 1762797600,
-      "date": "2025-11-10T18:00",
-      "height": 0.26,
-      "wave_direction": 350,
-      "wave_period": 6.7
-    },
-    {
-      "dt": 1762801200,
-      "date": "2025-11-10T19:00",
-      "height": 0.26,
-      "wave_direction": 350,
-      "wave_period": 6.75
-    },
-    {
-      "dt": 1762804800,
-      "date": "2025-11-10T20:00",
-      "height": 0.26,
-      "wave_direction": 351,
-      "wave_period": 6.8
-    },
-    {
-      "dt": 1762808400,
-      "date": "2025-11-10T21:00",
-      "height": 0.26,
-      "wave_direction": 352,
-      "wave_period": 6.85
-    },
-    {
-      "dt": 1762812000,
-      "date": "2025-11-10T22:00",
-      "height": 0.26,
-      "wave_direction": 352,
-      "wave_period": 6.85
-    },
-    {
-      "dt": 1762815600,
-      "date": "2025-11-10T23:00",
-      "height": 0.26,
-      "wave_direction": 353,
-      "wave_period": 6.9
+      "height": 0.3,
+      "wave_direction": 316,
+      "wave_period": 6.1
     }
   ],
-  "timestamp": 1762170817076,
+  "timestamp": 1762082282592,
   "rawData": {
     "latitude": 5.291664,
     "longitude": 115.20836,
-    "generationtime_ms": 0.11897087097167969,
+    "generationtime_ms": 0.19919872283935547,
     "utc_offset_seconds": 28800,
     "timezone": "Asia/Kuala_Lumpur",
     "timezone_abbreviation": "GMT+8",
@@ -1362,6 +1362,30 @@
     },
     "hourly": {
       "time": [
+        "2025-11-02T00:00",
+        "2025-11-02T01:00",
+        "2025-11-02T02:00",
+        "2025-11-02T03:00",
+        "2025-11-02T04:00",
+        "2025-11-02T05:00",
+        "2025-11-02T06:00",
+        "2025-11-02T07:00",
+        "2025-11-02T08:00",
+        "2025-11-02T09:00",
+        "2025-11-02T10:00",
+        "2025-11-02T11:00",
+        "2025-11-02T12:00",
+        "2025-11-02T13:00",
+        "2025-11-02T14:00",
+        "2025-11-02T15:00",
+        "2025-11-02T16:00",
+        "2025-11-02T17:00",
+        "2025-11-02T18:00",
+        "2025-11-02T19:00",
+        "2025-11-02T20:00",
+        "2025-11-02T21:00",
+        "2025-11-02T22:00",
+        "2025-11-02T23:00",
         "2025-11-03T00:00",
         "2025-11-03T01:00",
         "2025-11-03T02:00",
@@ -1529,154 +1553,160 @@
         "2025-11-09T20:00",
         "2025-11-09T21:00",
         "2025-11-09T22:00",
-        "2025-11-09T23:00",
-        "2025-11-10T00:00",
-        "2025-11-10T01:00",
-        "2025-11-10T02:00",
-        "2025-11-10T03:00",
-        "2025-11-10T04:00",
-        "2025-11-10T05:00",
-        "2025-11-10T06:00",
-        "2025-11-10T07:00",
-        "2025-11-10T08:00",
-        "2025-11-10T09:00",
-        "2025-11-10T10:00",
-        "2025-11-10T11:00",
-        "2025-11-10T12:00",
-        "2025-11-10T13:00",
-        "2025-11-10T14:00",
-        "2025-11-10T15:00",
-        "2025-11-10T16:00",
-        "2025-11-10T17:00",
-        "2025-11-10T18:00",
-        "2025-11-10T19:00",
-        "2025-11-10T20:00",
-        "2025-11-10T21:00",
-        "2025-11-10T22:00",
-        "2025-11-10T23:00"
+        "2025-11-09T23:00"
       ],
       "wave_height": [
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.34,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
-        0.36,
+        0.42,
+        0.42,
+        0.42,
+        0.42,
+        0.42,
+        0.42,
+        0.42,
+        0.4,
+        0.4,
+        0.4,
         0.38,
+        0.38,
+        0.38,
+        0.38,
+        0.38,
+        0.38,
+        0.36,
+        0.36,
+        0.36,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.32,
+        0.32,
+        0.32,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.34,
+        0.36,
+        0.36,
         0.38,
         0.4,
+        0.42,
+        0.42,
+        0.4,
+        0.4,
+        0.42,
         0.42,
         0.44,
         0.46,
         0.46,
         0.48,
-        0.48,
-        0.46,
-        0.46,
-        0.46,
-        0.48,
-        0.48,
         0.5,
         0.5,
         0.52,
         0.52,
         0.52,
         0.52,
-        0.54,
-        0.54,
+        0.52,
+        0.52,
+        0.52,
         0.56,
         0.62,
         0.66,
-        0.72,
-        0.74,
-        0.76,
-        0.78,
-        0.76,
-        0.72,
+        0.66,
+        0.68,
+        0.68,
+        0.68,
+        0.66,
+        0.66,
+        0.68,
         0.7,
-        0.7,
         0.72,
-        0.72,
-        0.78,
+        0.76,
+        0.82,
+        0.86,
+        0.86,
+        0.86,
+        0.86,
+        0.86,
         0.84,
+        0.84,
+        0.86,
+        0.88,
         0.9,
-        0.92,
-        0.94,
         0.96,
-        0.98,
-        1.02,
         1.04,
-        1.04,
+        1.1,
         1.06,
-        1.06,
-        1.04,
-        1.04,
-        1.02,
         1,
         0.96,
         0.94,
         0.94,
         0.92,
-        0.92,
-        0.92,
         0.94,
         0.94,
-        0.98,
+        0.96,
+        1.02,
+        1.08,
+        1.14,
+        1.12,
+        1.08,
+        1.06,
+        1.04,
+        1.04,
+        1.02,
+        1.02,
         1,
-        1.04,
-        1.04,
-        1.02,
-        1.02,
+        1,
+        0.98,
         0.98,
         0.96,
         0.92,
         0.9,
         0.86,
         0.84,
-        0.82,
+        0.8,
         0.78,
+        0.78,
+        0.76,
+        0.76,
+        0.76,
+        0.76,
+        0.76,
+        0.78,
+        0.78,
+        0.8,
+        0.8,
+        0.78,
+        0.78,
+        0.76,
         0.76,
         0.74,
         0.72,
+        0.72,
         0.7,
-        0.7,
-        0.68,
-        0.68,
-        0.68,
-        0.7,
-        0.7,
-        0.7,
-        0.7,
-        0.7,
-        0.68,
         0.68,
         0.66,
-        0.66,
-        0.64,
-        0.64,
         0.64,
         0.62,
-        0.62,
-        0.6,
         0.6,
         0.58,
         0.56,
@@ -1698,6 +1728,9 @@
         0.38,
         0.38,
         0.38,
+        0.38,
+        0.38,
+        0.38,
         0.36,
         0.36,
         0.36,
@@ -1714,428 +1747,395 @@
         0.3,
         0.3,
         0.3,
-        0.3,
-        0.3,
-        0.3,
-        0.3,
-        0.3,
-        0.28,
-        0.28,
-        0.28,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26,
-        0.26
+        0.3
       ],
       "wave_direction": [
-        345,
-        346,
-        346,
-        346,
-        346,
-        346,
-        346,
-        347,
-        347,
-        347,
-        347,
-        347,
-        347,
-        348,
-        348,
-        348,
-        349,
-        349,
-        349,
-        350,
-        350,
-        350,
-        351,
-        351,
-        351,
-        351,
-        351,
-        347,
-        344,
-        340,
-        334,
-        328,
-        322,
-        324,
-        326,
-        328,
-        325,
-        323,
-        320,
-        317,
-        315,
-        312,
-        312,
-        313,
-        313,
-        312,
-        310,
-        309,
-        297,
-        284,
-        272,
-        266,
-        260,
-        254,
-        259,
-        264,
-        269,
-        272,
-        275,
-        278,
-        277,
-        277,
-        276,
-        275,
-        274,
-        273,
-        272,
-        271,
-        270,
-        268,
-        266,
-        264,
-        265,
-        265,
-        266,
-        269,
-        273,
-        276,
-        278,
-        281,
-        283,
-        285,
-        287,
-        289,
-        290,
-        290,
-        291,
-        293,
-        294,
-        296,
-        297,
-        297,
-        298,
-        298,
-        297,
-        297,
-        298,
-        299,
-        300,
-        301,
-        303,
-        304,
-        306,
-        307,
-        309,
-        310,
-        311,
-        312,
-        313,
-        313,
-        314,
-        314,
-        314,
-        314,
-        314,
-        313,
-        313,
-        313,
-        312,
-        312,
-        312,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        311,
-        312,
-        312,
-        312,
-        313,
-        313,
-        314,
-        314,
-        315,
-        316,
-        317,
-        318,
-        319,
-        320,
-        321,
-        322,
-        322,
-        323,
-        324,
-        324,
-        325,
-        325,
-        326,
-        326,
-        327,
-        327,
-        328,
-        329,
-        329,
-        330,
-        331,
-        331,
-        332,
-        333,
-        335,
-        336,
-        337,
-        339,
-        340,
-        341,
+        342,
+        342,
         343,
         344,
         345,
-        345,
+        346,
         346,
         347,
+        347,
+        347,
         348,
-        349,
-        350,
-        350,
-        351,
-        352,
-        352,
-        353
+        348,
+        348,
+        348,
+        348,
+        348,
+        348,
+        348,
+        348,
+        347,
+        347,
+        347,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        345,
+        345,
+        345,
+        345,
+        345,
+        345,
+        345,
+        345,
+        345,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        346,
+        339,
+        332,
+        325,
+        327,
+        328,
+        330,
+        325,
+        320,
+        315,
+        313,
+        310,
+        308,
+        306,
+        305,
+        303,
+        303,
+        304,
+        304,
+        303,
+        301,
+        300,
+        290,
+        280,
+        270,
+        268,
+        267,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        274,
+        275,
+        276,
+        276,
+        277,
+        277,
+        276,
+        276,
+        273,
+        270,
+        267,
+        262,
+        257,
+        252,
+        254,
+        257,
+        259,
+        260,
+        261,
+        262,
+        265,
+        267,
+        270,
+        270,
+        270,
+        270,
+        272,
+        275,
+        277,
+        281,
+        285,
+        289,
+        290,
+        292,
+        293,
+        293,
+        292,
+        292,
+        293,
+        293,
+        294,
+        295,
+        296,
+        297,
+        299,
+        300,
+        302,
+        304,
+        306,
+        308,
+        309,
+        311,
+        312,
+        313,
+        313,
+        314,
+        314,
+        314,
+        314,
+        313,
+        313,
+        312,
+        311,
+        311,
+        310,
+        310,
+        309,
+        309,
+        309,
+        309,
+        309,
+        309,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        308,
+        309,
+        309,
+        309,
+        310,
+        310,
+        310,
+        311,
+        311,
+        311,
+        311,
+        311,
+        311,
+        312,
+        312,
+        312,
+        313,
+        313,
+        314,
+        314,
+        315,
+        315,
+        316,
+        316
       ],
       "wave_period": [
-        6.7,
-        6.8,
-        6.85,
-        6.9,
-        7,
-        7.05,
-        7.1,
-        7.15,
-        7.2,
+        7.6,
+        7.6,
+        7.6,
+        7.6,
+        7.6,
+        7.6,
+        7.55,
+        7.55,
+        7.5,
+        7.45,
+        7.45,
+        7.4,
+        7.4,
+        7.35,
+        7.35,
+        7.3,
+        7.3,
+        7.25,
+        7.25,
+        7.25,
+        7.25,
+        7.25,
+        7.25,
+        7.25,
         7.25,
         7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
+        7.3,
         7.35,
-        7.35,
-        7.4,
-        7.4,
-        7.4,
-        7.45,
-        7.45,
-        7.45,
-        7.5,
-        7.5,
-        7.5,
-        7.55,
-        7.55,
-        7.6,
-        7.6,
-        7.45,
-        6.95,
-        6.3,
-        5.8,
-        5.55,
-        5.45,
-        5.4,
-        5.45,
-        5.65,
-        5.7,
-        5.6,
-        5.45,
-        5.3,
-        5.2,
-        5.15,
-        5.1,
-        5.1,
-        5.1,
-        5.1,
-        5.1,
-        5.1,
-        5,
-        4.8,
-        4.5,
-        4.3,
-        4.25,
-        4.3,
-        4.4,
-        4.55,
-        4.75,
-        4.9,
-        5,
-        5.05,
-        5.05,
-        5,
-        4.9,
-        4.85,
-        4.85,
-        4.9,
-        4.95,
-        5,
-        5.05,
-        5.1,
-        5.1,
-        5.15,
-        5.15,
-        5.2,
-        5.25,
-        5.3,
-        5.4,
-        5.55,
-        5.65,
+        7.2,
+        6.75,
+        6.15,
         5.75,
-        5.85,
+        5.75,
         5.95,
         6.05,
-        6.1,
+        5.85,
+        5.55,
+        5.3,
+        5.15,
+        5.05,
+        4.95,
+        4.85,
+        4.8,
+        4.75,
+        4.8,
+        4.85,
+        4.9,
+        4.9,
+        4.9,
+        4.8,
+        4.6,
+        4.35,
+        4.2,
+        4.2,
+        4.35,
+        4.45,
+        4.55,
+        4.6,
+        4.65,
+        4.65,
+        4.65,
+        4.65,
+        4.65,
+        4.65,
+        4.65,
+        4.75,
+        4.85,
+        4.95,
+        5,
+        5.1,
+        5.1,
+        5.05,
+        5,
+        4.9,
+        4.8,
+        4.7,
+        4.65,
+        4.75,
+        4.9,
+        5.05,
+        5.1,
+        5.1,
+        5.15,
+        5.25,
+        5.35,
+        5.4,
+        5.4,
+        5.35,
+        5.4,
+        5.55,
+        5.75,
+        5.9,
+        6.05,
         6.15,
-        6.15,
-        6.1,
-        6.1,
-        6.2,
-        6.3,
-        6.4,
-        6.4,
-        6.4,
-        6.35,
-        6.3,
-        6.25,
         6.25,
         6.3,
+        6.3,
+        6.3,
+        6.3,
+        6.35,
+        6.35,
         6.35,
         6.4,
+        6.4,
+        6.45,
         6.5,
-        6.6,
-        6.7,
-        6.8,
+        6.55,
+        6.65,
+        6.75,
         6.9,
-        7,
-        7.1,
-        7.2,
-        7.25,
-        7.3,
-        7.35,
-        7.4,
-        7.45,
-        7.45,
-        7.45,
-        7.45,
-        7.45,
-        7.4,
-        7.35,
-        7.25,
+        7.05,
         7.15,
-        7.1,
-        7.05,
-        7.05,
+        7.3,
+        7.4,
+        7.5,
+        7.6,
+        7.7,
+        7.75,
+        7.8,
+        7.8,
+        7.8,
+        7.75,
+        7.7,
+        7.65,
+        7.6,
+        7.55,
+        7.55,
+        7.5,
+        7.45,
+        7.4,
+        7.35,
+        7.3,
+        7.25,
+        7.2,
+        7.15,
         7.05,
         7,
-        7,
         6.95,
-        6.95,
-        6.9,
         6.85,
         6.8,
         6.75,
-        6.7,
         6.65,
         6.6,
         6.55,
-        6.45,
-        6.4,
-        6.35,
-        6.3,
-        6.3,
-        6.3,
-        6.3,
-        6.3,
-        6.3,
-        6.35,
-        6.35,
-        6.35,
-        6.35,
-        6.35,
-        6.35,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.4,
-        6.45,
-        6.45,
-        6.5,
-        6.5,
         6.55,
-        6.6,
-        6.6,
-        6.65,
-        6.7,
-        6.7,
-        6.75,
-        6.75,
-        6.75,
-        6.75,
-        6.75,
-        6.7,
-        6.7,
-        6.7,
-        6.75,
-        6.8,
-        6.85,
-        6.85,
-        6.9
+        6.5,
+        6.45,
+        6.45,
+        6.4,
+        6.4,
+        6.35,
+        6.35,
+        6.35,
+        6.3,
+        6.3,
+        6.3,
+        6.25,
+        6.25,
+        6.25,
+        6.2,
+        6.2,
+        6.2,
+        6.15,
+        6.15,
+        6.15,
+        6.15,
+        6.15,
+        6.15,
+        6.1,
+        6.1
       ]
     },
     "daily_units": {
@@ -2144,24 +2144,24 @@
     },
     "daily": {
       "time": [
+        "2025-11-02",
         "2025-11-03",
         "2025-11-04",
         "2025-11-05",
         "2025-11-06",
         "2025-11-07",
         "2025-11-08",
-        "2025-11-09",
-        "2025-11-10"
+        "2025-11-09"
       ],
       "wave_height_max": [
-        0.36,
-        0.56,
-        1.06,
-        1.04,
-        0.82,
-        0.6,
-        0.36,
-        0.26
+        0.42,
+        0.34,
+        0.52,
+        0.9,
+        1.14,
+        0.98,
+        0.72,
+        0.4
       ]
     }
   },
