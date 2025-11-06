@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# MarineTrack - Marine Safety & Tracking App 🚢
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Available Scripts
+## 🛰️ AIS Location Tracking Feature
 
-In the project directory, you can run:
+MarineTrack now includes a powerful AIS (Automatic Identification System) tracker that turns your phone into a marine beacon:
 
-### `npm start`
+### Features:
+- **Real-time GPS Tracking**: Broadcasts your vessel's position every 5 seconds
+- **AIS Beacon**: Your phone acts as an AIS transmitter for nearby vessels
+- **Vessel Information**: Store complete vessel details (Name, ID, Type, MMSI, IMO)
+- **Backend Integration**: All tracking data is sent to backend for storage and retrieval
+- **Nearby Vessels**: See other MarineTrack users within 10km radius
+- **Status Updates**: Set your vessel status (Active, Idle, Anchored)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### How to Use:
+1. Go to the **Tracker** tab
+2. Fill in your vessel information (Name and ID are required)
+3. Enable the tracking switch
+4. Your location will be broadcast to nearby vessels
+5. View other tracked vessels in the dashboard
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend Integration:
+The app uses `utils/trackingService.ts` which stores data locally. To connect to your backend:
 
-### `npm test`
+1. Replace the mock API call in `sendTrackingData()` with your actual endpoint:
+```typescript
+const response = await fetch('https://your-backend-api.com/api/tracking', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(data)
+});
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Update `getNearbyTrackedVessels()` to fetch from your backend API
 
-### `npm run build`
+## Get started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Install dependencies
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Start the app
 
-### `npm run eject`
+   ```bash
+   npx expo start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+In the output, you'll find options to open the app in a
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Get a fresh project
 
-## Learn More
+When you're ready, run:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm run reset-project
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-### Code Splitting
+## Learn more
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+To learn more about developing your project with Expo, look at the following resources:
 
-### Analyzing the Bundle Size
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Join the community
 
-### Making a Progressive Web App
+Join our community of developers creating universal apps.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
